@@ -1,0 +1,51 @@
+:root {
+  /* Approved Palette Foundation */
+  --bg-canvas: #F2EFE7;
+  --color-primary: #3368A0;
+  --color-secondary: #66A3BF;
+  --color-soft-teal: #C8DFDB;
+
+  /* Contrast Inks (Deep Slate & Muted Navy) */
+  --ink-primary: #142334;
+  --ink-muted: #4A6075;
+  --ink-subtle: #768B9E;
+
+  /* Surfaces & Structural Planes */
+  --surface-panel: #F2EFE7;
+  --surface-card: #C8DFDB;
+  --surface-card-subtle: rgba(200, 223, 219, 0.45);
+  --surface-white: #FFFFFF;
+  --surface-hover: rgba(102, 163, 191, 0.12);
+
+  /* Hairline Borders */
+  --border-subtle: rgba(51, 104, 160, 0.16);
+  --border-strong: rgba(51, 104, 160, 0.38);
+  --border-teal: rgba(102, 163, 191, 0.28);
+  --border-white: rgba(255, 255, 255, 0.6);
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-card: 18px;
+  --radius-pill: 999px;
+
+  /* Shadows (Restrained & Architectural) */
+  --shadow-sm: 0 1px 3px rgba(20, 35, 52, 0.06);
+  --shadow-card: 0 6px 18px -4px rgba(20, 35, 52, 0.08);
+  --shadow-elevated: 0 14px 32px -8px rgba(20, 35, 52, 0.12);
+  --shadow-drawer: -12px 0 36px -8px rgba(20, 35, 52, 0.18);
+
+  /* Layout Constants */
+  --sidebar-w: 272px;
+  --topbar-h: 60px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 160ms var(--ease-out);
+  --transition-normal: 240ms var(--ease-out);
+}

@@ -1,0 +1,153 @@
+@import './tokens.css';
+@import './reset.css';
+
+/* Layout Containers */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--bg-canvas);
+  color: var(--ink-primary);
+}
+
+.app-main-workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(51, 104, 160, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(51, 104, 160, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(51, 104, 160, 0);
+  }
+}
+
+/* Interactive States & Hovers */
+.card--hoverable:hover,
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-secondary) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary:hover {
+  background-color: #2b5786 !important;
+  border-color: #2b5786 !important;
+}
+
+.btn--secondary:hover {
+  background-color: #b5d5d0 !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn--outline:hover {
+  background-color: rgba(51, 104, 160, 0.08) !important;
+}
+
+.sidebar-nav-link:hover:not(.is-active) {
+  background-color: rgba(200, 223, 219, 0.3) !important;
+  color: var(--ink-primary) !important;
+}
+
+.pipeline-node-btn:hover {
+  border-color: var(--color-secondary) !important;
+  transform: translateX(2px);
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1023px) {
+  .desktop-sidebar {
+    display: none !important;
+  }
+  
+  .mobile-menu-trigger {
+    display: flex !important;
+  }
+  
+  .breadcrumb-root,
+  .breadcrumb-separator {
+    display: none !important;
+  }
+  
+  .topbar-status-badge {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-sidebar {
+    display: flex !important;
+  }
+  
+  .mobile-menu-trigger {
+    display: none !important;
+  }
+  
+  .breadcrumb-root,
+  .breadcrumb-separator {
+    display: inline !important;
+  }
+}

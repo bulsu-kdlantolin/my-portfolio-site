@@ -18,6 +18,27 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+        return;
+      }
+      if (e.key === 'Tab' && drawerRef.current) {
+        const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const firstElement = focusable[0];
+        const lastElement = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
 
@@ -52,7 +73,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }
         backdropFilter: 'blur(4px)',
         transition: 'opacity var(--transition-normal)'
       }}
-      onClick={(e) => {
+      onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
@@ -188,7 +209,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }
               padding: '18px'
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--color-secondary)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--ink-secondary-accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
               <CheckCircle2 size={14} /> Engineering Goal
             </span>
             <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', lineHeight: 1.6 }}>
@@ -322,7 +343,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }
                   color: 'var(--ink-primary)'
                 }}
               >
-                <span style={{ color: 'var(--color-secondary)' }}>▸</span>
+                <span style={{ color: 'var(--ink-secondary-accent)' }}>▸</span>
                 <span>{learning}</span>
               </li>
             ))}

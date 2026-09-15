@@ -48,6 +48,34 @@
   }
 }
 
+/* Form Controls & Accessible Focus */
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-canvas);
+  font-size: 0.875rem;
+  color: var(--ink-primary);
+  outline: none;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus-visible {
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 2px !important;
+  border-color: var(--color-primary) !important;
+  background-color: var(--surface-white) !important;
+}
+
+/* Tabular Numerals for Numerical Stability */
+.badge,
+.sidebar-nav-link span:last-child,
+.pipeline-node-btn span,
+.tabular-num {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Interactive States & Hovers */
 .card--hoverable:hover,
 .project-card:hover {

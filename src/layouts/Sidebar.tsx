@@ -175,19 +175,22 @@ export const Sidebar: React.FC = () => {
             width: '100%',
             padding: '8px 10px',
             borderRadius: 'var(--radius-sm)',
-            border: '1px solid var(--border-subtle)',
-            backgroundColor: 'var(--surface-white)',
+            border: `1px solid ${copied ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
+            backgroundColor: copied ? 'rgba(51, 104, 160, 0.08)' : 'var(--surface-white)',
             fontSize: '0.75rem',
             fontFamily: 'var(--font-mono)',
-            color: copied ? 'var(--color-primary)' : 'var(--ink-muted)',
+            color: 'var(--ink-primary)',
             cursor: 'pointer',
             transition: 'all var(--transition-fast)'
           }}
         >
           <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {copied ? 'Copied to clipboard!' : email}
+            {email}
           </span>
-          {copied ? <Check size={13} style={{ color: 'var(--color-primary)' }} /> : <Copy size={13} />}
+          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0, fontSize: '0.6875rem' }}>
+            {copied ? <Check size={13} /> : <Copy size={13} />}
+            <span>{copied ? 'Copied!' : 'Copy'}</span>
+          </span>
         </button>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>

@@ -79,7 +79,15 @@ export const AISystemsPage: React.FC = () => {
           </div>
 
           {/* Right Column: Deep-Dive Inspector Panel */}
-          <div style={{ position: 'sticky', top: '80px' }}>
+          <div
+            style={{
+              position: 'sticky',
+              top: '80px',
+              maxHeight: 'calc(100vh - 100px)',
+              overflowY: 'auto',
+              paddingRight: '4px'
+            }}
+          >
             <PipelineInspector node={selectedNode} />
           </div>
         </div>

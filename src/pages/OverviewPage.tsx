@@ -85,7 +85,7 @@ export const OverviewPage: React.FC = () => {
           and practical <strong>Python, OpenAI, vector search, and RAG</strong> pipelines that solve real problems.
         </p>
 
-        {/* Action Group */}
+        {/* Action Group: 90/10 Action Balance */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
           <Link to="/projects" style={{ textDecoration: 'none' }}>
             <Button variant="primary" size="md" icon={<ArrowRight size={15} />}>
@@ -100,11 +100,6 @@ export const OverviewPage: React.FC = () => {
               iconPosition="left"
             >
               Interactive AI Systems
-            </Button>
-          </Link>
-          <Link to="/how-i-build" style={{ textDecoration: 'none' }}>
-            <Button variant="outline" size="md">
-              How I Build
             </Button>
           </Link>
         </div>
@@ -160,7 +155,7 @@ export const OverviewPage: React.FC = () => {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.6875rem',
-              color: 'var(--color-secondary)',
+              color: 'var(--ink-secondary-accent)',
               textTransform: 'uppercase',
               fontWeight: 700,
               marginBottom: '6px'
@@ -218,7 +213,7 @@ export const OverviewPage: React.FC = () => {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.6875rem',
-              color: 'var(--color-secondary)',
+              color: 'var(--ink-secondary-accent)',
               textTransform: 'uppercase',
               fontWeight: 700,
               marginBottom: '6px'
@@ -337,7 +332,7 @@ export const OverviewPage: React.FC = () => {
                   {step}
                 </div>
                 {i < 6 && (
-                  <span style={{ color: 'var(--color-secondary)', fontSize: '0.75rem', fontWeight: 700 }}>
+                  <span style={{ color: 'var(--ink-secondary-accent)', fontSize: '0.75rem', fontWeight: 700 }}>
                     →
                   </span>
                 )}
@@ -387,7 +382,7 @@ export const OverviewPage: React.FC = () => {
             padding: '24px'
           }}
         >
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-secondary)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-secondary-accent)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
             HONEST POSITIONING
           </div>
           <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '10px' }}>

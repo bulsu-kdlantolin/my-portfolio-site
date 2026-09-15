@@ -79,7 +79,7 @@ export const PipelineInspector: React.FC<PipelineInspectorProps> = ({ node }) =>
             border: '1px solid var(--border-subtle)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 600, color: 'var(--color-secondary)', textTransform: 'uppercase', marginBottom: '6px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 600, color: 'var(--ink-secondary-accent)', textTransform: 'uppercase', marginBottom: '6px' }}>
             <Cpu size={13} /> Output Data Format
           </div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-primary)', lineHeight: 1.5 }}>

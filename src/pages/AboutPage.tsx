@@ -93,7 +93,7 @@ export const AboutPage: React.FC = () => {
             <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '4px' }}>
               Bachelor of Science in Information Technology
             </h4>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--color-secondary)', fontWeight: 600, marginBottom: '12px' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--ink-secondary-accent)', fontWeight: 600, marginBottom: '12px' }}>
               Approaching Graduation // Expected 2026
             </div>
             <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>

@@ -82,11 +82,19 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenMobileMenu }) => {
           </Button>
         </a>
 
-        <Link to="/contact" style={{ textDecoration: 'none' }}>
-          <Button variant="primary" size="sm" icon={<ArrowUpRight size={14} />} iconPosition="right">
-            Get in Touch
-          </Button>
-        </Link>
+        {location.pathname !== '/contact' ? (
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <Button variant="primary" size="sm" icon={<ArrowUpRight size={14} />} iconPosition="right">
+              Get in Touch
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/projects" style={{ textDecoration: 'none' }}>
+            <Button variant="secondary" size="sm" icon={<ArrowUpRight size={14} />} iconPosition="right">
+              Explore Projects
+            </Button>
+          </Link>
+        )}
       </div>
     </header>
   );

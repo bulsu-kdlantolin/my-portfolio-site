@@ -9,6 +9,7 @@
   --ink-primary: #142334;
   --ink-muted: #4A6075;
   --ink-subtle: #768B9E;
+  --ink-secondary-accent: #255280; /* High-contrast 5.8:1 text replacement for #66A3BF */
 
   /* Surfaces & Structural Planes */
   --surface-panel: #F2EFE7;

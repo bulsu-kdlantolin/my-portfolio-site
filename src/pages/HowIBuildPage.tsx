@@ -223,7 +223,7 @@ export const HowIBuildPage: React.FC = () => {
                       lineHeight: 1.5
                     }}
                   >
-                    <CheckCircle2 size={13} style={{ color: 'var(--color-secondary)', flexShrink: 0 }} />
+                    <CheckCircle2 size={13} style={{ color: 'var(--ink-secondary-accent)', flexShrink: 0 }} />
                     <span>{act}</span>
                   </li>
                 ))}

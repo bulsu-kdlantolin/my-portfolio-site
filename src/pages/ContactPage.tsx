@@ -108,19 +108,23 @@ export const ContactPage: React.FC = () => {
               </span>
               <button
                 onClick={handleCopy}
-                aria-label="Copy email address"
+                aria-label="Copy email address to clipboard"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  padding: '4px 10px',
+                  padding: '5px 12px',
                   borderRadius: 'var(--radius-pill)',
-                  backgroundColor: 'var(--surface-white)',
-                  border: '1px solid var(--border-subtle)',
+                  backgroundColor: copied ? 'rgba(51, 104, 160, 0.1)' : 'var(--surface-white)',
+                  border: `1px solid ${copied ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
                   fontSize: '0.75rem',
                   fontFamily: 'var(--font-mono)',
-                  color: copied ? 'var(--color-primary)' : 'var(--ink-primary)',
-                  cursor: 'pointer'
+                  color: 'var(--color-primary)',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  minWidth: '76px',
+                  justifyContent: 'center',
+                  transition: 'all var(--transition-fast)'
                 }}
               >
                 {copied ? <Check size={13} /> : <Copy size={13} />}
@@ -164,7 +168,7 @@ export const ContactPage: React.FC = () => {
                   <GithubIcon size={16} />
                   <span style={{ fontWeight: 600, fontSize: '0.875rem' }}>GitHub</span>
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
                   @KianDavey ↗
                 </span>
               </a>
@@ -190,7 +194,7 @@ export const ContactPage: React.FC = () => {
                   <LinkedinIcon size={16} />
                   <span style={{ fontWeight: 600, fontSize: '0.875rem' }}>LinkedIn</span>
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
                   /in/kiandavey ↗
                 </span>
               </a>
@@ -214,7 +218,7 @@ export const ContactPage: React.FC = () => {
               <span>Location: Philippines (Open to Remote Worldwide)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8125rem', color: 'var(--ink-muted)' }}>
-              <Clock size={15} style={{ color: 'var(--color-secondary)' }} />
+              <Clock size={15} style={{ color: 'var(--color-primary)' }} />
               <span>Timezone: GMT+8 (Flexible overlap with US / Europe hours)</span>
             </div>
           </div>
@@ -237,149 +241,111 @@ export const ContactPage: React.FC = () => {
             </h3>
           </div>
 
-          {formSubmitted ? (
+          {formSubmitted && (
             <div
+              role="status"
+              aria-live="polite"
               style={{
-                padding: '24px',
+                padding: '16px 18px',
                 borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'rgba(200, 223, 219, 0.5)',
-                border: '1px solid var(--border-teal)',
-                textAlign: 'center'
+                backgroundColor: 'rgba(200, 223, 219, 0.55)',
+                border: '1px solid var(--color-primary)',
+                marginBottom: '20px'
               }}
             >
-              <div style={{ fontWeight: 700, fontSize: '1.125rem', color: 'var(--ink-primary)', marginBottom: '6px' }}>
-                Message Prepared!
+              <div style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Check size={16} style={{ color: 'var(--color-primary)' }} />
+                <span>Message Received</span>
               </div>
-              <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', marginBottom: '16px' }}>
-                Thank you for reaching out, {formData.name}. You can also email me directly at{' '}
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+                Thank you for reaching out, {formData.name}. Your note has been recorded. You can also reach me directly at{' '}
                 <a href={`mailto:${email}`} style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
                   {email}
                 </a>.
               </p>
-              <Button variant="secondary" size="sm" onClick={() => setFormSubmitted(false)}>
-                Send Another Note
-              </Button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div>
-                <label
-                  htmlFor="contact-name"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-                >
-                  Your Name *
-                </label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  required
-                  placeholder="e.g. Alex Rivera"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    fontSize: '0.875rem',
-                    color: 'var(--ink-primary)',
-                    outline: 'none',
-                    transition: 'border-color var(--transition-fast)'
-                  }}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-email"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-                >
-                  Email Address *
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  required
-                  placeholder="name@company.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    fontSize: '0.875rem',
-                    color: 'var(--ink-primary)',
-                    outline: 'none',
-                    transition: 'border-color var(--transition-fast)'
-                  }}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-subject"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-                >
-                  Inquiry Topic
-                </label>
-                <select
-                  id="contact-subject"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    fontSize: '0.875rem',
-                    color: 'var(--ink-primary)',
-                    outline: 'none'
-                  }}
-                >
-                  <option value="Full-Time Role">Full-Time Engineering Role</option>
-                  <option value="Internship">Internship Opportunity</option>
-                  <option value="AI Application Project">AI Application / RAG Project</option>
-                  <option value="General Collaboration">General Technical Inquiry</option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-                >
-                  Message *
-                </label>
-                <textarea
-                  id="contact-message"
-                  rows={5}
-                  required
-                  placeholder="Share details about the role, team, or project..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    fontSize: '0.875rem',
-                    color: 'var(--ink-primary)',
-                    outline: 'none',
-                    resize: 'vertical'
-                  }}
-                />
-              </div>
-
-              <Button type="submit" variant="primary" size="md" icon={<Send size={14} />}>
-                Send Message
-              </Button>
-            </form>
           )}
+
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <label
+                htmlFor="contact-name"
+                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
+              >
+                Your Name *
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                required
+                className="form-control"
+                placeholder="e.g. Alex Rivera"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-email"
+                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
+              >
+                Email Address *
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                required
+                className="form-control"
+                placeholder="name@company.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-subject"
+                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
+              >
+                Inquiry Topic
+              </label>
+              <select
+                id="contact-subject"
+                className="form-control"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+              >
+                <option value="Full-Time Role">Full-Time Engineering Role</option>
+                <option value="Internship">Internship Opportunity</option>
+                <option value="AI Application Project">AI Application / RAG Project</option>
+                <option value="General Collaboration">General Technical Inquiry</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-message"
+                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
+              >
+                Message *
+              </label>
+              <textarea
+                id="contact-message"
+                rows={5}
+                required
+                className="form-control"
+                placeholder="Share details about the role, team, or project..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                style={{ resize: 'vertical' }}
+              />
+            </div>
+
+            <Button type="submit" variant="primary" size="md" icon={<Send size={14} />}>
+              {formSubmitted ? 'Resend Message' : 'Send Message'}
+            </Button>
+          </form>
         </section>
       </div>
     </div>

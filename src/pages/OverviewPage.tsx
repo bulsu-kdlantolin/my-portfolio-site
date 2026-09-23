@@ -5,15 +5,23 @@ import { Button } from '../components/common/Button';
 import { ProjectCard } from '../components/projects/ProjectCard';
 import { ProjectDrawer } from '../components/projects/ProjectDrawer';
 import { projectsData } from '../data/projects';
+import { stackData } from '../data/stack';
+import { certificationsData } from '../data/certifications';
 import { Project } from '../types/project';
-import { ArrowRight, Cpu } from 'lucide-react';
+import { ArrowRight, Layers, Award, ShieldCheck } from 'lucide-react';
 
 export const OverviewPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeStackTier, setActiveStackTier] = useState<string>('all');
   const featuredProjects = projectsData.filter((p) => p.featured);
 
+  const filteredStack =
+    activeStackTier === 'all'
+      ? stackData
+      : stackData.filter((tier) => tier.id === activeStackTier);
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
       {/* 1. Command Center / Overview Header Banner */}
       <section
         style={{
@@ -26,7 +34,7 @@ export const OverviewPage: React.FC = () => {
           overflow: 'hidden'
         }}
       >
-        {/* Subtle architectural grid indicator */}
+        {/* Architectural indicator badges */}
         <div
           style={{
             display: 'flex',
@@ -66,7 +74,7 @@ export const OverviewPage: React.FC = () => {
             maxWidth: '920px'
           }}
         >
-          Building modern web applications with solid full-stack foundations and practical AI.
+          Connecting AI to real applications that stay reliable when the model's output gets messy.
         </h2>
 
         {/* Narrative */}
@@ -92,16 +100,26 @@ export const OverviewPage: React.FC = () => {
               Explore Built Projects
             </Button>
           </Link>
-          <Link to="/ai-systems" style={{ textDecoration: 'none' }}>
+          <a href="#tech-stack" style={{ textDecoration: 'none' }}>
             <Button
               variant="secondary"
               size="md"
-              icon={<Cpu size={15} />}
+              icon={<Layers size={15} />}
               iconPosition="left"
             >
-              Interactive AI Systems
+              Technology Stack
             </Button>
-          </Link>
+          </a>
+          <a href="#certifications" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="outline"
+              size="md"
+              icon={<Award size={15} />}
+              iconPosition="left"
+            >
+              Certifications
+            </Button>
+          </a>
         </div>
       </section>
 
@@ -265,137 +283,316 @@ export const OverviewPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. AI Systems Visualizer Teaser Card */}
-      <section
-        style={{
-          backgroundColor: 'rgba(200, 223, 219, 0.45)',
-          border: '1.5px solid var(--border-teal)',
-          borderRadius: 'var(--radius-card)',
-          padding: 'clamp(20px, 3vw, 28px)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px'
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-              <Badge variant="primary" size="sm">
-                SYSTEM PIPELINE
-              </Badge>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-                7-STAGE ARCHITECTURE
-              </span>
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--ink-primary)' }}>
-              Interactive RAG & AI Pipeline Visualizer
-            </h3>
+      {/* 4. Tech Stack & Capabilities Section */}
+      <section id="tech-stack" style={{ scrollMarginTop: '80px' }}>
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+            <Badge variant="primary" size="sm">
+              CAPABILITY MATRIX
+            </Badge>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
+              5-LAYER ENGINEERING ARCHITECTURE
+            </span>
           </div>
-          <Link to="/ai-systems" style={{ textDecoration: 'none' }}>
-            <Button variant="primary" size="sm" icon={<Cpu size={14} />} iconPosition="left">
-              Launch Architecture Explorer
-            </Button>
-          </Link>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
+            Technology Stack & Core Competencies
+          </h3>
+          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
+            Structured by engineering responsibility—explaining where each technology is applied across frontend client views, backend services, relational databases, practical AI pipelines, and developer tooling.
+          </p>
         </div>
 
-        <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', lineHeight: 1.6, maxWidth: '820px' }}>
-          Explore how modern AI applications convert queries into vector coordinates, query embeddings across vector indices, assemble verified context blocks, and stream fact-grounded responses to web interfaces.
-        </p>
-
-        {/* Visual Mini Pipeline Track */}
+        {/* Filter Bar */}
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
+            flexWrap: 'wrap',
             gap: '8px',
-            overflowX: 'auto',
-            padding: '8px 0',
-            scrollbarWidth: 'none'
+            marginBottom: '20px'
           }}
         >
-          {['01. Query Input', '02. Embedding', '03. Vector Search', '04. Context Filtering', '05. Prompt Injection', '06. LLM Synthesis', '07. UI Stream'].map(
-            (step, i) => (
-              <React.Fragment key={step}>
-                <div
-                  style={{
-                    padding: '6px 12px',
-                    borderRadius: 'var(--radius-xs)',
-                    backgroundColor: 'var(--surface-white)',
-                    border: '1px solid var(--border-subtle)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    fontWeight: 600,
-                    color: 'var(--ink-primary)',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  {step}
-                </div>
-                {i < 6 && (
-                  <span style={{ color: 'var(--ink-secondary-accent)', fontSize: '0.75rem', fontWeight: 700 }}>
-                    →
+          {[
+            { id: 'all', label: `All Layers (${stackData.length})` },
+            { id: 'frontend', label: 'Frontend' },
+            { id: 'backend', label: 'Backend & APIs' },
+            { id: 'database', label: 'Databases' },
+            { id: 'ai-engineering', label: 'Applied AI' },
+            { id: 'workflow', label: 'Tools & Workflow' }
+          ].map((tab) => {
+            const isActive = activeStackTier === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveStackTier(tab.id)}
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '0.8125rem',
+                  fontWeight: isActive ? 700 : 500,
+                  padding: '6px 14px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: `1px solid ${isActive ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
+                  backgroundColor: isActive ? 'var(--color-primary)' : 'var(--surface-white)',
+                  color: isActive ? 'var(--bg-canvas)' : 'var(--ink-muted)',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition-fast)'
+                }}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Stack Layers List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {filteredStack.map((tier) => (
+            <div
+              key={tier.id}
+              style={{
+                backgroundColor: 'var(--surface-white)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: 'var(--radius-card)',
+                padding: 'clamp(20px, 3vw, 24px)',
+                boxShadow: 'var(--shadow-sm)'
+              }}
+            >
+              {/* Layer Header */}
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.6875rem',
+                      fontWeight: 700,
+                      color: 'var(--color-primary)',
+                      letterSpacing: '0.04em'
+                    }}
+                  >
+                    {tier.badge}
                   </span>
-                )}
-              </React.Fragment>
-            )
-          )}
+                </div>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '4px' }}>
+                  {tier.title}
+                </h4>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5, maxWidth: '820px' }}>
+                  {tier.description}
+                </p>
+              </div>
+
+              {/* Skills Grid */}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: '12px'
+                }}
+              >
+                {tier.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    style={{
+                      backgroundColor: 'rgba(200, 223, 219, 0.25)',
+                      border: '1px solid var(--border-teal)',
+                      borderRadius: 'var(--radius-sm)',
+                      padding: '14px 16px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between'
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)', fontFamily: 'var(--font-display)' }}>
+                          {skill.name}
+                        </span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-secondary-accent)', fontWeight: 600 }}>
+                          {skill.role}
+                        </span>
+                      </div>
+                      <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5, marginBottom: '12px' }}>
+                        {skill.experienceContext}
+                      </p>
+                    </div>
+
+                    {skill.tags && skill.tags.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                        {skill.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '0.6875rem',
+                              padding: '2px 7px',
+                              borderRadius: '4px',
+                              backgroundColor: 'var(--surface-white)',
+                              border: '1px solid var(--border-subtle)',
+                              color: 'var(--ink-primary)'
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 5. How I Build & Values Overview */}
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '20px'
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-card)',
-            padding: '24px'
-          }}
-        >
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
-            ENGINEERING WORKFLOW
-          </div>
-          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '10px' }}>
-            Responsible AI-Assisted Development
-          </h4>
-          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', lineHeight: 1.6, marginBottom: '16px' }}>
-            I use AI tools like Cursor and Claude Code to accelerate boilerplate, explore edge cases, and run rapid iterations—while preserving strict human ownership over system architecture, security, and logic.
-          </p>
-          <Link to="/how-i-build" style={{ textDecoration: 'none' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-primary)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              Read the 6-stage process <ArrowRight size={13} />
+      {/* 5. Technical Certifications & Accreditations Section */}
+      <section id="certifications" style={{ scrollMarginTop: '80px' }}>
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+            <Badge variant="teal" size="sm">
+              VERIFIED CREDENTIALS
+            </Badge>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
+              INDUSTRY & ACADEMIC ACCREDITATIONS
             </span>
-          </Link>
+          </div>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
+            Certifications & Technical Accreditations
+          </h3>
+          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
+            Accredited course specializations, verified technical assessments, and foundational certifications complementing formal BS Information Technology coursework.
+          </p>
         </div>
 
         <div
           style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-card)',
-            padding: '24px'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '20px'
           }}
         >
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-secondary-accent)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px' }}>
-            HONEST POSITIONING
-          </div>
-          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '10px' }}>
-            Work Grounded in Code, Not Buzzwords
-          </h4>
-          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', lineHeight: 1.6, marginBottom: '16px' }}>
-            No fabricated clients, fake revenue metrics, or unearned titles. Every project displayed on this workspace represents real, inspectable code built with verified technical discipline.
-          </p>
-          <Link to="/about" style={{ textDecoration: 'none' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-primary)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              About Kian's background <ArrowRight size={13} />
-            </span>
-          </Link>
+          {certificationsData.map((cert) => (
+            <div
+              key={cert.id}
+              style={{
+                backgroundColor: 'var(--surface-white)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: 'var(--radius-card)',
+                padding: '24px',
+                boxShadow: 'var(--shadow-sm)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform var(--transition-fast), box-shadow var(--transition-fast)'
+              }}
+            >
+              <div>
+                {/* Top Row: Category + Status Badge */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
+                  <Badge variant="teal" size="sm">
+                    {cert.issuerCategory}
+                  </Badge>
+                  <Badge variant="status" size="sm">
+                    {cert.status}
+                  </Badge>
+                </div>
+
+                {/* Title */}
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.125rem',
+                    fontWeight: 700,
+                    color: 'var(--ink-primary)',
+                    lineHeight: 1.35,
+                    marginBottom: '8px'
+                  }}
+                >
+                  {cert.title}
+                </h4>
+
+                {/* Issuer & Issue Date */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.8125rem',
+                    color: 'var(--ink-muted)',
+                    marginBottom: '12px'
+                  }}
+                >
+                  <Award size={15} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                  <span>
+                    <strong style={{ color: 'var(--color-primary)' }}>{cert.issuer}</strong> • {cert.issueDate}
+                  </span>
+                </div>
+
+                {/* Credential ID badge */}
+                <div
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.6875rem',
+                    color: 'var(--ink-muted)',
+                    backgroundColor: 'var(--bg-canvas)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '3px 8px',
+                    borderRadius: 'var(--radius-xs)',
+                    display: 'inline-block',
+                    marginBottom: '16px'
+                  }}
+                >
+                  CREDENTIAL ID: {cert.credentialId}
+                </div>
+
+                {/* Skills Covered */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                  {cert.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.6875rem',
+                        padding: '3px 8px',
+                        borderRadius: 'var(--radius-xs)',
+                        backgroundColor: 'rgba(200, 223, 219, 0.4)',
+                        border: '1px solid var(--border-teal)',
+                        color: 'var(--ink-primary)'
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Card Footer: Verification Link / Status */}
+              <div
+                style={{
+                  paddingTop: '14px',
+                  borderTop: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  fontSize: '0.75rem',
+                  fontFamily: 'var(--font-mono)'
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    color: 'var(--ink-secondary-accent)',
+                    fontWeight: 600
+                  }}
+                >
+                  <ShieldCheck size={14} />
+                  <span>VERIFIED RECORD</span>
+                </span>
+                <span style={{ color: 'var(--ink-muted)' }}>
+                  ACCREDITED
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppShell } from './layouts/AppShell';
 import { OverviewPage } from './pages/OverviewPage';
 import { ProjectsPage } from './pages/ProjectsPage';
-import { AISystemsPage } from './pages/AISystemsPage';
-import { StackPage } from './pages/StackPage';
-import { HowIBuildPage } from './pages/HowIBuildPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 
@@ -28,9 +25,9 @@ export const App: React.FC = () => {
         <Route path="/" element={<AppShell />}>
           <Route index element={<OverviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
-          <Route path="ai-systems" element={<AISystemsPage />} />
-          <Route path="stack" element={<StackPage />} />
-          <Route path="how-i-build" element={<HowIBuildPage />} />
+          <Route path="ai-systems" element={<Navigate to="/" replace />} />
+          <Route path="stack" element={<Navigate to="/" replace />} />
+          <Route path="how-i-build" element={<Navigate to="/" replace />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<OverviewPage />} />

@@ -6,9 +6,6 @@ import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
   LayoutDashboard,
   FolderGit2,
-  Cpu,
-  Layers,
-  GitPullRequest,
   User,
   Mail,
   Copy,
@@ -18,9 +15,6 @@ import {
 const iconMap: Record<string, React.ReactNode> = {
   '/': <LayoutDashboard size={17} />,
   '/projects': <FolderGit2 size={17} />,
-  '/ai-systems': <Cpu size={17} />,
-  '/stack': <Layers size={17} />,
-  '/how-i-build': <GitPullRequest size={17} />,
   '/about': <User size={17} />,
   '/contact': <Mail size={17} />
 };

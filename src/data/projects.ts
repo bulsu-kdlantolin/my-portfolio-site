@@ -145,8 +145,7 @@ export const projectsData: Project[] = [
       'Awareness of latency, token consumption, and architectural tradeoffs in AI applications.'
     ],
     links: {
-      github: 'https://github.com/KianDavey',
-      docs: '/ai-systems'
+      github: 'https://github.com/KianDavey'
     }
   },
   {

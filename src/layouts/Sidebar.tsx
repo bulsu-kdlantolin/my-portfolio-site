@@ -6,6 +6,7 @@ import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
   LayoutDashboard,
   FolderGit2,
+  Award,
   User,
   Mail,
   Copy,
@@ -15,6 +16,7 @@ import {
 const iconMap: Record<string, React.ReactNode> = {
   '/': <LayoutDashboard size={17} />,
   '/projects': <FolderGit2 size={17} />,
+  '/certifications': <Award size={17} />,
   '/about': <User size={17} />,
   '/contact': <Mail size={17} />
 };
@@ -90,7 +92,7 @@ export const Sidebar: React.FC = () => {
                   letterSpacing: '0.02em'
                 }}
               >
-                AI & FULL-STACK ENG
+                Aspiring AI Engineer
               </span>
             </div>
           </div>
@@ -112,7 +114,7 @@ export const Sidebar: React.FC = () => {
                   style={({ isActive }) => ({
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
+                    gap: '10px',
                     padding: '9px 12px',
                     borderRadius: 'var(--radius-sm)',
                     fontFamily: 'var(--font-display)',
@@ -125,22 +127,10 @@ export const Sidebar: React.FC = () => {
                     textDecoration: 'none'
                   })}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ color: 'inherit', display: 'flex' }}>
-                      {iconMap[item.path]}
-                    </span>
-                    <span>{item.label}</span>
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.625rem',
-                      opacity: 0.6,
-                      fontWeight: 600
-                    }}
-                  >
-                    {item.badge}
+                  <span style={{ color: 'inherit', display: 'flex' }}>
+                    {iconMap[item.path]}
                   </span>
+                  <span>{item.label}</span>
                 </NavLink>
               </li>
             ))}

@@ -64,7 +64,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                 Kian Davey Antolin
               </h2>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                AI & FULL-STACK
+                Aspiring AI Engineer
               </span>
             </div>
             <button
@@ -100,7 +100,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                     style={({ isActive }) => ({
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
                       padding: '12px 14px',
                       borderRadius: 'var(--radius-sm)',
                       fontFamily: 'var(--font-display)',
@@ -113,9 +112,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                     })}
                   >
                     <span>{item.label}</span>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
-                      {item.badge}
-                    </span>
                   </NavLink>
                 </li>
               ))}

@@ -110,7 +110,7 @@ export const OverviewPage: React.FC = () => {
               Technology Stack
             </Button>
           </a>
-          <a href="#certifications" style={{ textDecoration: 'none' }}>
+          <Link to="/certifications" style={{ textDecoration: 'none' }}>
             <Button
               variant="outline"
               size="md"
@@ -119,7 +119,7 @@ export const OverviewPage: React.FC = () => {
             >
               Certifications
             </Button>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -444,21 +444,28 @@ export const OverviewPage: React.FC = () => {
 
       {/* 5. Technical Certifications & Accreditations Section */}
       <section id="certifications" style={{ scrollMarginTop: '80px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-            <Badge variant="teal" size="sm">
-              VERIFIED CREDENTIALS
-            </Badge>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-              INDUSTRY & ACADEMIC ACCREDITATIONS
-            </span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+              <Badge variant="teal" size="sm">
+                VERIFIED CREDENTIALS
+              </Badge>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
+                INDUSTRY & ACADEMIC ACCREDITATIONS
+              </span>
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
+              Certifications & Technical Accreditations
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
+              Accredited course specializations, verified technical assessments, and foundational certifications complementing formal BS Information Technology coursework.
+            </p>
           </div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
-            Certifications & Technical Accreditations
-          </h3>
-          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
-            Accredited course specializations, verified technical assessments, and foundational certifications complementing formal BS Information Technology coursework.
-          </p>
+          <Link to="/certifications" style={{ textDecoration: 'none' }}>
+            <Button variant="ghost" size="sm" icon={<ArrowRight size={14} />} iconPosition="right">
+              View All Credentials
+            </Button>
+          </Link>
         </div>
 
         <div

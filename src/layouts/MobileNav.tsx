@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { navItems } from '../data/navigation';
-import { Badge } from '../components/common/Badge';
 import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import { X } from 'lucide-react';
 
@@ -80,12 +79,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             >
               <X size={18} />
             </button>
-          </div>
-
-          <div style={{ marginBottom: '20px' }}>
-            <Badge variant="status" size="sm" pulse>
-              BS IT (APPROACHING GRAD)
-            </Badge>
           </div>
 
           {/* Links */}

@@ -3,7 +3,7 @@ import { NavItem } from '../types/nav';
 export const navItems: NavItem[] = [
   {
     path: '/',
-    label: 'Overview',
+    label: 'Home',
     shortLabel: 'Home',
     description: 'System telemetry, tech stack & builds'
   },

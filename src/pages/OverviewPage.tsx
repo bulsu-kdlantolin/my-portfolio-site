@@ -1,609 +1,572 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '../components/common/Badge';
-import { Button } from '../components/common/Button';
-import { ProjectCard } from '../components/projects/ProjectCard';
 import { ProjectDrawer } from '../components/projects/ProjectDrawer';
 import { projectsData } from '../data/projects';
-import { stackData } from '../data/stack';
 import { certificationsData } from '../data/certifications';
 import { Project } from '../types/project';
-import { ArrowRight, Layers, Award, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  FolderGit2,
+  Layers,
+  Award,
+  User,
+  Clock,
+  Sparkles
+} from 'lucide-react';
 
 export const OverviewPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [activeStackTier, setActiveStackTier] = useState<string>('all');
-  const featuredProjects = projectsData.filter((p) => p.featured);
+  const sensaProject = projectsData[0];
+  const activeCert = certificationsData[0];
 
-  const filteredStack =
-    activeStackTier === 'all'
-      ? stackData
-      : stackData.filter((tier) => tier.id === activeStackTier);
+  const primaryTools = [
+    'React',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'OpenAI API',
+    'SQL / Postgres',
+    'Tailwind CSS',
+    'Plasmo (MV3)'
+  ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
-      {/* 1. Command Center / Overview Header Banner */}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'clamp(12px, 1.6vh, 18px)',
+        height: '100%',
+        justifyContent: 'flex-start'
+      }}
+    >
+      {/* 1. Hero Section: Claim + Brief Intro + Compact Telemetry Ribbon */}
       <section
         style={{
           backgroundColor: 'var(--surface-white)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-card)',
-          padding: 'clamp(24px, 4vw, 36px)',
+          padding: 'clamp(16px, 2.2vh, 24px) clamp(18px, 2.5vw, 28px)',
           boxShadow: 'var(--shadow-card)',
           position: 'relative',
           overflow: 'hidden'
         }}
       >
-        {/* Architectural indicator badges */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginBottom: '16px',
-            flexWrap: 'wrap'
-          }}
-        >
+        {/* Identifier Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
           <Badge variant="primary" size="sm">
             ENGINEERING OVERVIEW
           </Badge>
-          <Badge variant="teal" size="sm">
-            BS IT (APPROACHING GRADUATION)
-          </Badge>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--ink-muted)'
-            }}
-          >
-            SYS-ID: KDA-2026 // WORKSPACE ACTIVE
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
+            SYS-ID: KDA-2026 // SINGLE-SCREEN DASHBOARD
           </span>
         </div>
 
-        {/* Primary Statement */}
-        <h2
+        {/* Claim / Statement */}
+        <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+            fontSize: 'clamp(1.25rem, 2.1vw, 1.875rem)',
             fontWeight: 800,
             color: 'var(--ink-primary)',
             letterSpacing: '-0.02em',
-            lineHeight: 1.18,
-            marginBottom: '14px',
+            lineHeight: 1.2,
+            marginBottom: '8px',
             maxWidth: '920px'
           }}
         >
           Connecting AI to real applications that stay reliable when the model's output gets messy.
-        </h2>
+        </h1>
 
-        {/* Narrative */}
+        {/* Brief Narrative */}
         <p
           style={{
-            fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
+            fontSize: 'clamp(0.8125rem, 0.95vw, 0.9375rem)',
             color: 'var(--ink-muted)',
-            lineHeight: 1.65,
-            maxWidth: '820px',
-            marginBottom: '28px'
+            lineHeight: 1.5,
+            maxWidth: '840px',
+            margin: '0 0 14px 0'
           }}
         >
-          I am a <strong>BS Information Technology student approaching graduation</strong>, focused on
-          engineering full-stack web applications and AI-powered systems. I build responsive{' '}
-          <strong>React & TypeScript</strong> interfaces, structured <strong>Node.js & SQL</strong> backends,
-          and practical <strong>Python, OpenAI, vector search, and RAG</strong> pipelines that solve real problems.
+          I am a <strong>BS Information Technology student approaching graduation</strong>, focused on engineering full-stack web applications and AI-powered systems. I build responsive <strong>React & TypeScript</strong> interfaces, structured <strong>Node.js & SQL</strong> backends, and practical <strong>Python, OpenAI, vector search, and RAG</strong> pipelines that solve real problems.
         </p>
 
-        {/* Action Group: 90/10 Action Balance */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-          <Link to="/projects" style={{ textDecoration: 'none' }}>
-            <Button variant="primary" size="md" icon={<ArrowRight size={15} />}>
-              Explore Built Projects
-            </Button>
-          </Link>
-          <a href="#tech-stack" style={{ textDecoration: 'none' }}>
-            <Button
-              variant="secondary"
-              size="md"
-              icon={<Layers size={15} />}
-              iconPosition="left"
-            >
-              Technology Stack
-            </Button>
-          </a>
-          <Link to="/certifications" style={{ textDecoration: 'none' }}>
-            <Button
-              variant="outline"
-              size="md"
-              icon={<Award size={15} />}
-              iconPosition="left"
-            >
-              Certifications
-            </Button>
-          </Link>
+        {/* Compact Telemetry Stats Ribbon */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '12px',
+            borderTop: '1px solid var(--border-subtle)',
+            paddingTop: '12px'
+          }}
+        >
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              In-Flight Project
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--color-primary)' }}>
+              1 Active Build
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)' }}>Sensa Chrome Extension</div>
+          </div>
+
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Primary Tooling
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)' }}>
+              Full-Stack & AI
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)' }}>React, TS, Python, SQL</div>
+          </div>
+
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Active Curriculum
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-secondary-accent)' }}>
+              freeCodeCamp
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)' }}>Full-Stack (In Progress)</div>
+          </div>
+
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Academic Foundation
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)' }}>
+              BS IT Candidate
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)' }}>Approaching Graduation</div>
+          </div>
         </div>
       </section>
 
-      {/* 2. Telemetry & Focus Grid */}
+      {/* 2. Four Compact Preview Thumbnail Cards (2x2 Grid) */}
       <section
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '16px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 'clamp(12px, 1.6vh, 16px)',
+          flex: 1
         }}
       >
+        {/* Card 1: Projects Preview Card */}
         <div
           style={{
             backgroundColor: 'var(--surface-white)',
             border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-sm)'
-          }}
-        >
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--color-primary)',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              marginBottom: '6px'
-            }}
-          >
-            TECHNICAL FOCUS
-          </div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--ink-primary)', marginBottom: '4px' }}>
-            AI Application Engineering
-          </div>
-          <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-            Bridging web products with embeddings, semantic search, and contextual RAG pipelines.
-          </div>
-        </div>
-
-        <div
-          style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-sm)'
-          }}
-        >
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--ink-secondary-accent)',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              marginBottom: '6px'
-            }}
-          >
-            FULL-STACK STACK
-          </div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--ink-primary)', marginBottom: '4px' }}>
-            React + TypeScript + Node & SQL
-          </div>
-          <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-            Predictable state trees, strict typing, relational schemas, and RESTful APIs.
-          </div>
-        </div>
-
-        <div
-          style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-sm)'
-          }}
-        >
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--color-primary)',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              marginBottom: '6px'
-            }}
-          >
-            ACADEMIC FOUNDATION
-          </div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--ink-primary)', marginBottom: '4px' }}>
-            BS Information Technology
-          </div>
-          <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-            Systems analysis, database administration, software engineering, and networking.
-          </div>
-        </div>
-
-        <div
-          style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-md)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-sm)'
-          }}
-        >
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--ink-secondary-accent)',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              marginBottom: '6px'
-            }}
-          >
-            AVAILABILITY STATUS
-          </div>
-          <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--ink-primary)', marginBottom: '4px' }}>
-            Ready for Opportunities
-          </div>
-          <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-            Open to full-time engineering roles, AI projects, and software internships.
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Featured Engineering Builds */}
-      <section>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '4px' }}>
-              PRIMARY DELIVERABLES
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)' }}>
-              Featured Engineering Projects
-            </h3>
-          </div>
-          <Link to="/projects" style={{ textDecoration: 'none' }}>
-            <Button variant="secondary" size="sm" icon={<ArrowRight size={14} />}>
-              View All 4 Projects
-            </Button>
-          </Link>
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '20px'
-          }}
-        >
-          {featuredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onSelect={(p) => setSelectedProject(p)}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Tech Stack & Capabilities Section */}
-      <section id="tech-stack" style={{ scrollMarginTop: '80px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-            <Badge variant="primary" size="sm">
-              CAPABILITY MATRIX
-            </Badge>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-              5-LAYER ENGINEERING ARCHITECTURE
-            </span>
-          </div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
-            Technology Stack & Core Competencies
-          </h3>
-          <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
-            Structured by engineering responsibility—explaining where each technology is applied across frontend client views, backend services, relational databases, practical AI pipelines, and developer tooling.
-          </p>
-        </div>
-
-        {/* Filter Bar */}
-        <div
-          style={{
+            borderRadius: 'var(--radius-card)',
+            padding: '16px 18px',
+            boxShadow: 'var(--shadow-sm)',
             display: 'flex',
-            flexWrap: 'wrap',
-            gap: '8px',
-            marginBottom: '20px'
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '12px'
           }}
         >
-          {[
-            { id: 'all', label: `All Layers (${stackData.length})` },
-            { id: 'frontend', label: 'Frontend' },
-            { id: 'backend', label: 'Backend & APIs' },
-            { id: 'database', label: 'Databases' },
-            { id: 'ai-engineering', label: 'Applied AI' },
-            { id: 'workflow', label: 'Tools & Workflow' }
-          ].map((tab) => {
-            const isActive = activeStackTier === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveStackTier(tab.id)}
+          <div>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <FolderGit2 size={16} style={{ color: 'var(--color-primary)' }} />
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.875rem', fontWeight: 800, color: 'var(--ink-primary)', letterSpacing: '0.02em' }}>
+                  FEATURED PROJECTS
+                </span>
+              </div>
+              <Link
+                to="/projects"
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '0.8125rem',
-                  fontWeight: isActive ? 700 : 500,
-                  padding: '6px 14px',
-                  borderRadius: 'var(--radius-pill)',
-                  border: `1px solid ${isActive ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
-                  backgroundColor: isActive ? 'var(--color-primary)' : 'var(--surface-white)',
-                  color: isActive ? 'var(--bg-canvas)' : 'var(--ink-muted)',
-                  cursor: 'pointer',
-                  transition: 'all var(--transition-fast)'
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  color: 'var(--color-primary)',
+                  textDecoration: 'none'
                 }}
               >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
+                <span>All Projects</span>
+                <ArrowRight size={12} />
+              </Link>
+            </div>
 
-        {/* Stack Layers List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {filteredStack.map((tier) => (
-            <div
-              key={tier.id}
-              style={{
-                backgroundColor: 'var(--surface-white)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-card)',
-                padding: 'clamp(20px, 3vw, 24px)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              {/* Layer Header */}
-              <div style={{ marginBottom: '16px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+            {/* Sensa Project Preview Item */}
+            {sensaProject && (
+              <div
+                onClick={() => setSelectedProject(sensaProject)}
+                style={{
+                  padding: '12px',
+                  borderRadius: 'var(--radius-sm)',
+                  backgroundColor: 'var(--bg-canvas)',
+                  border: '1px solid var(--border-subtle)',
+                  cursor: 'pointer',
+                  transition: 'border-color var(--transition-fast), transform var(--transition-fast)',
+                  marginBottom: '10px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
+                    {sensaProject.title}
+                  </span>
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.6875rem',
-                      fontWeight: 700,
+                      fontSize: '0.625rem',
+                      padding: '2px 6px',
+                      borderRadius: 'var(--radius-xs)',
+                      backgroundColor: 'rgba(51, 104, 160, 0.1)',
                       color: 'var(--color-primary)',
-                      letterSpacing: '0.04em'
+                      fontWeight: 600
                     }}
                   >
-                    {tier.badge}
+                    In Development
                   </span>
                 </div>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '4px' }}>
-                  {tier.title}
-                </h4>
-                <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5, maxWidth: '820px' }}>
-                  {tier.description}
+                <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', lineHeight: 1.4, margin: '0 0 6px 0' }}>
+                  {sensaProject.tagline}
                 </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                  {sensaProject.technologies.slice(0, 4).map((tech) => (
+                    <span
+                      key={tech}
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.625rem',
+                        padding: '1px 5px',
+                        borderRadius: 'var(--radius-xs)',
+                        backgroundColor: 'var(--surface-white)',
+                        border: '1px solid var(--border-subtle)',
+                        color: 'var(--ink-muted)'
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {sensaProject.technologies.length > 4 && (
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)' }}>
+                      +{sensaProject.technologies.length - 4}
+                    </span>
+                  )}
+                </div>
               </div>
+            )}
 
-              {/* Skills Grid */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-                  gap: '12px'
-                }}
-              >
-                {tier.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    style={{
-                      backgroundColor: 'rgba(200, 223, 219, 0.25)',
-                      border: '1px solid var(--border-teal)',
-                      borderRadius: 'var(--radius-sm)',
-                      padding: '14px 16px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between'
-                    }}
-                  >
-                    <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)', fontFamily: 'var(--font-display)' }}>
-                          {skill.name}
-                        </span>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-secondary-accent)', fontWeight: 600 }}>
-                          {skill.role}
-                        </span>
-                      </div>
-                      <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5, marginBottom: '12px' }}>
-                        {skill.experienceContext}
-                      </p>
-                    </div>
-
-                    {skill.tags && skill.tags.length > 0 && (
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                        {skill.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            style={{
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '0.6875rem',
-                              padding: '2px 7px',
-                              borderRadius: '4px',
-                              backgroundColor: 'var(--surface-white)',
-                              border: '1px solid var(--border-subtle)',
-                              color: 'var(--ink-primary)'
-                            }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Technical Certifications & Accreditations Section */}
-      <section id="certifications" style={{ scrollMarginTop: '80px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
-              <Badge variant="teal" size="sm">
-                VERIFIED CREDENTIALS
-              </Badge>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-                INDUSTRY & ACADEMIC ACCREDITATIONS
-              </span>
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '6px' }}>
-              Certifications & Technical Accreditations
-            </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
-              Accredited course specializations, verified technical assessments, and foundational certifications complementing formal BS Information Technology coursework.
-            </p>
-          </div>
-          <Link to="/certifications" style={{ textDecoration: 'none' }}>
-            <Button variant="ghost" size="sm" icon={<ArrowRight size={14} />} iconPosition="right">
-              View All Credentials
-            </Button>
-          </Link>
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '20px'
-          }}
-        >
-          {certificationsData.map((cert) => (
+            {/* Slot 2: Honest Placeholder */}
             <div
-              key={cert.id}
               style={{
-                backgroundColor: 'var(--surface-white)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: 'var(--radius-card)',
-                padding: '24px',
-                boxShadow: 'var(--shadow-sm)',
+                padding: '10px 12px',
+                borderRadius: 'var(--radius-sm)',
+                border: '1px dashed var(--border-subtle)',
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
                 display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform var(--transition-fast), box-shadow var(--transition-fast)'
+                alignItems: 'center',
+                gap: '10px'
               }}
             >
+              <div
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: 'var(--radius-xs)',
+                  backgroundColor: 'var(--bg-canvas)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--ink-muted)',
+                  flexShrink: 0
+                }}
+              >
+                <Sparkles size={13} />
+              </div>
               <div>
-                {/* Top Row: Category + Status Badge */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
-                  <Badge variant="teal" size="sm">
-                    {cert.issuerCategory}
-                  </Badge>
-                  <Badge variant="status" size="sm">
-                    {cert.status}
-                  </Badge>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.8125rem', color: 'var(--ink-primary)' }}>
+                  More projects coming soon
                 </div>
+                <div style={{ fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
+                  Active full-stack web and applied AI projects in development.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                {/* Title */}
-                <h4
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.125rem',
-                    fontWeight: 700,
-                    color: 'var(--ink-primary)',
-                    lineHeight: 1.35,
-                    marginBottom: '8px'
-                  }}
-                >
-                  {cert.title}
-                </h4>
+        {/* Card 2: Stack Preview Card */}
+        <div
+          style={{
+            backgroundColor: 'var(--surface-white)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: 'var(--radius-card)',
+            padding: '16px 18px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '12px'
+          }}
+        >
+          <div>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Layers size={16} style={{ color: 'var(--color-primary)' }} />
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.875rem', fontWeight: 800, color: 'var(--ink-primary)', letterSpacing: '0.02em' }}>
+                  CORE TECH STACK
+                </span>
+              </div>
+              <Link
+                to="/stack"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  color: 'var(--color-primary)',
+                  textDecoration: 'none'
+                }}
+              >
+                <span>Full Stack Matrix</span>
+                <ArrowRight size={12} />
+              </Link>
+            </div>
 
-                {/* Issuer & Issue Date */}
+            <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', lineHeight: 1.4, margin: '0 0 12px 0' }}>
+              Primary engineering stack used across type-safe frontends, relational backends, and practical AI integrations.
+            </p>
+
+            {/* Compact Tool Chips Strip / Grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(115px, 1fr))',
+                gap: '8px',
+                marginBottom: '10px'
+              }}
+            >
+              {primaryTools.map((tool) => (
                 <div
+                  key={tool}
                   style={{
+                    padding: '6px 10px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--bg-canvas)',
+                    border: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.8125rem',
-                    color: 'var(--ink-muted)',
-                    marginBottom: '12px'
+                    justifyContent: 'center',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    color: 'var(--ink-primary)',
+                    textAlign: 'center'
                   }}
                 >
-                  <Award size={15} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-                  <span>
-                    <strong style={{ color: 'var(--color-primary)' }}>{cert.issuer}</strong> • {cert.issueDate}
+                  {tool}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)', borderTop: '1px solid var(--border-subtle)', paddingTop: '8px' }}>
+            5 Architectural Layers // Click "Full Stack Matrix" for deep dive
+          </div>
+        </div>
+
+        {/* Card 3: Credentials Preview Card */}
+        <div
+          style={{
+            backgroundColor: 'var(--surface-white)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: 'var(--radius-card)',
+            padding: '16px 18px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '12px'
+          }}
+        >
+          <div>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Award size={16} style={{ color: 'var(--color-primary)' }} />
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.875rem', fontWeight: 800, color: 'var(--ink-primary)', letterSpacing: '0.02em' }}>
+                  ACTIVE CREDENTIALS
+                </span>
+              </div>
+              <Link
+                to="/certifications"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  color: 'var(--color-primary)',
+                  textDecoration: 'none'
+                }}
+              >
+                <span>View Details</span>
+                <ArrowRight size={12} />
+              </Link>
+            </div>
+
+            {/* Single Honest Credential */}
+            {activeCert && (
+              <div
+                style={{
+                  padding: '12px',
+                  borderRadius: 'var(--radius-sm)',
+                  backgroundColor: 'var(--bg-canvas)',
+                  border: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '6px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--color-primary)', fontWeight: 600 }}>
+                    {activeCert.issuer.toUpperCase()}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.625rem',
+                      padding: '2px 6px',
+                      borderRadius: 'var(--radius-xs)',
+                      backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                      border: '1px solid rgba(217, 119, 6, 0.25)',
+                      color: '#b45309',
+                      fontWeight: 600,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    <Clock size={10} /> In Progress
                   </span>
                 </div>
 
-                {/* Credential ID badge */}
-                <div
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    color: 'var(--ink-muted)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    border: '1px solid var(--border-subtle)',
-                    padding: '3px 8px',
-                    borderRadius: 'var(--radius-xs)',
-                    display: 'inline-block',
-                    marginBottom: '16px'
-                  }}
-                >
-                  CREDENTIAL ID: {cert.credentialId}
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
+                  {activeCert.title}
                 </div>
 
-                {/* Skills Covered */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
-                  {cert.skills.map((skill) => (
+                <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', lineHeight: 1.4, margin: 0 }}>
+                  Active self-paced curriculum covering modern HTML5, CSS3, JavaScript Algorithms, React frontends, and Node.js/Express APIs.
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
+                  {activeCert.skills.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.6875rem',
-                        padding: '3px 8px',
+                        fontSize: '0.625rem',
+                        padding: '1px 5px',
                         borderRadius: 'var(--radius-xs)',
-                        backgroundColor: 'rgba(200, 223, 219, 0.4)',
-                        border: '1px solid var(--border-teal)',
-                        color: 'var(--ink-primary)'
+                        backgroundColor: 'var(--surface-white)',
+                        border: '1px solid var(--border-subtle)',
+                        color: 'var(--ink-muted)'
                       }}
                     >
                       {skill}
                     </span>
                   ))}
+                  {activeCert.skills.length > 3 && (
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)' }}>
+                      +{activeCert.skills.length - 3} more
+                    </span>
+                  )}
                 </div>
               </div>
+            )}
+          </div>
 
-              {/* Card Footer: Verification Link / Status */}
-              <div
-                style={{
-                  paddingTop: '14px',
-                  borderTop: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  fontSize: '0.75rem',
-                  fontFamily: 'var(--font-mono)'
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px',
-                    color: 'var(--ink-secondary-accent)',
-                    fontWeight: 600
-                  }}
-                >
-                  <ShieldCheck size={14} />
-                  <span>VERIFIED RECORD</span>
-                </span>
-                <span style={{ color: 'var(--ink-muted)' }}>
-                  ACCREDITED
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)', borderTop: '1px solid var(--border-subtle)', paddingTop: '8px' }}>
+            Honestly tracked study curriculum // Augmenting university BS IT degree
+          </div>
+        </div>
+
+        {/* Card 4: About Preview Card */}
+        <div
+          style={{
+            backgroundColor: 'var(--surface-white)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: 'var(--radius-card)',
+            padding: '16px 18px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '12px'
+          }}
+        >
+          <div>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <User size={16} style={{ color: 'var(--color-primary)' }} />
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.875rem', fontWeight: 800, color: 'var(--ink-primary)', letterSpacing: '0.02em' }}>
+                  ABOUT & BACKGROUND
                 </span>
               </div>
+              <Link
+                to="/about"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  color: 'var(--color-primary)',
+                  textDecoration: 'none'
+                }}
+              >
+                <span>Full Profile</span>
+                <ArrowRight size={12} />
+              </Link>
             </div>
-          ))}
+
+            {/* Teaser Content */}
+            <div
+              style={{
+                padding: '12px',
+                borderRadius: 'var(--radius-sm)',
+                backgroundColor: 'var(--bg-canvas)',
+                border: '1px solid var(--border-subtle)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px'
+              }}
+            >
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
+                Kian Davey Antolin — Aspiring AI Engineer
+              </div>
+              <p style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', lineHeight: 1.45, margin: 0 }}>
+                BS Information Technology student approaching graduation in Bulacan, Philippines. Bridging the gap between dependable, type-safe full-stack software and pragmatic applied AI integrations.
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.6875rem', color: 'var(--color-primary)', fontFamily: 'var(--font-mono)' }}>
+                <span>• Bulacan State University</span>
+                <span>• BS IT Candidate</span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)', borderTop: '1px solid var(--border-subtle)', paddingTop: '8px' }}>
+            Academic foundation, learning direction & engineering philosophy
+          </div>
         </div>
       </section>
 
-      {/* Case Study Drawer */}
+      {/* Case Study Drawer (for quick review of Sensa if clicked) */}
       <ProjectDrawer
         project={selectedProject}
         onClose={() => setSelectedProject(null)}

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { navItems } from '../data/navigation';
-import { Badge } from '../components/common/Badge';
 import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
-  LayoutDashboard,
+  Home,
   FolderGit2,
   Award,
   User,
@@ -14,7 +13,7 @@ import {
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
-  '/': <LayoutDashboard size={17} />,
+  '/': <Home size={17} />,
   '/projects': <FolderGit2 size={17} />,
   '/certifications': <Award size={17} />,
   '/about': <User size={17} />,
@@ -51,8 +50,8 @@ export const Sidebar: React.FC = () => {
     >
       {/* Top Section: Identity & Status */}
       <div>
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div
               style={{
                 width: '36px',
@@ -96,10 +95,6 @@ export const Sidebar: React.FC = () => {
               </span>
             </div>
           </div>
-
-          <Badge variant="status" size="sm" pulse>
-            BS IT (APPROACHING GRAD)
-          </Badge>
         </div>
 
         {/* Navigation List */}

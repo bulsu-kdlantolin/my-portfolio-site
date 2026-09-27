@@ -5,7 +5,7 @@ export const navItems: NavItem[] = [
     path: '/',
     label: 'Home',
     shortLabel: 'Home',
-    description: 'System telemetry, tech stack & builds'
+    description: 'Overview & single-screen telemetry'
   },
   {
     path: '/projects',
@@ -14,10 +14,16 @@ export const navItems: NavItem[] = [
     description: 'Engineering case studies'
   },
   {
+    path: '/stack',
+    label: 'Stack',
+    shortLabel: 'Stack',
+    description: '5-layer architecture matrix'
+  },
+  {
     path: '/certifications',
     label: 'Certifications',
     shortLabel: 'Certs',
-    description: 'Verified technical credentials'
+    description: 'Curriculum & credentials'
   },
   {
     path: '/about',

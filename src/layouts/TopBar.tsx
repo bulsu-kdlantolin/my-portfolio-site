@@ -18,7 +18,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenMobileMenu }) => {
         position: 'sticky',
         top: 0,
         zIndex: 30,
-        backgroundColor: 'rgba(242, 239, 231, 0.92)',
+        backgroundColor: 'var(--bg-canvas-translucent)',
         backdropFilter: 'blur(8px)',
         borderBottom: '1px solid var(--border-subtle)',
         display: 'flex',

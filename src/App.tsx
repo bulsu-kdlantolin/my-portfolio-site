@@ -7,6 +7,7 @@ import { AboutPage } from './pages/AboutPage';
 import { CertificationsPage } from './pages/CertificationsPage';
 import { StackPage } from './pages/StackPage';
 import { ContactPage } from './pages/ContactPage';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Scroll to top on route navigation
 const ScrollToTop: React.FC = () => {
@@ -21,9 +22,10 @@ const ScrollToTop: React.FC = () => {
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
         <Route path="/" element={<AppShell />}>
           <Route index element={<OverviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
@@ -37,6 +39,7 @@ export const App: React.FC = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+  </ThemeProvider>
   );
 };
 

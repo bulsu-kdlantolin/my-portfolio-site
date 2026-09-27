@@ -1,6 +1,7 @@
 :root {
-  /* Approved Palette Foundation */
+  /* Approved Palette Foundation (Light Mode) */
   --bg-canvas: #F2EFE7;
+  --bg-canvas-translucent: rgba(242, 239, 231, 0.92);
   --color-primary: #3368A0;
   --color-secondary: #66A3BF;
   --color-soft-teal: #C8DFDB;
@@ -9,11 +10,11 @@
   --ink-primary: #142334;
   --ink-muted: #4A6075;
   --ink-subtle: #768B9E;
-  --ink-secondary-accent: #255280; /* High-contrast 5.8:1 text replacement for #66A3BF */
+  --ink-secondary-accent: #255280;
 
   /* Surfaces & Structural Planes */
   --surface-panel: #F2EFE7;
-  --surface-card: #C8DFDB;
+  --surface-card: #FFFFFF;
   --surface-card-subtle: rgba(200, 223, 219, 0.45);
   --surface-white: #FFFFFF;
   --surface-hover: rgba(102, 163, 191, 0.12);
@@ -44,9 +45,43 @@
   --shadow-drawer: -12px 0 36px -8px rgba(20, 35, 52, 0.18);
 
   /* Layout Constants */
-  --sidebar-w: 272px;
+  --sidebar-w: 268px;
   --topbar-h: 60px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --transition-fast: 160ms var(--ease-out);
   --transition-normal: 240ms var(--ease-out);
+}
+
+[data-theme="dark"] {
+  /* Approved Palette Foundation (Dark Mode - Midnight Slate) */
+  --bg-canvas: #0A111A;
+  --bg-canvas-translucent: rgba(10, 17, 26, 0.92);
+  --color-primary: #4A8CD2;
+  --color-secondary: #72B3DA;
+  --color-soft-teal: #1E3F45;
+
+  /* Contrast Inks (Crisp Light Slate & Muted Cool Slate) */
+  --ink-primary: #F0F4F8;
+  --ink-muted: #93A8BD;
+  --ink-subtle: #657D93;
+  --ink-secondary-accent: #60ACE8;
+
+  /* Surfaces & Structural Planes */
+  --surface-panel: #0F1824;
+  --surface-card: #152233;
+  --surface-card-subtle: rgba(37, 65, 96, 0.3);
+  --surface-white: #152233;
+  --surface-hover: rgba(74, 140, 210, 0.14);
+
+  /* Hairline Borders */
+  --border-subtle: rgba(147, 168, 189, 0.16);
+  --border-strong: rgba(147, 168, 189, 0.32);
+  --border-teal: rgba(96, 172, 232, 0.25);
+  --border-white: rgba(255, 255, 255, 0.06);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 6px 20px -4px rgba(0, 0, 0, 0.55);
+  --shadow-elevated: 0 16px 36px -8px rgba(0, 0, 0, 0.7);
+  --shadow-drawer: -12px 0 36px -8px rgba(0, 0, 0, 0.85);
 }

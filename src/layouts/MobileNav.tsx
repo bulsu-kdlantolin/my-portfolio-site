@@ -13,8 +13,7 @@ import {
   Mail,
   Check,
   Moon,
-  Sun,
-  Terminal
+  Sun
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -275,26 +274,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               >
                 {copied ? <Check size={14} /> : <Mail size={14} />}
               </button>
-
-              {/* Dark Mode Toggle */}
-              <button
-                onClick={toggleTheme}
-                aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '50%',
-                  border: '1px solid var(--border-subtle)',
-                  backgroundColor: 'var(--surface-white)',
-                  color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-              >
-                {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-              </button>
             </div>
           </div>
 
@@ -358,21 +337,27 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             gap: '8px'
           }}
         >
-          <div
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
             style={{
-              width: '24px',
-              height: '24px',
+              width: '26px',
+              height: '26px',
               borderRadius: '50%',
-              backgroundColor: 'var(--ink-primary)',
-              color: 'var(--bg-canvas)',
+              border: '1px solid var(--border-subtle)',
+              backgroundColor: 'var(--surface-white)',
+              color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              flexShrink: 0
+              cursor: 'pointer',
+              flexShrink: 0,
+              boxShadow: 'var(--shadow-sm)'
             }}
           >
-            <Terminal size={12} />
-          </div>
+            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+          </button>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-subtle)' }}>
             © 2026 Kian Davey Antolin
           </div>

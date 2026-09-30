@@ -12,8 +12,7 @@ import {
   Mail,
   Check,
   Moon,
-  Sun,
-  Terminal
+  Sun
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -161,7 +160,7 @@ export const Sidebar: React.FC = () => {
             @kiandavey · Aspiring AI Engineer
           </div>
 
-          {/* 4 Circular Action Buttons: GitHub, LinkedIn, Copy Email, Theme Toggle */}
+          {/* 3 Circular Action Buttons: GitHub, LinkedIn, Copy Email */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center' }}>
             {/* GitHub */}
             <a
@@ -235,29 +234,6 @@ export const Sidebar: React.FC = () => {
             >
               {copied ? <Check size={14} /> : <Mail size={14} />}
             </button>
-
-            {/* Dark Mode Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                border: '1px solid var(--border-subtle)',
-                backgroundColor: 'var(--surface-white)',
-                color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all var(--transition-fast)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
           </div>
         </div>
 
@@ -312,7 +288,7 @@ export const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Bottom Footer: Minimalist Accessibility / Status Icon + Copyright */}
+      {/* Bottom Footer: Theme Switch Button + Copyright */}
       <div
         style={{
           borderTop: '1px solid var(--border-subtle)',
@@ -322,22 +298,28 @@ export const Sidebar: React.FC = () => {
           gap: '10px'
         }}
       >
-        <div
-          title="Engineered with React & TypeScript"
+        <button
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
           style={{
             width: '28px',
             height: '28px',
             borderRadius: '50%',
-            backgroundColor: 'var(--ink-primary)',
-            color: 'var(--bg-canvas)',
+            border: '1px solid var(--border-subtle)',
+            backgroundColor: 'var(--surface-white)',
+            color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexShrink: 0
+            cursor: 'pointer',
+            flexShrink: 0,
+            transition: 'all var(--transition-fast)',
+            boxShadow: 'var(--shadow-sm)'
           }}
         >
-          <Terminal size={13} />
-        </div>
+          {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+        </button>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-subtle)', lineHeight: 1.35 }}>
           <div>© 2026 Kian Davey Antolin.</div>
           <div>All rights reserved.</div>

@@ -11,13 +11,6 @@ import {
   Award,
   Layers,
   GraduationCap,
-  Sparkles,
-  Terminal,
-  Database,
-  Server,
-  Code,
-  Blocks,
-  GitBranch,
   Clock,
   Search
 } from 'lucide-react';
@@ -26,17 +19,22 @@ export const OverviewPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const sensaProject = projectsData[0];
 
-  // Daily Drivers / Tools strip
+  // Daily Drivers / Tools strip with official high-quality downloaded logos
   const dailyDrivers = [
-    { name: 'React', icon: <Blocks size={14} /> },
-    { name: 'TypeScript', icon: <Code size={14} /> },
-    { name: 'Python', icon: <Terminal size={14} /> },
-    { name: 'Node.js', icon: <Server size={14} /> },
-    { name: 'OpenAI API', icon: <Sparkles size={14} /> },
-    { name: 'PostgreSQL / SQL', icon: <Database size={14} /> },
-    { name: 'Tailwind CSS', icon: <Code size={14} /> },
-    { name: 'Plasmo (MV3)', icon: <Blocks size={14} /> },
-    { name: 'Git & GitHub', icon: <GitBranch size={14} /> }
+    { name: 'React', logo: '/logos/react.svg', isMonochrome: false },
+    { name: 'TypeScript', logo: '/logos/typescript.svg', isMonochrome: false },
+    { name: 'Python', logo: '/logos/python.svg', isMonochrome: false },
+    { name: 'Node.js', logo: '/logos/nodejs.svg', isMonochrome: false },
+    { name: 'Next.js', logo: '/logos/nextjs.svg', isMonochrome: false },
+    { name: 'OpenAI API', logo: '/logos/openai.svg', isMonochrome: true },
+    { name: 'PostgreSQL', logo: '/logos/postgresql.svg', isMonochrome: false },
+    { name: 'Supabase', logo: '/logos/supabase.svg', isMonochrome: false },
+    { name: 'Tailwind CSS', logo: '/logos/tailwindcss.svg', isMonochrome: false },
+    { name: 'Plasmo (MV3)', logo: '/logos/plasmo.svg', isMonochrome: true },
+    { name: 'Git', logo: '/logos/git.svg', isMonochrome: false },
+    { name: 'GitHub', logo: '/logos/github.svg', isMonochrome: true },
+    { name: 'VS Code', logo: '/logos/vscode.svg', isMonochrome: false },
+    { name: 'Cursor', logo: '/logos/cursor.svg', isMonochrome: true }
   ];
 
   // Services list (Kenneth Villar 01-05 style)
@@ -221,14 +219,18 @@ export const OverviewPage: React.FC = () => {
             {/* Set 1 */}
             {dailyDrivers.map((tool, i) => (
               <div key={`d1-${tool.name}-${i}`} className="marquee-item">
-                <span style={{ color: 'var(--color-primary)', display: 'flex' }}>{tool.icon}</span>
+                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
+                  <img src={tool.logo} alt={tool.name} width="16" height="16" loading="lazy" />
+                </span>
                 <span>{tool.name}</span>
               </div>
             ))}
             {/* Set 2 (Duplicate for Seamless Infinite Loop) */}
             {dailyDrivers.map((tool, i) => (
               <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true">
-                <span style={{ color: 'var(--color-primary)', display: 'flex' }}>{tool.icon}</span>
+                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
+                  <img src={tool.logo} alt={tool.name} width="16" height="16" loading="lazy" />
+                </span>
                 <span>{tool.name}</span>
               </div>
             ))}

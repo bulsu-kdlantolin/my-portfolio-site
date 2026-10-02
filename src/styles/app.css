@@ -487,3 +487,22 @@ select:focus-visible {
   }
 }
 
+/* Circular View Transition Spread for Light/Dark Theme */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999999;
+}
+
+.theme-spread-ripple-fallback {
+  will-change: width, height, opacity;
+}
+

@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
+import { CustomSelect, SelectOption } from '../components/common/CustomSelect';
 import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
-import { Mail, Copy, Check, Send, MapPin, Clock, MessageSquare } from 'lucide-react';
+import { Mail, Copy, Check, Send, MapPin, Clock, MessageSquare, Briefcase, GraduationCap, Cpu } from 'lucide-react';
+
+const inquiryOptions: SelectOption[] = [
+  {
+    value: 'Full-Time Role',
+    label: 'Full-Time Engineering Role',
+    description: 'Software Engineer, Frontend / Full-Stack, or AI Solutions',
+    icon: <Briefcase size={16} />
+  },
+  {
+    value: 'Internship',
+    label: 'Internship Opportunity',
+    description: 'University practicum, apprenticeships, or contract roles',
+    icon: <GraduationCap size={16} />
+  },
+  {
+    value: 'AI Application Project',
+    label: 'AI Application / RAG Project',
+    description: 'Prompt engineering, vector search, or LLM agent builds',
+    icon: <Cpu size={16} />
+  },
+  {
+    value: 'General Collaboration',
+    label: 'General Technical Inquiry',
+    description: 'Open source discussion, tech stack questions, or networking',
+    icon: <MessageSquare size={16} />
+  }
+];
 
 export const ContactPage: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -10,7 +38,7 @@ export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: 'Full-Time Role / Opportunity',
+    subject: 'Full-Time Role',
     message: ''
   });
 
@@ -310,17 +338,12 @@ export const ContactPage: React.FC = () => {
               >
                 Inquiry Topic
               </label>
-              <select
+              <CustomSelect
                 id="contact-subject"
-                className="form-control"
+                options={inquiryOptions}
                 value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              >
-                <option value="Full-Time Role">Full-Time Engineering Role</option>
-                <option value="Internship">Internship Opportunity</option>
-                <option value="AI Application Project">AI Application / RAG Project</option>
-                <option value="General Collaboration">General Technical Inquiry</option>
-              </select>
+                onChange={(value) => setFormData((prev) => ({ ...prev, subject: value }))}
+              />
             </div>
 
             <div>

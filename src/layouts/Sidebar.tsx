@@ -6,6 +6,7 @@ import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
   Home,
   FolderGit2,
+  Briefcase,
   Layers,
   Award,
   User,
@@ -18,6 +19,7 @@ import {
 const iconMap: Record<string, React.ReactNode> = {
   '/': <Home size={18} />,
   '/projects': <FolderGit2 size={18} />,
+  '/experience': <Briefcase size={18} />,
   '/stack': <Layers size={18} />,
   '/certifications': <Award size={18} />,
   '/about': <User size={18} />,

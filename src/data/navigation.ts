@@ -14,6 +14,12 @@ export const navItems: NavItem[] = [
     description: 'Engineering case studies'
   },
   {
+    path: '/experience',
+    label: 'Experience',
+    shortLabel: 'Experience',
+    description: 'Engineering milestones & trajectory'
+  },
+  {
     path: '/stack',
     label: 'Stack',
     shortLabel: 'Stack',

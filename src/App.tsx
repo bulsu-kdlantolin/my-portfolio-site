@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { AppShell } from './layouts/AppShell';
 import { OverviewPage } from './pages/OverviewPage';
 import { ProjectsPage } from './pages/ProjectsPage';
+import { ExperiencePage } from './pages/ExperiencePage';
 import { AboutPage } from './pages/AboutPage';
 import { CertificationsPage } from './pages/CertificationsPage';
 import { StackPage } from './pages/StackPage';
@@ -29,6 +30,7 @@ export const App: React.FC = () => {
         <Route path="/" element={<AppShell />}>
           <Route index element={<OverviewPage />} />
           <Route path="projects" element={<ProjectsPage />} />
+          <Route path="experience" element={<ExperiencePage />} />
           <Route path="certifications" element={<CertificationsPage />} />
           <Route path="stack" element={<StackPage />} />
           <Route path="ai-systems" element={<Navigate to="/" replace />} />

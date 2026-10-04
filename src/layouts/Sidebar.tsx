@@ -50,14 +50,15 @@ export const Sidebar: React.FC = () => {
         borderRight: '1px solid var(--border-subtle)',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '28px 20px 22px',
+        justifyContent: 'center',
+        padding: '24px 20px',
         zIndex: 40,
-        flexShrink: 0
+        flexShrink: 0,
+        overflowY: 'auto'
       }}
     >
-      {/* Top Profile & Actions Block */}
-      <div>
+      {/* Vertically Centered Content Wrapper */}
+      <div style={{ margin: 'auto 0', width: '100%' }}>
         {/* Profile Card Header (Kenneth Villar format tailored to Kian) */}
         <div
           style={{
@@ -75,8 +76,9 @@ export const Sidebar: React.FC = () => {
               height: '84px',
               borderRadius: '24px',
               overflow: 'hidden',
-              backgroundColor: 'var(--surface-white)',
-              border: '2px solid var(--surface-white)',
+              backgroundColor: 'var(--surface-card-subtle)',
+              background: 'linear-gradient(180deg, var(--surface-card-subtle) 0%, var(--surface-hover) 100%)',
+              border: '1.5px solid var(--border-subtle)',
               boxShadow: 'var(--shadow-card)',
               display: 'flex',
               alignItems: 'center',
@@ -87,7 +89,7 @@ export const Sidebar: React.FC = () => {
           >
             {!imgError ? (
               <img
-                src="/avatar-profile.jpg"
+                src="/avatar-profile.png"
                 alt="Kian Davey Antolin"
                 onError={() => setImgError(true)}
                 style={{
@@ -288,43 +290,43 @@ export const Sidebar: React.FC = () => {
             ))}
           </ul>
         </nav>
-      </div>
-
-      {/* Bottom Footer: Theme Switch Button + Copyright */}
-      <div
-        style={{
-          borderTop: '1px solid var(--border-subtle)',
-          paddingTop: '16px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}
-      >
-        <button
-          onClick={toggleTheme}
-          aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        {/* Bottom Footer: Theme Switch Button + Copyright */}
+        <div
           style={{
-            width: '28px',
-            height: '28px',
-            borderRadius: '50%',
-            border: '1px solid var(--border-subtle)',
-            backgroundColor: 'var(--surface-white)',
-            color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
+            borderTop: '1px solid var(--border-subtle)',
+            paddingTop: '16px',
+            marginTop: '20px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            flexShrink: 0,
-            transition: 'all var(--transition-fast)',
-            boxShadow: 'var(--shadow-sm)'
+            gap: '10px'
           }}
         >
-          {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
-        </button>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-subtle)', lineHeight: 1.35 }}>
-          <div>© 2026 Kian Davey Antolin.</div>
-          <div>All rights reserved.</div>
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              border: '1px solid var(--border-subtle)',
+              backgroundColor: 'var(--surface-white)',
+              color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'all var(--transition-fast)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
+            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+          </button>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-subtle)', lineHeight: 1.35 }}>
+            <div>© 2026 Kian Davey Antolin.</div>
+            <div>All rights reserved.</div>
+          </div>
         </div>
       </div>
     </aside>

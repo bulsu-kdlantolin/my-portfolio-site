@@ -321,6 +321,7 @@ select:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
+  padding: 8px 0;
   mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
 }
@@ -330,6 +331,7 @@ select:focus-visible {
   align-items: center;
   gap: 8px;
   width: max-content;
+  padding: 8px 0;
   will-change: transform;
 }
 
@@ -365,13 +367,14 @@ select:focus-visible {
   white-space: nowrap;
   flex-shrink: 0;
   cursor: default;
-  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .marquee-item:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   border-color: var(--color-primary);
   background-color: var(--surface-hover);
+  box-shadow: 0 4px 10px rgba(20, 35, 52, 0.08);
 }
 
 .marquee-item-logo {

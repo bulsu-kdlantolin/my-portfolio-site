@@ -176,7 +176,8 @@ export const OverviewPage: React.FC = () => {
           backgroundColor: 'var(--surface-white)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-card)',
-          padding: '10px 18px',
+          padding: '14px 20px',
+          minHeight: '66px',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           alignItems: 'center',
@@ -187,7 +188,7 @@ export const OverviewPage: React.FC = () => {
         }}
       >
         {/* Left Label */}
-        <div style={{ flexShrink: 0, paddingRight: '14px', borderRight: '1px solid var(--border-subtle)', zIndex: 2, backgroundColor: 'var(--surface-white)' }}>
+        <div style={{ flexShrink: 0, paddingRight: '16px', borderRight: '1px solid var(--border-subtle)', zIndex: 2, backgroundColor: 'var(--surface-white)' }}>
           <div
             style={{
               fontFamily: 'var(--font-mono)',

@@ -130,8 +130,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                 height: '76px',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                backgroundColor: 'var(--surface-white)',
-                border: '2px solid var(--surface-white)',
+                backgroundColor: 'var(--surface-card-subtle)',
+                background: 'linear-gradient(180deg, var(--surface-card-subtle) 0%, var(--surface-hover) 100%)',
+                border: '1.5px solid var(--border-subtle)',
                 boxShadow: 'var(--shadow-card)',
                 display: 'flex',
                 alignItems: 'center',
@@ -141,7 +142,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             >
               {!imgError ? (
                 <img
-                  src="/avatar-profile.jpg"
+                  src="/avatar-profile.png"
                   alt="Kian Davey Antolin"
                   onError={() => setImgError(true)}
                   style={{

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { navItems } from '../data/navigation';
 import { useTheme } from '../context/ThemeContext';
-import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
   X,
   Home,
@@ -123,39 +122,50 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               marginBottom: '20px'
             }}
           >
-            {/* Avatar */}
+            {/* Avatar (Floating natural portrait matching reference) */}
             <div
               style={{
-                width: '76px',
-                height: '76px',
-                borderRadius: '20px',
-                overflow: 'hidden',
-                backgroundColor: 'var(--surface-card-subtle)',
-                background: 'linear-gradient(180deg, var(--surface-card-subtle) 0%, var(--surface-hover) 100%)',
-                border: '1.5px solid var(--border-subtle)',
-                boxShadow: 'var(--shadow-card)',
+                position: 'relative',
+                width: '92px',
+                aspectRatio: '1',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: '10px'
+                marginBottom: '8px'
               }}
             >
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: '18% 4% 0',
+                  borderRadius: '50%',
+                  background: 'radial-gradient(ellipse at 50% 70%, rgba(51, 104, 160, 0.28), transparent 66%)',
+                  filter: 'blur(16px)',
+                  pointerEvents: 'none'
+                }}
+              />
               {!imgError ? (
                 <img
                   src="/avatar-profile.png"
                   alt="Kian Davey Antolin"
                   onError={() => setImgError(true)}
                   style={{
+                    position: 'relative',
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: 'contain',
+                    objectPosition: 'center bottom',
+                    filter: 'drop-shadow(0 10px 18px rgba(6, 12, 26, 0.22))',
+                    WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)'
                   }}
                 />
               ) : (
                 <div
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: '76px',
+                    height: '76px',
+                    borderRadius: '50%',
                     backgroundColor: 'var(--color-primary)',
                     color: '#FFFFFF',
                     display: 'flex',
@@ -163,7 +173,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                     justifyContent: 'center',
                     fontFamily: 'var(--font-display)',
                     fontWeight: 800,
-                    fontSize: '1.25rem'
+                    fontSize: '1.4rem'
                   }}
                 >
                   KA
@@ -176,9 +186,10 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.0625rem',
-                  fontWeight: 800,
+                  fontSize: '1.125rem',
+                  fontWeight: 700,
                   color: 'var(--ink-primary)',
+                  letterSpacing: '-0.02em',
                   margin: 0
                 }}
               >
@@ -192,7 +203,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                   width: '16px',
                   height: '16px',
                   borderRadius: '50%',
-                  backgroundColor: 'var(--color-primary)',
+                  backgroundColor: '#1D9BF0',
+                  color: '#FFFFFF',
                   flexShrink: 0
                 }}
               >
@@ -202,8 +214,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
 
             <div
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.6875rem',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.8125rem',
                 color: 'var(--ink-muted)',
                 marginTop: '3px',
                 marginBottom: '14px'
@@ -212,28 +224,26 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               @kiandavey · Aspiring AI Engineer
             </div>
 
-            {/* 4 Circular Action Buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center' }}>
+            {/* Official Brand Icons (No Containers, Authentic Colors) */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', justifyContent: 'center', marginBottom: '18px' }}>
               {/* GitHub */}
               <a
                 href="https://github.com/KianDavey"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '50%',
-                  border: '1px solid var(--border-subtle)',
-                  backgroundColor: 'var(--surface-white)',
-                  color: 'var(--ink-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textDecoration: 'none'
-                }}
+                className="sidebar-brand-icon"
               >
-                <GithubIcon size={15} />
+                <img
+                  src="/logos/github.svg"
+                  alt="GitHub"
+                  style={{
+                    width: '22px',
+                    height: '22px',
+                    display: 'block',
+                    filter: theme === 'dark' ? 'invert(1)' : 'none'
+                  }}
+                />
               </a>
 
               {/* LinkedIn */}
@@ -242,42 +252,67 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '50%',
-                  border: '1px solid var(--border-subtle)',
-                  backgroundColor: 'var(--surface-white)',
-                  color: 'var(--ink-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textDecoration: 'none'
-                }}
+                className="sidebar-brand-icon"
               >
-                <LinkedinIcon size={15} />
+                <img
+                  src="/logos/linkedin.svg"
+                  alt="LinkedIn"
+                  style={{ width: '22px', height: '22px', display: 'block' }}
+                />
               </a>
 
-              {/* Copy Email */}
+              {/* Gmail / Copy Email */}
               <button
                 onClick={handleCopyEmail}
                 aria-label="Copy Email Address"
-                style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '50%',
-                  border: `1px solid ${copied ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
-                  backgroundColor: 'var(--surface-white)',
-                  color: copied ? 'var(--color-primary)' : 'var(--ink-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
+                className="sidebar-brand-icon"
+                style={{ position: 'relative' }}
               >
-                {copied ? <Check size={14} /> : <Mail size={14} />}
+                <img
+                  src="/logos/gmail.svg"
+                  alt="Gmail"
+                  style={{ width: '23px', height: '19px', display: 'block' }}
+                />
+                {copied && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '-24px',
+                      backgroundColor: 'var(--ink-primary)',
+                      color: 'var(--bg-canvas)',
+                      fontSize: '0.625rem',
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 600,
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      whiteSpace: 'nowrap',
+                      pointerEvents: 'none',
+                      boxShadow: 'var(--shadow-sm)'
+                    }}
+                  >
+                    Copied!
+                  </span>
+                )}
               </button>
+
+              {/* Discord */}
+              <a
+                href="https://discord.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord Profile"
+                className="sidebar-brand-icon"
+              >
+                <img
+                  src="/logos/discord.svg"
+                  alt="Discord"
+                  style={{ width: '23px', height: '19px', display: 'block' }}
+                />
+              </a>
             </div>
+
+            {/* Hairline Divider */}
+            <div style={{ height: '1px', backgroundColor: 'var(--border-subtle)', width: '100%', marginBottom: '14px' }} />
           </div>
 
           {/* Links */}
@@ -337,19 +372,21 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             marginTop: '20px',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px'
+            gap: '12px'
           }}
         >
+          {/* Dark / Light Mode Switch Button at Footer */}
           <button
             onClick={toggleTheme}
-            aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            className="theme-toggle-footer-btn"
             style={{
-              width: '26px',
-              height: '26px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
-              border: '1px solid var(--border-subtle)',
               backgroundColor: 'var(--surface-white)',
+              border: '1px solid var(--border-subtle)',
               color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
               display: 'flex',
               alignItems: 'center',
@@ -359,10 +396,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
               boxShadow: 'var(--shadow-sm)'
             }}
           >
-            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
           </button>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-subtle)' }}>
-            © 2026 Kian Davey Antolin
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-subtle)', lineHeight: 1.4 }}>
+            <div>© 2026</div>
+            <div>Kian Davey Antolin. All rights reserved.</div>
           </div>
         </div>
       </div>

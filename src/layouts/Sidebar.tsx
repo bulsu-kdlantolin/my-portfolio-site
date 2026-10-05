@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { navItems } from '../data/navigation';
 import { useTheme } from '../context/ThemeContext';
-import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
 import {
   Home,
   FolderGit2,
@@ -17,13 +16,13 @@ import {
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
-  '/': <Home size={18} />,
-  '/projects': <FolderGit2 size={18} />,
-  '/experience': <Briefcase size={18} />,
-  '/stack': <Layers size={18} />,
-  '/certifications': <Award size={18} />,
-  '/about': <User size={18} />,
-  '/contact': <Mail size={18} />
+  '/': <Home size={19} />,
+  '/projects': <FolderGit2 size={19} />,
+  '/experience': <Briefcase size={19} />,
+  '/stack': <Layers size={19} />,
+  '/certifications': <Award size={19} />,
+  '/about': <User size={19} />,
+  '/contact': <Mail size={19} />
 };
 
 export const Sidebar: React.FC = () => {
@@ -50,285 +49,315 @@ export const Sidebar: React.FC = () => {
         borderRight: '1px solid var(--border-subtle)',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '24px 20px',
+        padding: 'clamp(28px, 4vh, 48px) 24px 24px',
         zIndex: 40,
         flexShrink: 0,
         overflowY: 'auto'
       }}
     >
-      {/* Vertically Centered Content Wrapper */}
-      <div style={{ margin: 'auto 0', width: '100%' }}>
-        {/* Profile Card Header (Kenneth Villar format tailored to Kian) */}
+      <div
+        className="rail__inner"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          minHeight: '100%',
+          width: '100%'
+        }}
+      >
+        {/* Profile Avatar */}
+        <div
+          className="rail__avatar"
+          style={{
+            position: 'relative',
+            width: 'clamp(120px, 18vh, 160px)',
+            aspectRatio: '1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '4px'
+          }}
+        >
+          {/* Ambient backlight glow matching Kenneth Villar rail */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: '18% 4% 0',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse at 50% 70%, rgba(51, 104, 160, 0.28), transparent 66%)',
+              filter: 'blur(20px)',
+              pointerEvents: 'none'
+            }}
+          />
+
+          {!imgError ? (
+            <img
+              src="/avatar-profile.png"
+              alt="Kian Davey Antolin"
+              onError={() => setImgError(true)}
+              style={{
+                position: 'relative',
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                objectPosition: 'center bottom',
+                filter: 'drop-shadow(0 12px 20px rgba(6, 12, 26, 0.25))',
+                WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)'
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: '96px',
+                height: '96px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--color-primary)',
+                color: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                fontSize: '1.75rem'
+              }}
+            >
+              KA
+            </div>
+          )}
+        </div>
+
+        {/* Name & Blue Verified Badge */}
+        <h2
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '7px',
+            marginTop: '16px',
+            marginBottom: 0,
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            letterSpacing: '-0.022em',
+            lineHeight: 1.2,
+            color: 'var(--ink-primary)',
+            textAlign: 'center'
+          }}
+        >
+          Kian Davey Antolin
+          <span
+            title="Verified Profile"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '18px',
+              height: '18px',
+              borderRadius: '50%',
+              backgroundColor: '#1D9BF0',
+              color: '#FFFFFF',
+              flexShrink: 0
+            }}
+          >
+            <Check size={11} strokeWidth={3.5} />
+          </span>
+        </h2>
+
+        {/* Handle / Subtitle */}
+        <p
+          style={{
+            margin: '4px 0 0 0',
+            fontFamily: 'var(--font-display)',
+            fontSize: '0.875rem',
+            color: 'var(--ink-muted)',
+            letterSpacing: '0.004em',
+            textAlign: 'center'
+          }}
+        >
+          @kiandavey
+          <span style={{ color: 'var(--ink-muted)', fontWeight: 500 }}>
+            {' · '}Aspiring AI Engineer
+          </span>
+        </p>
+
+        {/* Official Brand Icons (No Containers, Authentic Colors) */}
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
-            textAlign: 'center',
-            marginBottom: '22px'
+            gap: '18px',
+            marginTop: '16px',
+            justifyContent: 'center'
           }}
         >
-          {/* Avatar with subtle rounded squircle container */}
-          <div
-            style={{
-              width: '84px',
-              height: '84px',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              backgroundColor: 'var(--surface-card-subtle)',
-              background: 'linear-gradient(180deg, var(--surface-card-subtle) 0%, var(--surface-hover) 100%)',
-              border: '1.5px solid var(--border-subtle)',
-              boxShadow: 'var(--shadow-card)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '12px',
-              position: 'relative'
-            }}
+          {/* GitHub */}
+          <a
+            href="https://github.com/KianDavey"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            title="GitHub Profile"
+            className="sidebar-brand-icon"
           >
-            {!imgError ? (
-              <img
-                src="/avatar-profile.png"
-                alt="Kian Davey Antolin"
-                onError={() => setImgError(true)}
+            <img
+              src="/logos/github.svg"
+              alt="GitHub"
+              style={{
+                width: '23px',
+                height: '23px',
+                display: 'block',
+                filter: theme === 'dark' ? 'invert(1)' : 'none'
+              }}
+            />
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            title="LinkedIn Profile"
+            className="sidebar-brand-icon"
+          >
+            <img
+              src="/logos/linkedin.svg"
+              alt="LinkedIn"
+              style={{ width: '23px', height: '23px', display: 'block' }}
+            />
+          </a>
+
+          {/* Gmail / Copy Email */}
+          <button
+            onClick={handleCopyEmail}
+            aria-label="Copy Email Address"
+            title={copied ? 'Email Copied!' : 'Copy Email (antolin.kiandavey@gmail.com)'}
+            className="sidebar-brand-icon"
+            style={{ position: 'relative' }}
+          >
+            <img
+              src="/logos/gmail.svg"
+              alt="Gmail"
+              style={{ width: '24px', height: '20px', display: 'block' }}
+            />
+            {copied && (
+              <span
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: 'var(--color-primary)',
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  position: 'absolute',
+                  top: '-24px',
+                  backgroundColor: 'var(--ink-primary)',
+                  color: 'var(--bg-canvas)',
+                  fontSize: '0.625rem',
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 800,
-                  fontSize: '1.5rem'
+                  fontWeight: 600,
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  whiteSpace: 'nowrap',
+                  pointerEvents: 'none',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
               >
-                KA
-              </div>
+                Copied!
+              </span>
             )}
-          </div>
+          </button>
 
-          {/* Name & Verified Badge */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
-            <h1
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.0625rem',
-                fontWeight: 800,
-                color: 'var(--ink-primary)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.2,
-                margin: 0
-              }}
-            >
-              Kian Davey Antolin
-            </h1>
-            {/* Verified Badge */}
-            <span
-              title="Verified Profile"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--color-primary)',
-                flexShrink: 0
-              }}
-            >
-              <Check size={10} color="#FFFFFF" strokeWidth={3.5} />
-            </span>
-          </div>
-
-          {/* Subtitle / Handle */}
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--ink-muted)',
-              marginTop: '4px',
-              marginBottom: '14px'
-            }}
+          {/* Discord */}
+          <a
+            href="https://discord.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Discord Profile"
+            title="Discord"
+            className="sidebar-brand-icon"
           >
-            @kiandavey · Aspiring AI Engineer
-          </div>
-
-          {/* 3 Circular Action Buttons: GitHub, LinkedIn, Copy Email */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center' }}>
-            {/* GitHub */}
-            <a
-              href="https://github.com/KianDavey"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              title="GitHub Profile"
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                border: '1px solid var(--border-subtle)',
-                backgroundColor: 'var(--surface-white)',
-                color: 'var(--ink-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textDecoration: 'none',
-                transition: 'all var(--transition-fast)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              <GithubIcon size={15} />
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              title="LinkedIn Profile"
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                border: '1px solid var(--border-subtle)',
-                backgroundColor: 'var(--surface-white)',
-                color: 'var(--ink-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textDecoration: 'none',
-                transition: 'all var(--transition-fast)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              <LinkedinIcon size={15} />
-            </a>
-
-            {/* Copy Email */}
-            <button
-              onClick={handleCopyEmail}
-              aria-label="Copy Email Address"
-              title={copied ? "Email Copied!" : "Copy Email"}
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                border: `1px solid ${copied ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
-                backgroundColor: 'var(--surface-white)',
-                color: copied ? 'var(--color-primary)' : 'var(--ink-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all var(--transition-fast)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              {copied ? <Check size={14} /> : <Mail size={14} />}
-            </button>
-          </div>
+            <img
+              src="/logos/discord.svg"
+              alt="Discord"
+              style={{ width: '24px', height: '20px', display: 'block' }}
+            />
+          </a>
         </div>
 
+        {/* Hairline Divider Below Header */}
+        <div
+          style={{
+            height: '1px',
+            backgroundColor: 'var(--border-subtle)',
+            marginTop: 'clamp(18px, 2.5vh, 26px)',
+            marginBottom: 'clamp(12px, 1.8vh, 18px)',
+            width: '100%'
+          }}
+        />
+
         {/* Navigation List */}
-        <nav aria-label="Primary Navigation">
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+        <nav style={{ width: '100%' }} aria-label="Primary Navigation">
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '4px', listStyle: 'none', padding: 0, margin: 0 }}>
             {navItems.map((item) => (
               <li key={item.path}>
                 <NavLink
                   to={item.path}
                   end={item.path === '/'}
-                  className={({ isActive }) => `sidebar-nav-link ${isActive ? 'is-active' : ''}`}
-                  style={({ isActive }) => ({
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '0.875rem',
-                    fontWeight: isActive ? 600 : 500,
-                    color: isActive ? 'var(--ink-primary)' : 'var(--ink-muted)',
-                    backgroundColor: isActive
-                      ? theme === 'dark'
-                        ? 'rgba(74, 140, 210, 0.18)'
-                        : 'rgba(200, 223, 219, 0.45)'
-                      : 'transparent',
-                    border: `1px solid ${isActive ? 'var(--border-teal)' : 'transparent'}`,
-                    transition: 'all var(--transition-fast)',
-                    textDecoration: 'none'
-                  })}
+                  className={({ isActive }) => `rail__link ${isActive ? 'active' : ''}`}
                 >
-                  {({ isActive }) => (
-                    <>
-                      <span
-                        style={{
-                          color: isActive ? 'var(--color-primary)' : 'inherit',
-                          display: 'flex',
-                          alignItems: 'center',
-                          transition: 'color var(--transition-fast)'
-                        }}
-                      >
-                        {iconMap[item.path]}
-                      </span>
-                      <span>{item.label}</span>
-                    </>
-                  )}
+                  {iconMap[item.path]}
+                  <span>{item.label}</span>
                 </NavLink>
               </li>
             ))}
           </ul>
         </nav>
-        {/* Bottom Footer: Theme Switch Button + Copyright */}
+
+        {/* Hairline Divider & Footer (Pinned to bottom via margin-top: auto) */}
         <div
           style={{
+            width: '100%',
+            marginTop: 'auto',
+            paddingTop: 'clamp(20px, 3vh, 32px)',
             borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '16px',
-            marginTop: '20px',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px'
+            gap: '12px'
           }}
         >
+          {/* Dark / Light Mode Switch Button at Footer */}
           <button
             onClick={toggleTheme}
-            aria-label={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            className="theme-toggle-footer-btn"
             style={{
-              width: '28px',
-              height: '28px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
-              border: '1px solid var(--border-subtle)',
               backgroundColor: 'var(--surface-white)',
+              border: '1px solid var(--border-subtle)',
               color: theme === 'dark' ? '#F59E0B' : 'var(--color-primary)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               flexShrink: 0,
-              transition: 'all var(--transition-fast)',
               boxShadow: 'var(--shadow-sm)'
             }}
           >
-            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
           </button>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-subtle)', lineHeight: 1.35 }}>
-            <div>© 2026 Kian Davey Antolin.</div>
-            <div>All rights reserved.</div>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.6875rem',
+              color: 'var(--ink-subtle)',
+              lineHeight: 1.5
+            }}
+          >
+            <div>© 2026</div>
+            <div>Kian Davey Antolin. All rights reserved.</div>
           </div>
         </div>
       </div>
     </aside>
   );
 };
+export default Sidebar;

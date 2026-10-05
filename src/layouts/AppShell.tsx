@@ -34,7 +34,7 @@ export const AppShell: React.FC = () => {
           id="workspace-content"
           style={{
             flex: 1,
-            padding: 'clamp(16px, 2.2vh, 28px) clamp(20px, 3vw, 44px)',
+            padding: 'clamp(44px, 5.5vh, 64px) clamp(32px, 4vw, 64px) clamp(56px, 8vh, 88px)',
             width: '100%',
             maxWidth: '100%',
             boxSizing: 'border-box'

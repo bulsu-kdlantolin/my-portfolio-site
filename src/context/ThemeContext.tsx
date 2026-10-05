@@ -14,6 +14,9 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'light';
+    const params = new URLSearchParams(window.location.search);
+    const urlTheme = params.get('theme') as Theme | null;
+    if (urlTheme === 'light' || urlTheme === 'dark') return urlTheme;
     const saved = localStorage.getItem('portfolio-theme') as Theme | null;
     if (saved === 'light' || saved === 'dark') return saved;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';

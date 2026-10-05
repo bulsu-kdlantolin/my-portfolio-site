@@ -107,18 +107,8 @@ export const OverviewPage: React.FC = () => {
       </svg>
 
       {/* 1. Hero Statement Row + "Get in touch" CTA */}
-      <section
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          flexWrap: 'wrap',
-          gap: '20px',
-          position: 'relative',
-          zIndex: 1
-        }}
-      >
-        <div style={{ maxWidth: '880px' }}>
+      <section className="hero-header-row">
+        <div style={{ flex: '1 1 500px', maxWidth: '820px' }}>
           <h1
             style={{
               fontFamily: 'var(--font-display)',

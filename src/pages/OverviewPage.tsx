@@ -7,12 +7,11 @@ import {
   ArrowUpRight,
   FolderGit2,
   User,
-  Cpu,
   Award,
   Layers,
-  GraduationCap,
   Clock,
-  Search
+  Search,
+  Briefcase
 } from 'lucide-react';
 
 export const OverviewPage: React.FC = () => {
@@ -37,34 +36,25 @@ export const OverviewPage: React.FC = () => {
     { name: 'Cursor', logo: '/logos/cursor.svg', isMonochrome: true }
   ];
 
-  // Services list (Kenneth Villar 01-05 style)
-  const servicesList = [
-    { num: '01', title: 'Accessible Web Extensions', desc: 'Plasmo MV3, Voice API & captions' },
-    { num: '02', title: 'Type-Safe React Frontends', desc: 'Predictable state trees & clean UI' },
-    { num: '03', title: 'Relational Database Design', desc: 'Normalized SQL schemas & indexing' },
-    { num: '04', title: 'Python & AI Integrations', desc: 'Prompt guardrails, RAG & OpenAI API' },
-    { num: '05', title: 'RESTful Backend Services', desc: 'Node.js/Express APIs & Supabase' }
-  ];
-
-  // Milestones & Foundation (Kenneth Villar Client 1-3 style)
-  const milestoneItems = [
+  // Featured Experience items (Quick Access preview linking to /experience)
+  const experienceItems = [
     {
-      badge: 'Academic Program',
-      title: 'Bulacan State University',
-      meta: 'BS in Information Technology (Expected 2026)',
-      tags: ['Core Systems', 'Relational Databases', 'Software Engineering']
+      badge: 'Active Build',
+      title: 'Lead Developer & Architect',
+      meta: 'Sensa Chrome Extension (2024 — Present)',
+      tags: ['Manifest V3', 'Web Speech API', 'Offscreen Docs']
     },
     {
-      badge: 'In-Flight Build',
-      title: 'Sensa Chrome Extension',
-      meta: 'Assistive Voice & Captions (In Active Development)',
-      tags: ['Plasmo (MV3)', 'Web Speech API', 'Supabase', 'Accessibility']
+      badge: 'Academic',
+      title: 'BS in Information Technology',
+      meta: 'Bulacan State University (Expected 2026)',
+      tags: ['Systems Analysis', 'Relational Schemas', 'Software Lifecycles']
     },
     {
-      badge: 'Continuous Study',
-      title: 'freeCodeCamp Curriculum',
-      meta: 'Full-Stack Developer Track (In Progress)',
-      tags: ['JavaScript Algorithms', 'React', 'Node APIs', 'Relational SQL']
+      badge: 'Applied AI',
+      title: 'Applied AI & RAG Prototyping',
+      meta: 'Independent Systems Architecture (2024 — Present)',
+      tags: ['OpenAI API', 'Prompt Guardrails', 'Vector Search']
     }
   ];
 
@@ -209,20 +199,20 @@ export const OverviewPage: React.FC = () => {
           <div className="marquee-track marquee-left-to-right">
             {/* Set 1 */}
             {dailyDrivers.map((tool, i) => (
-              <div key={`d1-${tool.name}-${i}`} className="marquee-item">
+              <div key={`d1-${tool.name}-${i}`} className="marquee-item" title={tool.name}>
                 <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="16" height="16" loading="lazy" />
+                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" />
                 </span>
-                <span>{tool.name}</span>
+                <span className="marquee-item-label">{tool.name}</span>
               </div>
             ))}
             {/* Set 2 (Duplicate for Seamless Infinite Loop) */}
             {dailyDrivers.map((tool, i) => (
-              <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true">
+              <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true" title={tool.name}>
                 <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="16" height="16" loading="lazy" />
+                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" />
                 </span>
-                <span>{tool.name}</span>
+                <span className="marquee-item-label">{tool.name}</span>
               </div>
             ))}
           </div>
@@ -370,7 +360,307 @@ export const OverviewPage: React.FC = () => {
             </Link>
           </div>
 
-          {/* Card 2: About (With Kenneth Villar 3-Card Fanned Stack) */}
+          {/* Card 2: Experience */}
+          <div className="bento-card">
+            <div>
+              {/* Header */}
+              <div className="bento-card-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(16, 185, 129, 0.12)', color: '#10B981' }}>
+                    <Briefcase size={18} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+                      Experience
+                    </h3>
+                  </div>
+                </div>
+                <Link to="/experience" className="bento-arrow-btn" aria-label="View experience">
+                  <ArrowUpRight size={18} />
+                </Link>
+              </div>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+                Active software engineering builds, systems analysis, and academic foundations.
+              </p>
+
+              {/* 3 Structured Experience Cards */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
+                {experienceItems.map((item, idx) => (
+                  <div key={idx} className="milestone-item-card">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
+                        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8125rem', color: 'var(--ink-primary)' }}>
+                          {item.title}
+                        </span>
+                      </div>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.5625rem',
+                          color: 'var(--color-primary)',
+                          fontWeight: 700,
+                          backgroundColor: 'rgba(51, 104, 160, 0.08)',
+                          padding: '1px 6px',
+                          borderRadius: 'var(--radius-pill)'
+                        }}
+                      >
+                        {item.badge}
+                      </span>
+                    </div>
+
+                    <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '5px' }}>
+                      {item.meta}
+                    </div>
+
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                      {item.tags.map((tag, tIdx) => (
+                        <span
+                          key={tag}
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.625rem',
+                            color: 'var(--color-primary)',
+                            fontWeight: 600
+                          }}
+                        >
+                          {tag}{tIdx < item.tags.length - 1 ? ' •' : ''}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Link
+              to="/experience"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-primary)',
+                textDecoration: 'none'
+              }}
+            >
+              <span>Explore full experience timeline</span>
+              <ArrowUpRight size={13} />
+            </Link>
+          </div>
+        </div>
+
+        {/* ROW 2: Stack (spans 1.05fr) | Certifications (spans 0.95fr) | About (spans 1fr) */}
+        <div className="bento-row-2">
+          {/* Card 3: Stack */}
+          <div className="bento-card">
+            <div>
+              {/* Header */}
+              <div className="bento-card-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(36, 123, 123, 0.12)', color: 'var(--ink-secondary-accent)' }}>
+                    <Layers size={18} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+                      Stack
+                    </h3>
+                  </div>
+                </div>
+                <Link to="/stack" className="bento-arrow-btn" aria-label="Explore technology stack">
+                  <ArrowUpRight size={18} />
+                </Link>
+              </div>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+                5-layer architectural matrix across frontend, backend, database, and practical AI.
+              </p>
+
+              {/* Floating Pill Chips with Status Dots */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px', marginBottom: '8px' }}>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
+                  React &amp; TypeScript
+                </span>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                  Node.js / Express
+                </span>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#D97706' }} />
+                  Python &amp; OpenAI API
+                </span>
+              </div>
+
+              {/* Search-Bar Style Command Pill */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '7px 12px',
+                  borderRadius: 'var(--radius-pill)',
+                  backgroundColor: 'var(--bg-canvas)',
+                  border: '1px solid var(--border-subtle)',
+                  margin: '6px 0 10px 0'
+                }}
+              >
+                <Search size={13} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
+                  Sensa speech engine &amp; LLM parser...
+                </span>
+                <span
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--color-primary)',
+                    marginLeft: 'auto',
+                    flexShrink: 0
+                  }}
+                />
+              </div>
+
+              {/* Additional Floating Chips */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
+                  PostgreSQL Schemas
+                </span>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-secondary)' }} />
+                  Manifest V3 Workers
+                </span>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                  Supabase Backend
+                </span>
+                <span className="ai-pill-chip">
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#8B5CF6' }} />
+                  Prompt Guardrails
+                </span>
+              </div>
+            </div>
+
+            <Link
+              to="/stack"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-primary)',
+                textDecoration: 'none'
+              }}
+            >
+              <span>Explore 5-layer stack matrix</span>
+              <ArrowUpRight size={13} />
+            </Link>
+          </div>
+
+          {/* Card 4: Certifications */}
+          <div className="bento-card">
+            <div>
+              {/* Header */}
+              <div className="bento-card-header">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(51, 104, 160, 0.12)', color: 'var(--color-primary)' }}>
+                    <Award size={18} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+                      Certifications
+                    </h3>
+                  </div>
+                </div>
+                <Link to="/certifications" className="bento-arrow-btn" aria-label="View certifications">
+                  <ArrowUpRight size={18} />
+                </Link>
+              </div>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+                freeCodeCamp Full-Stack curriculum and continuous technical development.
+              </p>
+
+              {/* Centered Circular Seal Badge Graphic */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '14px 10px',
+                  borderRadius: 'var(--radius-md)',
+                  backgroundColor: 'var(--bg-canvas)',
+                  border: '1px solid var(--border-subtle)',
+                  textAlign: 'center'
+                }}
+              >
+                <div
+                  style={{
+                    width: '82px',
+                    height: '82px',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    marginBottom: '10px',
+                    boxShadow: 'var(--shadow-sm)',
+                    backgroundColor: 'var(--surface-white)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '2px solid rgba(51, 104, 160, 0.2)'
+                  }}
+                >
+                  <img
+                    src="/certifications-badge.jpg"
+                    alt="freeCodeCamp Credential Badge"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                </div>
+
+                {/* Dark Pill Badge under Medal */}
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '5px 14px',
+                    borderRadius: 'var(--radius-pill)',
+                    backgroundColor: 'var(--ink-primary)',
+                    color: 'var(--bg-canvas)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.6875rem',
+                    fontWeight: 700,
+                    boxShadow: 'var(--shadow-sm)'
+                  }}
+                >
+                  <Clock size={11} style={{ color: 'var(--color-primary)' }} />
+                  <span>In Progress · Full-Stack Track</span>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              to="/certifications"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-primary)',
+                textDecoration: 'none'
+              }}
+            >
+              <span>View curriculum details</span>
+              <ArrowUpRight size={13} />
+            </Link>
+          </div>
+
+          {/* Card 5: About */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -390,7 +680,7 @@ export const OverviewPage: React.FC = () => {
                 </Link>
               </div>
               <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 8px 0', lineHeight: 1.45 }}>
-                Who I am and how I work.
+                Who I am, engineering values, and academic background.
               </p>
 
               {/* Kenneth Villar Style 3 Fanned-Out Cards */}
@@ -434,366 +724,6 @@ export const OverviewPage: React.FC = () => {
               }}
             >
               <span>Read full background</span>
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-
-          {/* Card 3: AI Builds (Kenneth Villar Cloud of Floating Chips + Search Pill) */}
-          <div className="bento-card">
-            <div>
-              {/* Header */}
-              <div className="bento-card-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(36, 123, 123, 0.12)', color: 'var(--ink-secondary-accent)' }}>
-                    <Cpu size={18} />
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
-                      AI Builds
-                    </h3>
-                  </div>
-                </div>
-                <Link to="/stack" className="bento-arrow-btn" aria-label="Explore AI stack">
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
-                Agents, RAG pipelines, and model orchestration tools I run.
-              </p>
-
-              {/* Floating Pill Chips with Status Dots */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px', marginBottom: '8px' }}>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                  Sensa Voice Engine
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                  Contextual RAG
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#D97706' }} />
-                  Prompt Guardrails
-                </span>
-              </div>
-
-              {/* Kenneth Villar Search-Bar Style Pill */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '7px 12px',
-                  borderRadius: 'var(--radius-pill)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  border: '1px solid var(--border-subtle)',
-                  margin: '6px 0 10px 0'
-                }}
-              >
-                <Search size={13} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
-                  Sensa speech & command parser...
-                </span>
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--color-primary)',
-                    marginLeft: 'auto',
-                    flexShrink: 0
-                  }}
-                />
-              </div>
-
-              {/* Additional Floating Chips */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                  JSON Schema Enforcers
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-secondary)' }} />
-                  Manifest V3 Workers
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                  Vector Embeddings
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#8B5CF6' }} />
-                  PostgreSQL Schemas
-                </span>
-              </div>
-            </div>
-
-            <Link
-              to="/stack"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontFamily: 'var(--font-display)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-primary)',
-                textDecoration: 'none'
-              }}
-            >
-              <span>Explore 5-layer stack matrix</span>
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-        </div>
-
-        {/* ROW 2: Credentials (26%) | Services (29%) | Milestones (45%) */}
-        <div className="bento-row-2">
-          {/* Card 4: Credentials (Kenneth Villar Medal Seal Style) */}
-          <div className="bento-card">
-            <div>
-              {/* Header */}
-              <div className="bento-card-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(51, 104, 160, 0.12)', color: 'var(--color-primary)' }}>
-                    <Award size={18} />
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
-                      Credentials
-                    </h3>
-                  </div>
-                </div>
-                <Link to="/certifications" className="bento-arrow-btn" aria-label="View certifications">
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
-                freeCodeCamp Full-Stack Curriculum. Aspiring AI Engineer.
-              </p>
-
-              {/* Centered Circular Seal Badge Graphic */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '14px 10px',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  border: '1px solid var(--border-subtle)',
-                  textAlign: 'center'
-                }}
-              >
-                <div
-                  style={{
-                    width: '82px',
-                    height: '82px',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    marginBottom: '10px',
-                    boxShadow: 'var(--shadow-sm)',
-                    backgroundColor: 'var(--surface-white)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    border: '2px solid rgba(51, 104, 160, 0.2)'
-                  }}
-                >
-                  <img
-                    src="/certifications-badge.jpg"
-                    alt="freeCodeCamp Credential Badge"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-
-                {/* Dark Pill Badge under Medal (Kenneth Villar Certified Admin button style) */}
-                <div
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '5px 14px',
-                    borderRadius: 'var(--radius-pill)',
-                    backgroundColor: 'var(--ink-primary)',
-                    color: 'var(--bg-canvas)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    fontWeight: 700,
-                    boxShadow: 'var(--shadow-sm)'
-                  }}
-                >
-                  <Clock size={11} style={{ color: 'var(--color-primary)' }} />
-                  <span>In Progress · Full-Stack Track</span>
-                </div>
-              </div>
-            </div>
-
-            <Link
-              to="/certifications"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontFamily: 'var(--font-display)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-primary)',
-                textDecoration: 'none'
-              }}
-            >
-              <span>View curriculum details</span>
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-
-          {/* Card 5: Services & Capabilities (Kenneth Villar 01-05 Numbered List) */}
-          <div className="bento-card">
-            <div>
-              {/* Header */}
-              <div className="bento-card-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(217, 119, 6, 0.12)', color: '#D97706' }}>
-                    <Layers size={18} />
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
-                      Services
-                    </h3>
-                  </div>
-                </div>
-                <Link to="/stack" className="bento-arrow-btn" aria-label="View services specifications">
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
-                What I engineer for web applications & AI pipelines.
-              </p>
-
-              {/* Kenneth Villar 01-05 Numbered List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-                {servicesList.map((svc) => (
-                  <div key={svc.num} className="service-item-row">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                      <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ink-primary)' }}>
-                        {svc.title}
-                      </span>
-                    </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)', fontWeight: 700 }}>
-                      {svc.num}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              to="/stack"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontFamily: 'var(--font-display)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-primary)',
-                textDecoration: 'none'
-              }}
-            >
-              <span>View technical matrix</span>
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-
-          {/* Card 6: Academic & Track Record (Kenneth Villar Testimonials / Client Cards Format) */}
-          <div className="bento-card">
-            <div>
-              {/* Header */}
-              <div className="bento-card-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
-                  <div className="bento-icon-badge" style={{ backgroundColor: 'rgba(36, 123, 123, 0.12)', color: 'var(--ink-secondary-accent)' }}>
-                    <GraduationCap size={18} />
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
-                      Milestones & Track Record
-                    </h3>
-                  </div>
-                </div>
-                <Link to="/about" className="bento-arrow-btn" aria-label="View academic track record">
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
-                Institutional training and active engineering trajectory.
-              </p>
-
-              {/* 3 Kenneth Villar Style Structured Review/Milestone Cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
-                {milestoneItems.map((item, idx) => (
-                  <div key={idx} className="milestone-item-card">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8125rem', color: 'var(--ink-primary)' }}>
-                          {item.title}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.5625rem',
-                          color: 'var(--color-primary)',
-                          fontWeight: 700,
-                          backgroundColor: 'rgba(51, 104, 160, 0.08)',
-                          padding: '1px 6px',
-                          borderRadius: 'var(--radius-pill)'
-                        }}
-                      >
-                        {item.badge}
-                      </span>
-                    </div>
-
-                    <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '5px' }}>
-                      {item.meta}
-                    </div>
-
-                    {/* Orange/Accent Tag List like Kenneth's "GHL Build · Automation · Membership" */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                      {item.tags.map((tag, tIdx) => (
-                        <span
-                          key={tag}
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.625rem',
-                            color: 'var(--color-primary)',
-                            fontWeight: 600
-                          }}
-                        >
-                          {tag}{tIdx < item.tags.length - 1 ? ' •' : ''}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              to="/about"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontFamily: 'var(--font-display)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-primary)',
-                textDecoration: 'none'
-              }}
-            >
-              <span>Explore comprehensive journey</span>
               <ArrowUpRight size={13} />
             </Link>
           </div>

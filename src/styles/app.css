@@ -433,22 +433,22 @@ select:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 10px 0;
-  mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 24px, black calc(100% - 24px), transparent 100%);
+  padding: 2px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 16px, black calc(100% - 16px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16px, black calc(100% - 16px), transparent 100%);
 }
 
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 22px;
   width: max-content;
-  padding: 8px 0;
+  padding: 2px 0;
   will-change: transform;
 }
 
 .marquee-left-to-right {
-  animation: scrollLeftToRight 34s linear infinite;
+  animation: scrollLeftToRight 45s linear infinite;
 }
 
 .marquee-track:hover {
@@ -468,12 +468,11 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 42px;
-  padding: 0 11px;
+  height: 32px;
+  padding: 0 4px;
   border-radius: var(--radius-pill);
-  background-color: var(--bg-canvas);
-  border: 1px solid var(--border-subtle);
-  font-family: var(--font-display);
+  background-color: transparent;
+  border: 1px solid transparent;
   color: var(--ink-primary);
   white-space: nowrap;
   flex-shrink: 0;
@@ -481,31 +480,31 @@ select:focus-visible {
   position: relative;
   transition: transform var(--transition-fast), 
               border-color var(--transition-fast), 
-              background-color var(--transition-fast), 
-              box-shadow var(--transition-fast);
+              background-color var(--transition-fast),
+              padding var(--transition-fast);
 }
 
 .marquee-item:hover,
 .marquee-item:focus-visible,
 .marquee-item.is-hovered {
-  transform: translateY(-2px);
-  border-color: var(--color-primary);
-  background-color: var(--surface-white);
-  box-shadow: 0 4px 14px rgba(20, 35, 52, 0.1);
+  transform: translateY(-1px);
+  border-color: var(--border-subtle);
+  background-color: var(--surface-hover);
+  padding: 0 8px;
 }
 
 .marquee-item-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
 }
 
 .marquee-item-logo img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   display: block;
 }
@@ -521,22 +520,22 @@ select:focus-visible {
   overflow: hidden;
   white-space: nowrap;
   font-family: var(--font-display);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--ink-primary);
   margin-left: 0;
-  transition: max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: max-width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.2s ease,
-              margin-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+              margin-left 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
 .marquee-item:hover .marquee-item-label,
 .marquee-item:focus-visible .marquee-item-label,
 .marquee-item.is-hovered .marquee-item-label {
-  max-width: 140px;
+  max-width: 120px;
   opacity: 1;
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 /* AI Builds Pills */

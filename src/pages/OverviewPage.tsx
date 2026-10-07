@@ -150,14 +150,14 @@ export const OverviewPage: React.FC = () => {
         </Link>
       </section>
 
-      {/* 2. Daily Drivers / Tools I Work With Ribbon Strip (Moving slowly left to right) */}
+      {/* 2. Tools I Work With Ribbon Strip (Compact, No Circle Containers, Edge-to-Edge) */}
       <section
         style={{
           backgroundColor: 'var(--surface-white)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-card)',
-          padding: '14px 20px',
-          minHeight: '66px',
+          padding: '6px 16px',
+          minHeight: '44px',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           alignItems: 'center',
@@ -167,50 +167,59 @@ export const OverviewPage: React.FC = () => {
           zIndex: 1
         }}
       >
-        {/* Left Label */}
-        <div style={{ flexShrink: 0, paddingRight: '16px', borderRight: '1px solid var(--border-subtle)', zIndex: 2, backgroundColor: 'var(--surface-white)' }}>
-          <div
+        {/* Left Label: Compact single-row */}
+        <div
+          style={{
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            paddingRight: '16px',
+            borderRight: '1px solid var(--border-subtle)',
+            zIndex: 2,
+            backgroundColor: 'var(--surface-white)'
+          }}
+        >
+          <span
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.625rem',
-              color: 'var(--color-primary)',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase'
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-primary)',
+              flexShrink: 0
             }}
-          >
-            DAILY DRIVERS
-          </div>
-          <div
+          />
+          <span
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 800,
-              fontSize: '0.9375rem',
+              fontSize: '0.8125rem',
               color: 'var(--ink-primary)',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              letterSpacing: '-0.01em'
             }}
           >
             Tools I work with
-          </div>
+          </span>
         </div>
 
-        {/* Right Tools Auto-Scrolling Marquee Strip (Moving slowly from left to right) */}
+        {/* Right Tools Auto-Scrolling Marquee Strip */}
         <div className="marquee-container">
           <div className="marquee-track marquee-left-to-right">
-            {/* Set 1 */}
-            {dailyDrivers.map((tool, i) => (
+            {/* Set 1 (2x dailyDrivers = 28 icons to fill any viewport width without gaps) */}
+            {[...dailyDrivers, ...dailyDrivers].map((tool, i) => (
               <div key={`d1-${tool.name}-${i}`} className="marquee-item" title={tool.name}>
                 <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" />
+                  <img src={tool.logo} alt={tool.name} width="22" height="22" loading="lazy" />
                 </span>
                 <span className="marquee-item-label">{tool.name}</span>
               </div>
             ))}
             {/* Set 2 (Duplicate for Seamless Infinite Loop) */}
-            {dailyDrivers.map((tool, i) => (
+            {[...dailyDrivers, ...dailyDrivers].map((tool, i) => (
               <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true" title={tool.name}>
                 <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" />
+                  <img src={tool.logo} alt={tool.name} width="22" height="22" loading="lazy" />
                 </span>
                 <span className="marquee-item-label">{tool.name}</span>
               </div>

@@ -60,41 +60,6 @@ export const OverviewPage: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', position: 'relative' }}>
-      {/* Background Topographic Wave Contours (Kenneth Villar designer aesthetic) */}
-      <svg
-        style={{
-          position: 'absolute',
-          top: -20,
-          left: -40,
-          width: 'calc(100% + 80px)',
-          height: '100%',
-          pointerEvents: 'none',
-          zIndex: 0,
-          opacity: 0.16,
-          overflow: 'hidden'
-        }}
-        viewBox="0 0 1200 900"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M -100 180 C 250 80, 520 420, 880 220 C 1080 120, 1250 320, 1400 380"
-          stroke="var(--color-primary)"
-          strokeWidth="1.5"
-          strokeDasharray="4 4"
-        />
-        <path
-          d="M -50 320 C 320 220, 580 580, 960 380 C 1160 280, 1320 480, 1480 520"
-          stroke="var(--color-secondary)"
-          strokeWidth="1.2"
-        />
-        <path
-          d="M -120 520 C 280 420, 520 720, 920 520 C 1120 420, 1280 680, 1440 720"
-          stroke="var(--color-primary)"
-          strokeWidth="1"
-          strokeDasharray="6 6"
-        />
-      </svg>
 
       {/* 1. Hero Statement Row + "Get in touch" CTA */}
       <section className="hero-header-row">

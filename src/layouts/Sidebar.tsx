@@ -49,10 +49,11 @@ export const Sidebar: React.FC = () => {
         borderRight: '1px solid var(--border-subtle)',
         display: 'flex',
         flexDirection: 'column',
-        padding: 'clamp(28px, 4vh, 48px) 24px 24px',
+        padding: 'clamp(28px, 4vh, 52px) 30px 28px',
         zIndex: 40,
         flexShrink: 0,
-        overflowY: 'auto'
+        overflowY: 'auto',
+        scrollbarWidth: 'none'
       }}
     >
       <div
@@ -70,12 +71,11 @@ export const Sidebar: React.FC = () => {
           className="rail__avatar"
           style={{
             position: 'relative',
-            width: 'clamp(120px, 18vh, 160px)',
+            width: 'clamp(132px, 21vh, 190px)',
             aspectRatio: '1',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '4px'
+            justifyContent: 'center'
           }}
         >
           {/* Ambient backlight glow matching Kenneth Villar rail */}
@@ -85,7 +85,7 @@ export const Sidebar: React.FC = () => {
               inset: '18% 4% 0',
               borderRadius: '50%',
               background: 'radial-gradient(ellipse at 50% 70%, rgba(51, 104, 160, 0.28), transparent 66%)',
-              filter: 'blur(20px)',
+              filter: 'blur(22px)',
               pointerEvents: 'none'
             }}
           />
@@ -102,7 +102,7 @@ export const Sidebar: React.FC = () => {
                 height: '100%',
                 objectFit: 'contain',
                 objectPosition: 'center bottom',
-                filter: 'drop-shadow(0 12px 20px rgba(6, 12, 26, 0.25))',
+                filter: 'drop-shadow(0 14px 22px rgba(6, 12, 26, 0.35))',
                 WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
                 maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)'
               }}
@@ -110,8 +110,8 @@ export const Sidebar: React.FC = () => {
           ) : (
             <div
               style={{
-                width: '96px',
-                height: '96px',
+                width: '110px',
+                height: '110px',
                 borderRadius: '50%',
                 backgroundColor: 'var(--color-primary)',
                 color: '#FFFFFF',
@@ -134,10 +134,10 @@ export const Sidebar: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '7px',
-            marginTop: '16px',
+            marginTop: '20px',
             marginBottom: 0,
             fontFamily: 'var(--font-display)',
-            fontSize: '1.25rem',
+            fontSize: '22px',
             fontWeight: 700,
             letterSpacing: '-0.022em',
             lineHeight: 1.2,
@@ -167,9 +167,9 @@ export const Sidebar: React.FC = () => {
         {/* Handle / Subtitle */}
         <p
           style={{
-            margin: '4px 0 0 0',
+            margin: '5px 0 0 0',
             fontFamily: 'var(--font-display)',
-            fontSize: '0.875rem',
+            fontSize: '14.5px',
             color: 'var(--ink-muted)',
             letterSpacing: '0.004em',
             textAlign: 'center'
@@ -186,8 +186,8 @@ export const Sidebar: React.FC = () => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '18px',
-            marginTop: '16px',
+            gap: '14px',
+            marginTop: '18px',
             justifyContent: 'center'
           }}
         >
@@ -280,20 +280,18 @@ export const Sidebar: React.FC = () => {
           </a>
         </div>
 
-        {/* Hairline Divider Below Header */}
-        <div
-          style={{
-            height: '1px',
-            backgroundColor: 'var(--border-subtle)',
-            marginTop: 'clamp(18px, 2.5vh, 26px)',
-            marginBottom: 'clamp(12px, 1.8vh, 18px)',
-            width: '100%'
-          }}
-        />
-
         {/* Navigation List */}
-        <nav style={{ width: '100%' }} aria-label="Primary Navigation">
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '4px', listStyle: 'none', padding: 0, margin: 0 }}>
+        <nav
+          className="rail__nav"
+          style={{
+            width: '100%',
+            marginTop: 'clamp(20px, 3vh, 32px)',
+            paddingTop: 'clamp(18px, 2.6vh, 28px)',
+            borderTop: '1px solid var(--border-subtle)'
+          }}
+          aria-label="Primary Navigation"
+        >
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '3px', listStyle: 'none', padding: 0, margin: 0 }}>
             {navItems.map((item) => (
               <li key={item.path}>
                 <NavLink
@@ -311,10 +309,11 @@ export const Sidebar: React.FC = () => {
 
         {/* Hairline Divider & Footer (Pinned to bottom via margin-top: auto) */}
         <div
+          className="rail__copy"
           style={{
             width: '100%',
             marginTop: 'auto',
-            paddingTop: 'clamp(20px, 3vh, 32px)',
+            paddingTop: 'clamp(24px, 4vh, 40px)',
             borderTop: '1px solid var(--border-subtle)',
             display: 'flex',
             alignItems: 'center',
@@ -328,8 +327,8 @@ export const Sidebar: React.FC = () => {
             title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             className="theme-toggle-footer-btn"
             style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '50%',
               backgroundColor: 'var(--surface-white)',
               border: '1px solid var(--border-subtle)',
@@ -342,14 +341,15 @@ export const Sidebar: React.FC = () => {
               boxShadow: 'var(--shadow-sm)'
             }}
           >
-            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--ink-subtle)',
-              lineHeight: 1.5
+              fontSize: '12px',
+              color: 'var(--ink-muted)',
+              lineHeight: 1.6,
+              letterSpacing: '0.004em'
             }}
           >
             <div>© 2026</div>

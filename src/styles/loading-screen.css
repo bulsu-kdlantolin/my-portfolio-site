@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Kian Davey Antolin — Signature Loading Screen / Boot Sequence
+   ========================================================================== */
+
+.kian-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-canvas);
+  overflow: hidden;
+  user-select: none;
+  pointer-events: all;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.5s;
+  will-change: opacity, transform, filter;
+}
+
+.kian-loader-overlay.is-leaving {
+  opacity: 0;
+  transform: scale(1.035);
+  filter: blur(10px);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Micro-Dot Latent Grid Pattern in Background */
+.kian-loader-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center center;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  pointer-events: none;
+}
+
+/* Ambient Backdrop Aurora Blooms */
+.kian-loader-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(75px);
+}
+
+.kian-loader-glow-1 {
+  width: 540px;
+  height: 540px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(36, 123, 123, 0.24) 0%, rgba(51, 104, 160, 0.12) 50%, transparent 70%);
+  opacity: 0.85;
+}
+
+.kian-loader-glow-2 {
+  width: 320px;
+  height: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(74, 140, 210, 0.28) 0%, transparent 65%);
+  opacity: 0.7;
+}
+
+/* Central Stage */
+.kian-loader-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px;
+  max-width: 90vw;
+}
+
+/* Emblem Container */
+.kian-loader-emblem-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* Acoustic Wave Rings (Sensa Harmonic Pulse) */
+.kian-loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.2px solid var(--color-primary);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.kian-loader-ring-1 {
+  animation: kian-pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.kian-loader-ring-2 {
+  animation: kian-pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite 0.75s;
+}
+
+.kian-loader-ring-3 {
+  animation: kian-pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite 1.5s;
+}
+
+@keyframes kian-pulse-ring {
+  0% {
+    transform: scale(0.68);
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.68);
+    opacity: 0;
+  }
+}
+
+/* Monogram SVG */
+.kian-loader-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 14px rgba(74, 140, 210, 0.4));
+}
+
+/* SVG Path Drawing */
+.kian-svg-spine {
+  stroke: var(--color-primary, #4A8CD2);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: kian-draw-path 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.1s;
+}
+
+.kian-svg-arm-up {
+  stroke: var(--color-secondary, #72B3DA);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: kian-draw-path 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.22s;
+}
+
+.kian-svg-arm-down {
+  stroke: var(--color-primary, #4A8CD2);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: kian-draw-path 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.32s;
+}
+
+.kian-svg-connector {
+  stroke: var(--color-secondary, #72B3DA);
+  stroke-width: 1px;
+  opacity: 0.4;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: kian-draw-path 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s;
+}
+
+@keyframes kian-draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Orbit Ring Rotation */
+.kian-orbit-ring {
+  transform-origin: center;
+  stroke: var(--border-strong, rgba(74, 140, 210, 0.35));
+  stroke-width: 1.2px;
+  stroke-dasharray: 5 7;
+  animation: kian-rotate-orbit 20s linear infinite;
+}
+
+@keyframes kian-rotate-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glowing Nodes */
+.kian-node-beacon {
+  transform-origin: center;
+  animation: kian-node-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes kian-node-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Identity Lockup */
+.kian-loader-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--ink-primary);
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  animation: kian-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both 0.15s;
+}
+
+.kian-loader-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 1.5vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--color-primary);
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  animation: kian-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both 0.22s;
+}
+
+@keyframes kian-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress & Telemetry Section */
+.kian-loader-telemetry {
+  width: min(390px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: kian-fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both 0.28s;
+}
+
+.kian-loader-bar-wrap {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: var(--border-subtle);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.kian-loader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--radius-pill);
+  transition: width 0.08s linear;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+.kian-loader-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  gap: 16px;
+}
+
+.kian-loader-status-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kian-loader-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  animation: kian-blink 0.9s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes kian-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.kian-loader-percent {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kian-loader-overlay {
+    transition: opacity 0.2s ease;
+  }
+  .kian-loader-ring,
+  .kian-svg-spine,
+  .kian-svg-arm-up,
+  .kian-svg-arm-down,
+  .kian-svg-connector,
+  .kian-orbit-ring,
+  .kian-node-beacon,
+  .kian-loader-title,
+  .kian-loader-subtitle,
+  .kian-loader-telemetry,
+  .kian-loader-status-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}

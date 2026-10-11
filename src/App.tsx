@@ -9,6 +9,7 @@ import { CertificationsPage } from './pages/CertificationsPage';
 import { StackPage } from './pages/StackPage';
 import { ContactPage } from './pages/ContactPage';
 import { ThemeProvider } from './context/ThemeContext';
+import { LoadingScreen } from './components/common/LoadingScreen';
 
 // Scroll to top on route navigation
 const ScrollToTop: React.FC = () => {
@@ -24,6 +25,7 @@ const ScrollToTop: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <ThemeProvider>
+      <LoadingScreen />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>

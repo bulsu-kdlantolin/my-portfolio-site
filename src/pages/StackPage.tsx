@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { stackData } from '../data/stack';
-import { Badge } from '../components/common/Badge';
 import { Layers, Terminal, Database, Cpu, Layout, Sparkles } from 'lucide-react';
 
 const tierIconMap: Record<string, React.ReactNode> = {
@@ -19,8 +18,6 @@ export const StackPage: React.FC = () => {
       ? stackData
       : stackData.filter((tier) => tier.id === activeStackTier);
 
-  const totalTools = stackData.flatMap((tier) => tier.skills).length;
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Page Header */}
@@ -30,14 +27,6 @@ export const StackPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="primary" size="sm">
-            CAPABILITY MATRIX
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            5-LAYER ARCHITECTURE // {totalTools} CORE TECHNOLOGIES
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

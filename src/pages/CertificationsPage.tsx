@@ -1,6 +1,5 @@
 import React from 'react';
 import { certificationsData } from '../data/certifications';
-import { Badge } from '../components/common/Badge';
 import { Award, BookOpen, ExternalLink, Clock } from 'lucide-react';
 
 export const CertificationsPage: React.FC = () => {
@@ -15,14 +14,6 @@ export const CertificationsPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="teal" size="sm">
-            CONTINUOUS LEARNING
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            ACTIVE CURRICULUM & CREDENTIALS
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

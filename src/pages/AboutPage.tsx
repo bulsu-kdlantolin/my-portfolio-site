@@ -1,5 +1,4 @@
 import React from 'react';
-import { Badge } from '../components/common/Badge';
 import { GraduationCap, Compass, CheckCircle2 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -12,14 +11,6 @@ export const AboutPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="primary" size="sm">
-            PERSONAL PROFILE
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            KIAN DAVEY ANTOLIN
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

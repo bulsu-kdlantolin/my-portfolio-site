@@ -3,7 +3,6 @@ import { projectsData } from '../data/projects';
 import { Project } from '../types/project';
 import { ProjectCard } from '../components/projects/ProjectCard';
 import { ProjectDrawer } from '../components/projects/ProjectDrawer';
-import { Badge } from '../components/common/Badge';
 import { Sparkles } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
@@ -18,14 +17,6 @@ export const ProjectsPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="primary" size="sm">
-            ENGINEERING WORK
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            1 ACTIVE BUILD // EXPANDING REPOSITORY
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

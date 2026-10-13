@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { CustomSelect, SelectOption } from '../components/common/CustomSelect';
 import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
@@ -65,14 +64,6 @@ export const ContactPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="primary" size="sm">
-            GET IN TOUCH
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            DIRECT COMMUNICATION
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

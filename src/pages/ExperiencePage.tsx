@@ -166,14 +166,6 @@ export const ExperiencePage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="primary" size="sm">
-            ENGINEERING MILESTONES
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            ACADEMIC &amp; ACTIVE BUILD TRAJECTORY
-          </span>
-        </div>
         <h2
           style={{
             fontFamily: 'var(--font-display)',

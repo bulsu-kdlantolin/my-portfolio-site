@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { projectsData } from '../data/projects';
 import { Project } from '../types/project';
 import { ProjectDrawer } from '../components/projects/ProjectDrawer';
+import { useTheme } from '../context/ThemeContext';
 import {
   ArrowUpRight,
   FolderGit2,
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export const OverviewPage: React.FC = () => {
+  const { theme } = useTheme();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const sensaProject = projectsData[0];
 
@@ -663,7 +665,10 @@ export const OverviewPage: React.FC = () => {
                   <img src="/about-var1.jpg" alt="Minimal Silhouette Vector" />
                 </div>
                 <div className="fan-card fan-card-center">
-                  <img src="/avatar-profile.jpg" alt="Kian Davey Antolin" />
+                  <img
+                    src={theme === 'dark' ? '/avatar-profile-dark.jpg' : '/avatar-profile.jpg'}
+                    alt="Kian Davey Antolin"
+                  />
                 </div>
                 <div className="fan-card fan-card-right">
                   <img src="/about-var2.jpg" alt="Geometric Avatar Vector" />

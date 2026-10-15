@@ -18,6 +18,8 @@ export const StackPage: React.FC = () => {
       ? stackData
       : stackData.filter((tier) => tier.id === activeStackTier);
 
+  const totalSkillsCount = stackData.reduce((acc, tier) => acc + tier.skills.length, 0);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Page Header */}
@@ -37,10 +39,10 @@ export const StackPage: React.FC = () => {
             marginBottom: '8px'
           }}
         >
-          Technology Stack & Technical Competencies
+          Technology Stack
         </h2>
-        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6 }}>
-          Structured by engineering responsibility—explaining where each technology is applied across frontend client views, backend services, relational databases, practical AI pipelines, and developer tooling.
+        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.6, margin: 0 }}>
+          Core technologies, frameworks, and developer tooling used across production applications, browser extensions, and applied AI pipelines.
         </p>
       </div>
 
@@ -53,12 +55,12 @@ export const StackPage: React.FC = () => {
         }}
       >
         {[
-          { id: 'all', label: `All Layers (${stackData.length})` },
-          { id: 'frontend', label: 'Frontend' },
-          { id: 'backend', label: 'Backend & APIs' },
-          { id: 'database', label: 'Databases' },
-          { id: 'ai-engineering', label: 'Applied AI' },
-          { id: 'workflow', label: 'Tools & Workflow' }
+          { id: 'all', label: `All (${totalSkillsCount})` },
+          { id: 'frontend', label: `Frontend & UI (${stackData.find(t => t.id === 'frontend')?.skills.length || 0})` },
+          { id: 'backend', label: `Backend & APIs (${stackData.find(t => t.id === 'backend')?.skills.length || 0})` },
+          { id: 'database', label: `Databases (${stackData.find(t => t.id === 'database')?.skills.length || 0})` },
+          { id: 'ai-engineering', label: `Applied AI (${stackData.find(t => t.id === 'ai-engineering')?.skills.length || 0})` },
+          { id: 'workflow', label: `Tools & Ecosystem (${stackData.find(t => t.id === 'workflow')?.skills.length || 0})` }
         ].map((tab) => {
           const isActive = activeStackTier === tab.id;
           return (
@@ -73,7 +75,7 @@ export const StackPage: React.FC = () => {
                 borderRadius: 'var(--radius-pill)',
                 border: `1px solid ${isActive ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
                 backgroundColor: isActive ? 'var(--color-primary)' : 'var(--surface-white)',
-                color: isActive ? 'var(--bg-canvas)' : 'var(--ink-muted)',
+                color: isActive ? '#FFFFFF' : 'var(--ink-muted)',
                 cursor: 'pointer',
                 transition: 'all var(--transition-fast)'
               }}
@@ -85,107 +87,94 @@ export const StackPage: React.FC = () => {
       </div>
 
       {/* Stack Layers List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {filteredStack.map((tier) => (
-          <div
+          <section
             key={tier.id}
             style={{
               backgroundColor: 'var(--surface-white)',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-card)',
-              padding: 'clamp(20px, 3vw, 24px)',
+              padding: 'clamp(18px, 2.5vw, 22px)',
               boxShadow: 'var(--shadow-sm)'
             }}
           >
             {/* Layer Header */}
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span
                   style={{
                     color: 'var(--color-primary)',
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    backgroundColor: 'var(--bg-canvas)',
+                    padding: '6px',
+                    borderRadius: 'var(--radius-xs)',
+                    border: '1px solid var(--border-subtle)'
                   }}
                 >
                   {tierIconMap[tier.id] || <Layers size={18} />}
                 </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
-                    color: 'var(--color-primary)',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em'
-                  }}
-                >
-                  {tier.badge}
-                </span>
+                <div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.0625rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+                    {tier.title}
+                  </h3>
+                </div>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink-primary)', marginBottom: '4px' }}>
-                {tier.title}
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', lineHeight: 1.5, margin: 0 }}>
-                {tier.description}
-              </p>
+
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.6875rem',
+                  color: 'var(--color-primary)',
+                  fontWeight: 700,
+                  letterSpacing: '0.04em',
+                  backgroundColor: 'var(--bg-canvas)',
+                  padding: '3px 10px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: '1px solid var(--border-subtle)'
+                }}
+              >
+                {tier.badge}
+              </span>
             </div>
 
-            {/* Skills Grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '14px'
-              }}
-            >
+            {/* Straightforward Tech Skills Grid */}
+            <div className="tech-grid">
               {tier.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  style={{
-                    padding: '16px',
-                    borderRadius: 'var(--radius-sm)',
-                    backgroundColor: 'var(--bg-canvas)',
-                    border: '1px solid var(--border-subtle)'
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)' }}>
-                      {skill.name}
+                <div key={skill.name} className="tech-card">
+                  <div className="tech-card-left">
+                    <div className={`tech-card-logo ${skill.isMonochrome ? 'is-monochrome' : ''}`}>
+                      <img
+                        src={skill.logo}
+                        alt={`${skill.name} logo`}
+                        loading="lazy"
+                        width={24}
+                        height={24}
+                      />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-secondary-accent)' }}>
-                      {skill.role}
-                    </span>
+                    <div className="tech-card-info">
+                      <span className="tech-card-name">{skill.name}</span>
+                      <span className="tech-card-role">{skill.role}</span>
+                    </div>
                   </div>
 
-                  <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5, margin: '6px 0 10px' }}>
-                    {skill.experienceContext}
-                  </p>
-
-                  {skill.tags && skill.tags.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                      {skill.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.6875rem',
-                            padding: '2px 8px',
-                            borderRadius: 'var(--radius-xs)',
-                            backgroundColor: 'rgba(200, 223, 219, 0.4)',
-                            border: '1px solid var(--border-teal)',
-                            color: 'var(--ink-primary)'
-                          }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  {skill.status && (
+                    <span
+                      className={`tech-card-badge ${
+                        skill.isPrimary ? 'tech-card-badge--primary' : ''
+                      }`}
+                    >
+                      {skill.status}
+                    </span>
                   )}
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         ))}
       </div>
     </div>
   );
 };
+

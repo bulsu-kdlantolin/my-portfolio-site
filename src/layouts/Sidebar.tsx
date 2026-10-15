@@ -91,22 +91,50 @@ export const Sidebar: React.FC = () => {
           />
 
           {!imgError ? (
-            <img
-              src="/avatar-profile.png"
-              alt="Kian Davey Antolin"
-              onError={() => setImgError(true)}
-              style={{
-                position: 'relative',
-                display: 'block',
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                objectPosition: 'center bottom',
-                filter: 'drop-shadow(0 14px 22px rgba(6, 12, 26, 0.35))',
-                WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
-                maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)'
-              }}
-            />
+            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+              {/* Light Mode Avatar (White Shirt) */}
+              <img
+                src="/avatar-profile.png"
+                alt="Kian Davey Antolin"
+                onError={() => setImgError(true)}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'block',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center bottom',
+                  filter: 'drop-shadow(0 14px 22px rgba(6, 12, 26, 0.35))',
+                  WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                  maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                  opacity: theme === 'dark' ? 0 : 1,
+                  transition: 'opacity 0.4s ease',
+                  pointerEvents: theme === 'dark' ? 'none' : 'auto'
+                }}
+              />
+              {/* Dark Mode Avatar (Dark Charcoal Shirt) */}
+              <img
+                src="/avatar-profile-dark.png"
+                alt="Kian Davey Antolin"
+                onError={() => setImgError(true)}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'block',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center bottom',
+                  filter: 'drop-shadow(0 14px 22px rgba(6, 12, 26, 0.45))',
+                  WebkitMaskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                  maskImage: 'radial-gradient(ellipse 80% 86% at 50% 24%, #000 50%, transparent 100%)',
+                  opacity: theme === 'dark' ? 1 : 0,
+                  transition: 'opacity 0.4s ease',
+                  pointerEvents: theme === 'dark' ? 'auto' : 'none'
+                }}
+              />
+            </div>
           ) : (
             <div
               style={{

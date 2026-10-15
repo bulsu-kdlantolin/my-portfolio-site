@@ -1,11 +1,14 @@
 export interface Certification {
   id: string;
   title: string;
+  shortTitle: string;
   issuer: string;
   issuerCategory: string;
   issueDate: string;
   credentialId: string;
   skills: string[];
-  verificationUrl?: string;
+  verificationUrl: string;
   status: 'Verified' | 'Completed' | 'In Progress';
+  image: string;
+  description?: string;
 }

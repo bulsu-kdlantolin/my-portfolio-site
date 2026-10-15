@@ -3,156 +3,214 @@ import { TechTier } from '../types/tech';
 export const stackData: TechTier[] = [
   {
     id: 'frontend',
-    title: 'Frontend Engineering',
+    title: 'Frontend & Client Architecture',
     badge: 'LAYER 01 // CLIENT INTERFACE',
-    description: 'Building responsive, accessible, and type-safe user interfaces with clean component architectures and predictable state flows.',
     skills: [
       {
-        name: 'React',
-        role: 'Component Architecture & State',
-        experienceContext: 'Used as the core view library for SPAs and dashboards, leveraging custom hooks, state trees, and modern React patterns.',
-        tags: ['Hooks', 'Context', 'Component Lifecycle']
-      },
-      {
         name: 'TypeScript',
-        role: 'Static Typing & Interface Contracts',
-        experienceContext: 'Primary language for modern web applications. Applied across client components, data models, and API boundary definitions.',
-        tags: ['Generics', 'Union Types', 'Strict Null Checks']
+        role: 'Primary Typed Language',
+        logo: '/logos/typescript.svg',
+        isMonochrome: false,
+        status: 'Core',
+        isPrimary: true
       },
       {
-        name: 'JavaScript (ESNext)',
-        role: 'Core Language Fundamentals',
-        experienceContext: 'Deep understanding of event loops, asynchronous programming, DOM APIs, and modern ES6+ language capabilities.',
-        tags: ['Async/Await', 'Closures', 'ES Modules']
+        name: 'React',
+        role: 'UI Library & State',
+        logo: '/logos/react.svg',
+        isMonochrome: false,
+        status: 'Core',
+        isPrimary: true
       },
       {
-        name: 'CSS3 & Modern Layouts',
-        role: 'Styling & Responsive Systems',
-        experienceContext: 'Creating bespoke architectural layouts using Flexbox, CSS Grid, custom properties (CSS variables), and fluid clamp() typography.',
-        tags: ['CSS Grid', 'Flexbox', 'Tokens', 'Transitions']
+        name: 'Next.js',
+        role: 'Full-Stack Framework',
+        logo: '/logos/nextjs.svg',
+        isMonochrome: true,
+        status: 'Framework'
       },
       {
-        name: 'HTML5 Semantic Markup',
-        role: 'Document Structure & Accessibility',
-        experienceContext: 'Structuring pages with proper landmark elements, heading hierarchies, form validations, and keyboard navigation support.',
-        tags: ['Semantic Roles', 'ARIA Basics', 'Form Controls']
+        name: 'JavaScript',
+        role: 'Modern ES6+ Standards',
+        logo: '/logos/javascript.svg',
+        isMonochrome: false,
+        status: 'Core'
+      },
+      {
+        name: 'Tailwind CSS',
+        role: 'Utility-First Styling',
+        logo: '/logos/tailwindcss.svg',
+        isMonochrome: false,
+        status: 'Styling'
+      },
+      {
+        name: 'HTML5',
+        role: 'Semantic Markup & Web',
+        logo: '/logos/html5.svg',
+        isMonochrome: false,
+        status: 'Standard'
+      },
+      {
+        name: 'CSS3',
+        role: 'Modern Flexbox & Grid',
+        logo: '/logos/css3.svg',
+        isMonochrome: false,
+        status: 'Standard'
       }
     ]
   },
   {
     id: 'backend',
-    title: 'Backend & APIs',
+    title: 'Backend & Server Systems',
     badge: 'LAYER 02 // SERVER & SERVICES',
-    description: 'Creating structured server applications, clean RESTful endpoints, and middleware to orchestrate data flows securely.',
     skills: [
       {
         name: 'Node.js',
         role: 'Runtime Environment',
-        experienceContext: 'Executing server-side JavaScript applications, background tasks, automation scripts, and RESTful service backends.',
-        tags: ['Event-Driven', 'npm Ecosystem', 'File System APIs']
+        logo: '/logos/nodejs.svg',
+        isMonochrome: false,
+        status: 'Core',
+        isPrimary: true
       },
       {
         name: 'Express.js',
-        role: 'API Framework & Middleware',
-        experienceContext: 'Building REST endpoints, request validation pipelines, error handling middleware, and CORS configuration.',
-        tags: ['Routing', 'Middleware Pipelines', 'REST Contracts']
+        role: 'REST APIs & Middleware',
+        logo: '/logos/express.svg',
+        isMonochrome: true,
+        status: 'Framework'
+      },
+      {
+        name: 'Python',
+        role: 'Scripting & AI Services',
+        logo: '/logos/python.svg',
+        isMonochrome: false,
+        status: 'Core',
+        isPrimary: true
       }
     ]
   },
   {
     id: 'database',
-    title: 'Databases & Relational Systems',
+    title: 'Databases & Persistence',
     badge: 'LAYER 03 // PERSISTENCE & DATA INTEGRITY',
-    description: 'Modeling data entities, writing structured SQL queries, and ensuring data integrity through relational constraints.',
     skills: [
       {
-        name: 'SQL (Relational Databases)',
-        role: 'Schema Design & Data Retrieval',
-        experienceContext: 'Core competency studied through BS IT curriculum and applied projects. Designing normalized tables, primary/foreign keys, joins, and indexing.',
-        tags: ['Schema Normalization', 'Complex Joins', 'Data Integrity', 'DDL/DML']
+        name: 'PostgreSQL',
+        role: 'Relational Database',
+        logo: '/logos/postgresql.svg',
+        isMonochrome: false,
+        status: 'Primary DB',
+        isPrimary: true
       },
       {
-        name: 'Supabase / PostgreSQL Basics',
-        role: 'Cloud Relational Persistence',
-        experienceContext: 'Utilized for authentication, user profiles, and structured relational persistence in web and extension projects.',
-        tags: ['Postgres', 'Row Level Security', 'Auth Integration']
+        name: 'Supabase',
+        role: 'Auth & Cloud Postgres',
+        logo: '/logos/supabase.svg',
+        isMonochrome: false,
+        status: 'BaaS'
+      },
+      {
+        name: 'MySQL',
+        role: 'Relational Systems (RDBMS)',
+        logo: '/logos/mysql.svg',
+        isMonochrome: false,
+        status: 'Academic'
       }
     ]
   },
   {
     id: 'ai-engineering',
-    title: 'Applied AI Engineering',
+    title: 'Applied AI & ML Architecture',
     badge: 'LAYER 04 // MODELS, EMBEDDINGS & RAG',
-    description: 'Integrating machine learning models and semantic search architectures into real-world software products.',
     skills: [
       {
-        name: 'Python',
-        role: 'AI Scripting & Data Pipelines',
-        experienceContext: 'Primary language for developing AI experiments, document processing pipelines, embedding generation, and API integrations.',
-        tags: ['Data Processing', 'API Clients', 'Automation']
+        name: 'OpenAI API',
+        role: 'LLM Orchestration & Prompts',
+        logo: '/logos/openai.svg',
+        isMonochrome: true,
+        status: 'Active AI',
+        isPrimary: true
       },
       {
-        name: 'OpenAI API & LLM Orchestration',
-        role: 'Generative Intelligence',
-        experienceContext: 'Interfacing with GPT models, managing system prompts, structured JSON schema outputs, streaming completions, and parameter tuning.',
-        tags: ['ChatCompletions', 'Structured Outputs', 'Streaming Responses']
-      },
-      {
-        name: 'Vector Embeddings & Semantic Search',
-        role: 'High-Dimensional Knowledge Representation',
-        experienceContext: 'Generating text embeddings (e.g., text-embedding-3-small), indexing high-dimensional vectors, and computing cosine distance for similarity matching.',
-        tags: ['Cosine Similarity', 'Vector Spaces', 'Semantic Indexing']
-      },
-      {
-        name: 'RAG (Retrieval-Augmented Generation)',
-        role: 'Knowledge-Grounded Systems',
-        experienceContext: 'Engineering end-to-end question answering over private documentation by combining chunking, retrieval, and prompt injection.',
-        tags: ['Chunk Overlap', 'Context Window Injection', 'Hallucination Mitigation']
-      },
-      {
-        name: 'Vector Databases',
-        role: 'Vector Indexing & Retrieval',
-        experienceContext: 'Exploring vector storage tools and index concepts (e.g., ChromaDB, Pinecone, pgvector) to enable fast similarity search.',
-        tags: ['Top-K Nearest Neighbors', 'Metadata Filtering']
+        name: 'RAG & Vectors',
+        role: 'Retrieval Pipelines & Search',
+        logo: '/logos/langchain.svg',
+        isMonochrome: true,
+        status: 'Architecture',
+        isPrimary: true
       },
       {
         name: 'Hugging Face',
-        role: 'Open-Source Models & Pipelines',
-        experienceContext: 'Exploring pre-trained transformers, tokenizers, open-source model weights, and inference pipelines for specialized AI tasks.',
-        tags: ['Transformers', 'Tokenization', 'Inference']
+        role: 'Open Transformers & Models',
+        logo: '/logos/huggingface.svg',
+        isMonochrome: true,
+        status: 'Models'
+      },
+      {
+        name: 'Ollama',
+        role: 'Local Offline Inference',
+        logo: '/logos/ollama.svg',
+        isMonochrome: true,
+        status: 'Local Lab'
+      },
+      {
+        name: 'Deepgram',
+        role: 'Speech Recognition Streaming',
+        logo: '/logos/deepgram.svg',
+        isMonochrome: true,
+        status: 'Sensa MV3'
       }
     ]
   },
   {
     id: 'workflow',
-    title: 'Tools & Workflow',
+    title: 'Developer Tools & Ecosystem',
     badge: 'LAYER 05 // VELOCITY & TOOLING',
-    description: 'Modern development tools and responsible AI-assisted workflows used to ship clean, tested code quickly.',
     skills: [
       {
-        name: 'Git & GitHub',
-        role: 'Version Control & Code Collaboration',
-        experienceContext: 'Daily source control, branching strategies, commit cleanliness, and repository management.',
-        tags: ['Branching', 'PRs', 'Merge Conflict Resolution']
+        name: 'Git',
+        role: 'Version Control',
+        logo: '/logos/git.svg',
+        isMonochrome: false,
+        status: 'Standard',
+        isPrimary: true
       },
       {
-        name: 'AI-Assisted Development (Cursor, Claude Code)',
-        role: 'Engineering Velocity Leverage',
-        experienceContext: 'Using AI development environments to accelerate boilerplate, explore edge cases, and refactor while retaining strict human control over architecture.',
-        tags: ['Prompted Refactoring', 'Test Generation', 'Architectural Guidance']
+        name: 'GitHub',
+        role: 'Repositories & Collaboration',
+        logo: '/logos/github.svg',
+        isMonochrome: true,
+        status: 'Standard'
       },
       {
-        name: 'VS Code & Chrome DevTools',
-        role: 'Development & Inspection',
-        experienceContext: 'In-browser debugging, network payload inspection, breakpoint stepping, and performance profiling.',
-        tags: ['DOM Inspection', 'Network Analysis', 'Console Debugging']
+        name: 'VS Code',
+        role: 'Code Editor',
+        logo: '/logos/vscode.svg',
+        isMonochrome: false,
+        status: 'IDE'
+      },
+      {
+        name: 'Cursor',
+        role: 'AI-Powered Development',
+        logo: '/logos/cursor.svg',
+        isMonochrome: true,
+        status: 'Velocity'
       },
       {
         name: 'Vite',
-        role: 'Build Tooling & Bundling',
-        experienceContext: 'Rapid development server, instant hot module replacement (HMR), and optimized production rollups.',
-        tags: ['Fast HMR', 'Rollup Plugins', 'TypeScript Bundling']
+        role: 'Build Tooling & Fast HMR',
+        logo: '/logos/vite.svg',
+        isMonochrome: false,
+        status: 'Bundler'
+      },
+      {
+        name: 'Plasmo (MV3)',
+        role: 'Chrome Extension Framework',
+        logo: '/logos/plasmo.svg',
+        isMonochrome: true,
+        status: 'Active Build'
       }
     ]
   }
 ];
+

@@ -4,6 +4,7 @@ import { Badge } from '../common/Badge';
 import { Button } from '../common/Button';
 import { GithubIcon } from '../common/Icons';
 import { X, ExternalLink, CheckCircle2, AlertCircle } from 'lucide-react';
+import { getTechLogo } from '../../utils/techLogos';
 
 interface ProjectDrawerProps {
   project: Project | null;
@@ -151,28 +152,46 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({ project, onClose }
           </button>
         </div>
 
-        {/* Technologies Grid */}
+        {/* Project Image Preview Banner */}
+        <div
+          style={{
+            width: '100%',
+            aspectRatio: '16 / 9',
+            borderRadius: 'var(--radius-md)',
+            overflow: 'hidden',
+            border: '1px solid var(--border-subtle)',
+            marginBottom: '24px',
+            backgroundColor: 'var(--surface-card)'
+          }}
+        >
+          <img
+            src={project.image}
+            alt={`${project.title} interface preview`}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </div>
+
+        {/* Technologies Grid with Logos */}
         <div style={{ marginBottom: '28px' }}>
           <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--ink-muted)', marginBottom: '10px' }}>
             Technology Stack & Libraries
           </h4>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            {project.technologies.map((t) => (
-              <span
-                key={t}
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  padding: '4px 10px',
-                  borderRadius: 'var(--radius-xs)',
-                  backgroundColor: 'var(--surface-card)',
-                  border: '1px solid var(--border-teal)',
-                  color: 'var(--ink-primary)'
-                }}
-              >
-                {t}
-              </span>
-            ))}
+            {project.technologies.map((t) => {
+              const techInfo = getTechLogo(t);
+              return (
+                <span key={t} className="project-tech-badge">
+                  {techInfo && (
+                    <img
+                      src={techInfo.logo}
+                      alt={`${t} logo`}
+                      className={`project-tech-logo ${techInfo.isMonochrome ? 'project-tech-logo--monochrome' : ''}`}
+                    />
+                  )}
+                  <span>{t}</span>
+                </span>
+              );
+            })}
           </div>
         </div>
 

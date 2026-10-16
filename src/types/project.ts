@@ -26,6 +26,7 @@ export interface Project {
   categoryLabel: string;
   status: ProjectStatus;
   featured: boolean;
+  image: string;
   summary: string;
   technologies: string[];
   problem: string;

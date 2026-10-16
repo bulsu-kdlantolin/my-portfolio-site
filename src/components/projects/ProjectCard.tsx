@@ -4,6 +4,7 @@ import { Badge } from '../common/Badge';
 import { Button } from '../common/Button';
 import { GithubIcon } from '../common/Icons';
 import { ExternalLink, Layers } from 'lucide-react';
+import { getTechLogo } from '../../utils/techLogos';
 
 interface ProjectCardProps {
   project: Project;
@@ -18,7 +19,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
         backgroundColor: 'var(--surface-white)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-card)',
-        padding: '24px',
+        padding: '20px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -28,11 +29,45 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
       }}
     >
       <div>
-        {/* Card Header: Category & Status */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
-          <Badge variant="teal" size="sm">
-            {project.categoryLabel}
-          </Badge>
+        {/* Project Thumbnail Image Preview */}
+        <div
+          className="project-card-image-wrap"
+          onClick={() => onSelect(project)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onSelect(project);
+            }
+          }}
+          aria-label={`View ${project.title} case study`}
+        >
+          <img
+            src={project.image}
+            alt={`${project.title} software interface preview`}
+            className="project-card-img"
+            loading="lazy"
+          />
+          <div className="project-card-image-overlay" />
+          <div className="project-card-image-badge">
+            <Badge variant="teal" size="sm">
+              {project.categoryLabel}
+            </Badge>
+          </div>
+        </div>
+
+        {/* Status & Category Meta */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '10px',
+            flexWrap: 'wrap',
+            gap: '8px'
+          }}
+        >
           <span
             style={{
               fontFamily: 'var(--font-mono)',
@@ -45,10 +80,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           >
             <span
               style={{
-                width: '6px',
-                height: '6px',
+                width: '7px',
+                height: '7px',
                 borderRadius: '50%',
-                backgroundColor: project.status === 'Completed' ? 'var(--color-secondary)' : 'var(--color-primary)'
+                backgroundColor:
+                  project.status === 'Completed'
+                    ? 'var(--color-secondary)'
+                    : 'var(--color-primary)',
+                boxShadow:
+                  project.status === 'In Development'
+                    ? '0 0 0 3px rgba(51, 104, 160, 0.2)'
+                    : 'none'
               }}
             />
             {project.status}
@@ -60,11 +102,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: '1.25rem',
-            fontWeight: 700,
+            fontWeight: 800,
             color: 'var(--ink-primary)',
-            marginBottom: '8px',
-            lineHeight: 1.3
+            marginBottom: '6px',
+            lineHeight: 1.3,
+            cursor: 'pointer'
           }}
+          onClick={() => onSelect(project)}
         >
           {project.title}
         </h3>
@@ -73,9 +117,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           style={{
             fontSize: '0.875rem',
             color: 'var(--color-primary)',
-            fontWeight: 500,
-            marginBottom: '14px',
-            fontFamily: 'var(--font-display)'
+            fontWeight: 600,
+            marginBottom: '12px',
+            fontFamily: 'var(--font-display)',
+            lineHeight: 1.4
           }}
         >
           {project.tagline}
@@ -83,33 +128,34 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
 
         <p
           style={{
-            fontSize: '0.875rem',
+            fontSize: '0.8125rem',
             color: 'var(--ink-muted)',
             lineHeight: 1.6,
-            marginBottom: '20px'
+            marginBottom: '18px'
           }}
         >
           {project.summary}
         </p>
 
-        {/* Technology Pills */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.6875rem',
-                padding: '3px 8px',
-                borderRadius: 'var(--radius-xs)',
-                backgroundColor: 'rgba(200, 223, 219, 0.4)',
-                border: '1px solid var(--border-teal)',
-                color: 'var(--ink-primary)'
-              }}
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Technology Badges with Official Logos */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+          {project.technologies.map((tech) => {
+            const techInfo = getTechLogo(tech);
+            return (
+              <span key={tech} className="project-tech-badge">
+                {techInfo && (
+                  <img
+                    src={techInfo.logo}
+                    alt={`${tech} logo`}
+                    className={`project-tech-logo ${
+                      techInfo.isMonochrome ? 'project-tech-logo--monochrome' : ''
+                    }`}
+                  />
+                )}
+                <span>{tech}</span>
+              </span>
+            );
+          })}
         </div>
       </div>
 
@@ -150,6 +196,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
                 height: '32px',
                 borderRadius: 'var(--radius-pill)',
                 border: '1px solid var(--border-subtle)',
+                backgroundColor: 'var(--bg-canvas)',
                 color: 'var(--ink-primary)',
                 transition: 'all var(--transition-fast)'
               }}
@@ -171,6 +218,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
                 height: '32px',
                 borderRadius: 'var(--radius-pill)',
                 border: '1px solid var(--border-subtle)',
+                backgroundColor: 'var(--bg-canvas)',
                 color: 'var(--color-primary)',
                 transition: 'all var(--transition-fast)'
               }}

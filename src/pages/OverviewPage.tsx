@@ -4,6 +4,7 @@ import { projectsData } from '../data/projects';
 import { Project } from '../types/project';
 import { ProjectDrawer } from '../components/projects/ProjectDrawer';
 import { useTheme } from '../context/ThemeContext';
+import { getTechLogo } from '../utils/techLogos';
 import {
   ArrowUpRight,
   FolderGit2,
@@ -270,6 +271,28 @@ export const OverviewPage: React.FC = () => {
                     </span>
                   </div>
 
+                  {/* Project Image Preview inside simulated browser frame */}
+                  <div
+                    style={{
+                      width: '100%',
+                      aspectRatio: '16 / 9',
+                      overflow: 'hidden',
+                      borderBottom: '1px solid var(--border-subtle)',
+                      backgroundColor: 'var(--bg-canvas)'
+                    }}
+                  >
+                    <img
+                      src={sensaProject.image}
+                      alt={sensaProject.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
+
                   {/* Dark Accent Interior Preview Window (Kenneth Villar contrast style) */}
                   <div className="sensa-preview-panel">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -287,22 +310,40 @@ export const OverviewPage: React.FC = () => {
                       {sensaProject.tagline}
                     </p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '4px' }}>
-                      {sensaProject.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.5625rem',
-                            padding: '2px 6px',
-                            borderRadius: 'var(--radius-xs)',
-                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                            color: '#F2EFE7',
-                            fontWeight: 500
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                      {sensaProject.technologies.slice(0, 5).map((tech) => {
+                        const techInfo = getTechLogo(tech);
+                        return (
+                          <span
+                            key={tech}
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '0.625rem',
+                              padding: '2px 8px',
+                              borderRadius: 'var(--radius-pill)',
+                              backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                              color: '#F2EFE7',
+                              fontWeight: 500,
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px'
+                            }}
+                          >
+                            {techInfo && (
+                              <img
+                                src={techInfo.logo}
+                                alt={`${tech} logo`}
+                                style={{
+                                  width: '11px',
+                                  height: '11px',
+                                  objectFit: 'contain',
+                                  filter: techInfo.isMonochrome ? 'invert(1) brightness(2)' : 'none'
+                                }}
+                              />
+                            )}
+                            {tech}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

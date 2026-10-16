@@ -7,6 +7,12 @@ import { Sparkles } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'accessibility' | 'ai-rag' | 'web-app'>('all');
+
+  const filteredProjects = projectsData.filter((p) => {
+    if (activeFilter === 'all') return true;
+    return p.category === activeFilter;
+  });
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -14,24 +20,114 @@ export const ProjectsPage: React.FC = () => {
       <div
         style={{
           borderBottom: '1px solid var(--border-subtle)',
-          paddingBottom: '20px'
+          paddingBottom: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          flexWrap: 'wrap',
+          gap: '16px'
         }}
       >
-        <h2
+        <div>
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+              fontWeight: 800,
+              color: 'var(--ink-primary)',
+              letterSpacing: '-0.02em',
+              marginBottom: '8px'
+            }}
+          >
+            Engineering Projects & Case Studies
+          </h2>
+          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '780px', lineHeight: 1.6, margin: 0 }}>
+            Practical software builds, accessibility browser engines, and AI systems. Each project includes official technology stack badges, UI previews, and architectural breakdowns.
+          </p>
+        </div>
+
+        {/* Category Filters */}
+        <div
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-            fontWeight: 800,
-            color: 'var(--ink-primary)',
-            letterSpacing: '-0.02em',
-            marginBottom: '8px'
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            backgroundColor: 'var(--surface-white)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: 'var(--radius-pill)',
+            padding: '4px',
+            boxShadow: 'var(--shadow-sm)'
           }}
         >
-          Engineering Projects & Case Studies
-        </h2>
-        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '780px', lineHeight: 1.6 }}>
-          Practical web applications and accessibility extensions. Each project is accompanied by an architectural breakdown of problem context, system design, and technical decisions.
-        </p>
+          <button
+            onClick={() => setActiveFilter('all')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-pill)',
+              border: 'none',
+              backgroundColor: activeFilter === 'all' ? 'var(--color-primary)' : 'transparent',
+              color: activeFilter === 'all' ? '#ffffff' : 'var(--ink-muted)',
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            All ({projectsData.length})
+          </button>
+          <button
+            onClick={() => setActiveFilter('accessibility')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-pill)',
+              border: 'none',
+              backgroundColor: activeFilter === 'accessibility' ? 'var(--color-primary)' : 'transparent',
+              color: activeFilter === 'accessibility' ? '#ffffff' : 'var(--ink-muted)',
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            Accessibility
+          </button>
+          <button
+            onClick={() => setActiveFilter('ai-rag')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-pill)',
+              border: 'none',
+              backgroundColor: activeFilter === 'ai-rag' ? 'var(--color-primary)' : 'transparent',
+              color: activeFilter === 'ai-rag' ? '#ffffff' : 'var(--ink-muted)',
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            AI Systems
+          </button>
+          <button
+            onClick={() => setActiveFilter('web-app')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-pill)',
+              border: 'none',
+              backgroundColor: activeFilter === 'web-app' ? 'var(--color-primary)' : 'transparent',
+              color: activeFilter === 'web-app' ? '#ffffff' : 'var(--ink-muted)',
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            Web Apps
+          </button>
+        </div>
       </div>
 
       {/* Projects Grid */}
@@ -42,7 +138,7 @@ export const ProjectsPage: React.FC = () => {
           gap: '24px'
         }}
       >
-        {projectsData.map((project) => (
+        {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
@@ -51,61 +147,64 @@ export const ProjectsPage: React.FC = () => {
         ))}
 
         {/* Clear, honest placeholder for upcoming projects */}
-        <div
-          style={{
-            border: '2px dashed var(--border-subtle)',
-            borderRadius: 'var(--radius-card)',
-            padding: '32px 24px',
-            backgroundColor: 'rgba(255, 255, 255, 0.4)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            minHeight: '260px',
-            gap: '12px'
-          }}
-        >
+        {activeFilter === 'all' && (
           <div
             style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-pill)',
-              backgroundColor: 'var(--bg-canvas)',
-              border: '1px solid var(--border-subtle)',
+              border: '2px dashed var(--border-subtle)',
+              borderRadius: 'var(--radius-card)',
+              padding: '32px 24px',
+              backgroundColor: 'var(--surface-white)',
               display: 'flex',
-              alignItems: 'center',
+              flexDirection: 'column',
               justifyContent: 'center',
-              color: 'var(--ink-muted)'
+              alignItems: 'center',
+              textAlign: 'center',
+              minHeight: '320px',
+              gap: '12px',
+              boxShadow: 'var(--shadow-sm)'
             }}
           >
-            <Sparkles size={20} />
-          </div>
-          <div>
-            <h3
+            <div
               style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.125rem',
-                fontWeight: 700,
-                color: 'var(--ink-primary)',
-                marginBottom: '4px'
+                width: '44px',
+                height: '44px',
+                borderRadius: 'var(--radius-pill)',
+                backgroundColor: 'var(--bg-canvas)',
+                border: '1px solid var(--border-subtle)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--color-primary)'
               }}
             >
-              More projects coming soon
-            </h3>
-            <p
-              style={{
-                fontSize: '0.875rem',
-                color: 'var(--ink-muted)',
-                maxWidth: '320px',
-                lineHeight: 1.5,
-                margin: 0
-              }}
-            >
-              Additional full-stack web applications and applied AI projects currently in early development and planning.
-            </p>
+              <Sparkles size={22} />
+            </div>
+            <div>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.125rem',
+                  fontWeight: 800,
+                  color: 'var(--ink-primary)',
+                  marginBottom: '6px'
+                }}
+              >
+                More projects in active pipeline
+              </h3>
+              <p
+                style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--ink-muted)',
+                  maxWidth: '320px',
+                  lineHeight: 1.5,
+                  margin: 0
+                }}
+              >
+                Additional full-stack microservices, edge extensions, and LLM evaluations currently in active engineering.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Case Study Modal Sheet */}

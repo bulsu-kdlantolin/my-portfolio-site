@@ -697,7 +697,7 @@ export const OverviewPage: React.FC = () => {
                 </Link>
               </div>
               <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 8px 0', lineHeight: 1.45 }}>
-                Who I am, engineering values, and academic background.
+                The personal journey, engineering values, and curiosity behind my craft.
               </p>
 
               {/* Kenneth Villar Style 3 Fanned-Out Cards */}
@@ -743,7 +743,7 @@ export const OverviewPage: React.FC = () => {
                 textDecoration: 'none'
               }}
             >
-              <span>Read full background</span>
+              <span>Read my story</span>
               <ArrowUpRight size={13} />
             </Link>
           </div>

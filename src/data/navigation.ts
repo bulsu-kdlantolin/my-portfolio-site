@@ -35,7 +35,7 @@ export const navItems: NavItem[] = [
     path: '/about',
     label: 'About',
     shortLabel: 'About',
-    description: 'Background & education'
+    description: 'Story, values & craft'
   },
   {
     path: '/contact',

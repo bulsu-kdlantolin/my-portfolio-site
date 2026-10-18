@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Badge } from '../components/common/Badge';
-import { Button } from '../components/common/Button';
 import {
   GraduationCap,
   Compass,
@@ -12,12 +10,10 @@ import {
   Layers,
   Coffee,
   Quote,
-  ArrowRight,
   MapPin,
   Calendar,
   Code2,
   Heart,
-  Mail,
   ShieldCheck,
   Zap
 } from 'lucide-react';
@@ -34,15 +30,6 @@ export const AboutPage: React.FC = () => {
           paddingBottom: '20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <Badge variant="teal" size="sm">
-            <Sparkles size={12} style={{ marginRight: '4px', color: 'var(--color-primary)' }} />
-            <span>STORY &amp; JOURNEY</span>
-          </Badge>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-muted)' }}>
-            // Kian Davey Antolin
-          </span>
-        </div>
         <h1
           style={{
             fontFamily: 'var(--font-display)',
@@ -63,7 +50,7 @@ export const AboutPage: React.FC = () => {
 
       {/* 2. Welcoming Hero Story Card */}
       <section className="about-hero-card">
-        {/* Left: Portrait Frame with live status badge */}
+        {/* Left: Portrait Frame */}
         <div className="about-portrait-wrapper">
           <div className="about-portrait-frame">
             <img
@@ -71,18 +58,6 @@ export const AboutPage: React.FC = () => {
               alt="Kian Davey Antolin"
               className="about-portrait-img"
             />
-          </div>
-          <div className="about-status-pill">
-            <span
-              style={{
-                width: '7px',
-                height: '7px',
-                borderRadius: '50%',
-                backgroundColor: '#10B981',
-                boxShadow: '0 0 8px #10B981'
-              }}
-            />
-            <span>Open to Opportunities · 2026 Grad</span>
           </div>
         </div>
 
@@ -490,141 +465,6 @@ export const AboutPage: React.FC = () => {
           </ul>
         </div>
       </div>
-
-      {/* 5. Inviting "Let's Connect" Finale Card */}
-      <section className="about-connect-card">
-        <div style={{ maxWidth: '620px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div
-            style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--surface-hover)',
-              color: 'var(--color-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '14px'
-            }}
-          >
-            <Mail size={22} />
-          </div>
-
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.4rem, 2.4vw, 1.85rem)',
-              fontWeight: 800,
-              color: 'var(--ink-primary)',
-              letterSpacing: '-0.02em',
-              marginBottom: '10px'
-            }}
-          >
-            Let’s build something remarkable together.
-          </h2>
-
-          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.65, margin: '0 0 24px 0', textAlign: 'center' }}>
-            Whether you’re looking for a passionate <strong>Full-Stack or AI Systems Engineer</strong> for your team, have an exciting project to brainstorm, or simply want to chat about tech and coffee—my inbox is always open.
-          </p>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
-            <Link to="/contact" style={{ textDecoration: 'none' }}>
-              <Button variant="primary" size="md" icon={<ArrowRight size={16} />}>
-                Say Hello / Start a Conversation
-              </Button>
-            </Link>
-            <Link to="/projects" style={{ textDecoration: 'none' }}>
-              <Button variant="secondary" size="md">
-                Explore My Case Studies
-              </Button>
-            </Link>
-          </div>
-
-          {/* Social Links */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a
-              href="https://github.com/bulsu-kdlantolin"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              style={{
-                color: 'var(--ink-muted)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.8125rem',
-                fontFamily: 'var(--font-mono)',
-                textDecoration: 'none',
-                transition: 'color var(--transition-fast)'
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-primary)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-muted)')}
-            >
-              <img
-                src="/logos/github.svg"
-                alt="GitHub"
-                style={{
-                  width: '15px',
-                  height: '15px',
-                  display: 'inline-block',
-                  filter: theme === 'dark' ? 'invert(1)' : 'none'
-                }}
-              />
-              <span>GitHub</span>
-            </a>
-            <span style={{ color: 'var(--border-subtle)' }}>•</span>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              style={{
-                color: 'var(--ink-muted)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.8125rem',
-                fontFamily: 'var(--font-mono)',
-                textDecoration: 'none',
-                transition: 'color var(--transition-fast)'
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-primary)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-muted)')}
-            >
-              <img
-                src="/logos/linkedin.svg"
-                alt="LinkedIn"
-                style={{
-                  width: '15px',
-                  height: '15px',
-                  display: 'inline-block'
-                }}
-              />
-              <span>LinkedIn</span>
-            </a>
-            <span style={{ color: 'var(--border-subtle)' }}>•</span>
-            <a
-              href="mailto:antolin.kiandavey@gmail.com"
-              aria-label="Email directly"
-              style={{
-                color: 'var(--ink-muted)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.8125rem',
-                fontFamily: 'var(--font-mono)',
-                textDecoration: 'none',
-                transition: 'color var(--transition-fast)'
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-primary)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-muted)')}
-            >
-              <Mail size={15} />
-              <span>antolin.kiandavey@gmail.com</span>
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

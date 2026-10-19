@@ -13,8 +13,7 @@ import {
   Layers,
   Target,
   Terminal,
-  ChevronDown,
-  ChevronsUpDown
+  ChevronDown
 } from 'lucide-react';
 
 interface RoadmapMilestone {
@@ -241,14 +240,6 @@ export const ExperiencePage: React.FC = () => {
     });
   };
 
-  const toggleAll = () => {
-    if (expandedIds.size === roadmapMilestones.length) {
-      setExpandedIds(new Set());
-    } else {
-      setExpandedIds(new Set(roadmapMilestones.map((m) => m.id)));
-    }
-  };
-
   const renderNodeIcon = (type: RoadmapMilestone['nodeIcon']) => {
     switch (type) {
       case 'grad':
@@ -264,20 +255,13 @@ export const ExperiencePage: React.FC = () => {
     }
   };
 
-  const allExpanded = expandedIds.size === roadmapMilestones.length;
-
   return (
     <div className="roadmap-wrapper">
       {/* Page Header */}
       <div
         style={{
           borderBottom: '1px solid var(--border-subtle)',
-          paddingBottom: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          flexWrap: 'wrap',
-          gap: '16px'
+          paddingBottom: '20px'
         }}
       >
         <div>
@@ -297,31 +281,6 @@ export const ExperiencePage: React.FC = () => {
             A chronological milestone roadmap mapping academic foundations at Bulacan State University, web standards discipline, production browser extension architectures, applied AI research, and forward career horizons.
           </p>
         </div>
-
-        {/* Expand / Collapse All Toggle Button */}
-        <button
-          type="button"
-          onClick={toggleAll}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            padding: '6px 14px',
-            borderRadius: 'var(--radius-pill)',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            color: 'var(--ink-muted)',
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            cursor: 'pointer',
-            transition: 'all var(--transition-fast)'
-          }}
-          title={allExpanded ? 'Collapse all milestones' : 'Expand all milestones'}
-        >
-          <ChevronsUpDown size={14} style={{ color: 'var(--color-primary)' }} />
-          <span>{allExpanded ? 'Collapse All' : 'Expand All'}</span>
-        </button>
       </div>
 
       {/* Roadmap Continuous Timeline */}

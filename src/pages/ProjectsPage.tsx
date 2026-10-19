@@ -7,12 +7,6 @@ import { Sparkles } from 'lucide-react';
 
 export const ProjectsPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'accessibility' | 'ai-rag' | 'web-app'>('all');
-
-  const filteredProjects = projectsData.filter((p) => {
-    if (activeFilter === 'all') return true;
-    return p.category === activeFilter;
-  });
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -20,12 +14,7 @@ export const ProjectsPage: React.FC = () => {
       <div
         style={{
           borderBottom: '1px solid var(--border-subtle)',
-          paddingBottom: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          flexWrap: 'wrap',
-          gap: '16px'
+          paddingBottom: '20px'
         }}
       >
         <div>
@@ -45,89 +34,6 @@ export const ProjectsPage: React.FC = () => {
             Practical software builds, accessibility browser engines, and AI systems. Each project includes official technology stack badges, UI previews, and architectural breakdowns.
           </p>
         </div>
-
-        {/* Category Filters */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-pill)',
-            padding: '4px',
-            boxShadow: 'var(--shadow-sm)'
-          }}
-        >
-          <button
-            onClick={() => setActiveFilter('all')}
-            style={{
-              padding: '6px 14px',
-              borderRadius: 'var(--radius-pill)',
-              border: 'none',
-              backgroundColor: activeFilter === 'all' ? 'var(--color-primary)' : 'transparent',
-              color: activeFilter === 'all' ? '#ffffff' : 'var(--ink-muted)',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)'
-            }}
-          >
-            All ({projectsData.length})
-          </button>
-          <button
-            onClick={() => setActiveFilter('accessibility')}
-            style={{
-              padding: '6px 14px',
-              borderRadius: 'var(--radius-pill)',
-              border: 'none',
-              backgroundColor: activeFilter === 'accessibility' ? 'var(--color-primary)' : 'transparent',
-              color: activeFilter === 'accessibility' ? '#ffffff' : 'var(--ink-muted)',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)'
-            }}
-          >
-            Accessibility
-          </button>
-          <button
-            onClick={() => setActiveFilter('ai-rag')}
-            style={{
-              padding: '6px 14px',
-              borderRadius: 'var(--radius-pill)',
-              border: 'none',
-              backgroundColor: activeFilter === 'ai-rag' ? 'var(--color-primary)' : 'transparent',
-              color: activeFilter === 'ai-rag' ? '#ffffff' : 'var(--ink-muted)',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)'
-            }}
-          >
-            AI Systems
-          </button>
-          <button
-            onClick={() => setActiveFilter('web-app')}
-            style={{
-              padding: '6px 14px',
-              borderRadius: 'var(--radius-pill)',
-              border: 'none',
-              backgroundColor: activeFilter === 'web-app' ? 'var(--color-primary)' : 'transparent',
-              color: activeFilter === 'web-app' ? '#ffffff' : 'var(--ink-muted)',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)'
-            }}
-          >
-            Web Apps
-          </button>
-        </div>
       </div>
 
       {/* Projects Grid */}
@@ -138,7 +44,7 @@ export const ProjectsPage: React.FC = () => {
           gap: '24px'
         }}
       >
-        {filteredProjects.map((project) => (
+        {projectsData.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
@@ -147,64 +53,62 @@ export const ProjectsPage: React.FC = () => {
         ))}
 
         {/* Clear, honest placeholder for upcoming projects */}
-        {activeFilter === 'all' && (
+        <div
+          style={{
+            border: '2px dashed var(--border-subtle)',
+            borderRadius: 'var(--radius-card)',
+            padding: '32px 24px',
+            backgroundColor: 'var(--surface-white)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            minHeight: '320px',
+            gap: '12px',
+            boxShadow: 'var(--shadow-sm)'
+          }}
+        >
           <div
             style={{
-              border: '2px dashed var(--border-subtle)',
-              borderRadius: 'var(--radius-card)',
-              padding: '32px 24px',
-              backgroundColor: 'var(--surface-white)',
+              width: '44px',
+              height: '44px',
+              borderRadius: 'var(--radius-pill)',
+              backgroundColor: 'var(--bg-canvas)',
+              border: '1px solid var(--border-subtle)',
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
               alignItems: 'center',
-              textAlign: 'center',
-              minHeight: '320px',
-              gap: '12px',
-              boxShadow: 'var(--shadow-sm)'
+              justifyContent: 'center',
+              color: 'var(--color-primary)'
             }}
           >
-            <div
+            <Sparkles size={22} />
+          </div>
+          <div>
+            <h3
               style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: 'var(--radius-pill)',
-                backgroundColor: 'var(--bg-canvas)',
-                border: '1px solid var(--border-subtle)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-primary)'
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.125rem',
+                fontWeight: 800,
+                color: 'var(--ink-primary)',
+                marginBottom: '6px'
               }}
             >
-              <Sparkles size={22} />
-            </div>
-            <div>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.125rem',
-                  fontWeight: 800,
-                  color: 'var(--ink-primary)',
-                  marginBottom: '6px'
-                }}
-              >
-                More projects in active pipeline
-              </h3>
-              <p
-                style={{
-                  fontSize: '0.875rem',
-                  color: 'var(--ink-muted)',
-                  maxWidth: '320px',
-                  lineHeight: 1.5,
-                  margin: 0
-                }}
-              >
-                Additional full-stack microservices, edge extensions, and LLM evaluations currently in active engineering.
-              </p>
-            </div>
+              More projects in active pipeline
+            </h3>
+            <p
+              style={{
+                fontSize: '0.875rem',
+                color: 'var(--ink-muted)',
+                maxWidth: '320px',
+                lineHeight: 1.5,
+                margin: 0
+              }}
+            >
+              Additional full-stack microservices, edge extensions, and LLM evaluations currently in active engineering.
+            </p>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Case Study Modal Sheet */}

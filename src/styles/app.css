@@ -17,6 +17,37 @@
   min-height: 100vh;
 }
 
+.workspace-content--page {
+  flex: 1;
+  padding: clamp(32px, 4.5vh, 56px) clamp(28px, 3.5vw, 56px) clamp(48px, 6vh, 72px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.workspace-content--home {
+  flex: 1;
+  padding: clamp(10px, 1.4vh, 16px) clamp(20px, 2.8vw, 36px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) and (min-height: 650px) {
+  .app-main-workspace--home {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}
+
 /* Animations */
 @keyframes slideInRight {
   from {
@@ -321,11 +352,11 @@ select:focus-visible {
 .bento-wrapper {
   background-color: var(--surface-card-subtle);
   border: 1px solid var(--border-subtle);
-  border-radius: 26px;
-  padding: 16px;
+  border-radius: 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
@@ -333,26 +364,34 @@ select:focus-visible {
 
 .bento-row-1 {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 12px;
 }
 
 .bento-row-2 {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr 1fr;
-  gap: 16px;
+  gap: 12px;
+}
+
+@media (max-width: 1023px) {
+  .bento-row-1,
+  .bento-row-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .bento-card {
   background-color: var(--surface-white);
   border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 16px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
 }
@@ -366,13 +405,13 @@ select:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .bento-icon-badge {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,19 +435,19 @@ select:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 110px;
+  height: 70px;
   position: relative;
-  margin: 10px 0;
+  margin: 4px 0;
 }
 
 .fan-card {
-  width: 74px;
-  height: 86px;
-  border-radius: 12px;
+  width: 52px;
+  height: 62px;
+  border-radius: 9px;
   position: absolute;
   overflow: hidden;
-  box-shadow: 0 8px 16px -4px rgba(20, 35, 52, 0.18);
-  border: 2px solid var(--surface-white);
+  box-shadow: 0 6px 14px -3px rgba(20, 35, 52, 0.16);
+  border: 1.5px solid var(--surface-white);
   background-color: var(--bg-canvas);
   transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -420,31 +459,31 @@ select:focus-visible {
 }
 
 .fan-card-left {
-  transform: translateX(-24px) rotate(-8deg);
+  transform: translateX(-20px) rotate(-8deg);
   z-index: 1;
 }
 
 .fan-card-center {
   transform: translateX(0px) rotate(0deg);
   z-index: 2;
-  box-shadow: 0 10px 22px -4px rgba(20, 35, 52, 0.24);
+  box-shadow: 0 8px 18px -3px rgba(20, 35, 52, 0.22);
 }
 
 .fan-card-right {
-  transform: translateX(24px) rotate(8deg);
+  transform: translateX(20px) rotate(8deg);
   z-index: 1;
 }
 
 .fan-deck-container:hover .fan-card-left {
-  transform: translateX(-34px) rotate(-14deg);
+  transform: translateX(-28px) rotate(-12deg);
 }
 
 .fan-deck-container:hover .fan-card-right {
-  transform: translateX(34px) rotate(14deg);
+  transform: translateX(28px) rotate(12deg);
 }
 
 .fan-deck-container:hover .fan-card-center {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 /* Tools Infinite Marquee Band (Moving slowly left to right) */
@@ -563,13 +602,13 @@ select:focus-visible {
 .ai-pill-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 11px;
+  gap: 5px;
+  padding: 3px 8px;
   border-radius: var(--radius-pill);
   background-color: var(--surface-white);
   border: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--ink-primary);
   font-weight: 600;
   box-shadow: var(--shadow-sm);
@@ -586,17 +625,21 @@ select:focus-visible {
 .sensa-preview-panel {
   background-color: #142334;
   color: #F2EFE7;
-  padding: 14px 16px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
 }
 
 [data-theme="dark"] .sensa-preview-panel {
   background-color: #0B131E;
   color: #F0F4F8;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 900px) {
+  .sensa-split-preview {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Services 01-05 Rows */
@@ -619,7 +662,7 @@ select:focus-visible {
 
 /* Milestones 3 Cards */
 .milestone-item-card {
-  padding: 10px 14px;
+  padding: 6px 10px;
   border-radius: var(--radius-sm);
   background-color: var(--bg-canvas);
   border: 1px solid var(--border-subtle);

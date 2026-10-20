@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
 import { MobileNav } from './MobileNav';
@@ -7,6 +7,8 @@ import { SignatureBackground } from '../components/common/SignatureBackground';
 
 export const AppShell: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-canvas)' }}>
@@ -18,15 +20,14 @@ export const AppShell: React.FC = () => {
 
       {/* Main Workspace Area */}
       <div
-        className="app-main-workspace"
+        className={`app-main-workspace ${isHomePage ? 'app-main-workspace--home' : ''}`}
         style={{
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
           minWidth: 0,
           minHeight: '100vh',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
         {/* Kian Exclusive Signature Background */}
@@ -38,9 +39,9 @@ export const AppShell: React.FC = () => {
         {/* Dynamic Page Content View */}
         <main
           id="workspace-content"
+          className={isHomePage ? 'workspace-content--home' : 'workspace-content--page'}
           style={{
             flex: 1,
-            padding: 'clamp(44px, 5.5vh, 64px) clamp(32px, 4vw, 64px) clamp(56px, 8vh, 88px)',
             width: '100%',
             maxWidth: '100%',
             boxSizing: 'border-box',

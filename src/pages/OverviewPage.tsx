@@ -39,52 +39,39 @@ export const OverviewPage: React.FC = () => {
     { name: 'Cursor', logo: '/logos/cursor.svg', isMonochrome: true }
   ];
 
-  // Featured Experience items (Quick Access preview linking to /experience)
-  const experienceItems = [
-    {
-      badge: 'Active Build',
-      title: 'Lead Developer & Architect',
-      meta: 'Sensa Chrome Extension (2024 — Present)',
-      tags: ['Manifest V3', 'Web Speech API', 'Offscreen Docs']
-    },
-    {
-      badge: 'Academic',
-      title: 'BS in Information Technology',
-      meta: 'Bulacan State University (Expected 2026)',
-      tags: ['Systems Analysis', 'Relational Schemas', 'Software Lifecycles']
-    },
-    {
-      badge: 'Applied AI',
-      title: 'Applied AI & RAG Prototyping',
-      meta: 'Independent Systems Architecture (2024 — Present)',
-      tags: ['OpenAI API', 'Prompt Guardrails', 'Vector Search']
-    }
-  ];
+  // Featured Experience item (1 featured example for homepage executive overview)
+  const featuredExperience = {
+    badge: 'Active Build',
+    title: 'Lead Developer & Architect',
+    meta: 'Sensa Chrome Extension (2024 — Present)',
+    summary: 'Architecting Manifest V3 service workers, Web Speech API offscreen documents, and real-time accessibility pipelines with zero-latency audio captioning.',
+    tags: ['Manifest V3', 'Web Speech API', 'Offscreen Docs', 'Plasmo']
+  };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px, 1.4vh, 16px)', position: 'relative' }}>
 
       {/* 1. Hero Statement Row + "Get in touch" CTA */}
       <section className="hero-header-row">
-        <div style={{ flex: '1 1 500px', maxWidth: '820px' }}>
+        <div style={{ flex: '1 1 500px', maxWidth: '840px' }}>
           <h1
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.75rem, 3.2vw, 2.75rem)',
+              fontSize: 'clamp(1.5rem, 2.2vw, 1.95rem)',
               fontWeight: 800,
               color: 'var(--ink-primary)',
               letterSpacing: '-0.025em',
-              lineHeight: 1.15,
-              marginBottom: '12px'
+              lineHeight: 1.18,
+              marginBottom: '6px'
             }}
           >
             Connecting AI to real applications that stay reliable when the model's output gets messy.
           </h1>
           <p
             style={{
-              fontSize: 'clamp(0.9375rem, 1.15vw, 1.0625rem)',
+              fontSize: 'clamp(0.875rem, 1vw, 0.9375rem)',
               color: 'var(--ink-muted)',
-              lineHeight: 1.6,
+              lineHeight: 1.5,
               margin: 0
             }}
           >
@@ -93,13 +80,13 @@ export const OverviewPage: React.FC = () => {
         </div>
 
         {/* Top Right "Get in touch" Pill Button */}
-        <Link to="/contact" style={{ textDecoration: 'none' }}>
+        <Link to="/contact" style={{ textDecoration: 'none', flexShrink: 0 }}>
           <button
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '11px 24px',
+              padding: '10px 22px',
               borderRadius: 'var(--radius-pill)',
               backgroundColor: 'var(--ink-primary)',
               color: 'var(--bg-canvas)',
@@ -118,31 +105,31 @@ export const OverviewPage: React.FC = () => {
         </Link>
       </section>
 
-      {/* 2. Tools I Work With Ribbon Strip (Compact, No Circle Containers, Edge-to-Edge) */}
+      {/* 2. Tools I Work With Ribbon Strip (Edge-to-Edge) */}
       <section
         style={{
           backgroundColor: 'var(--surface-white)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-card)',
           padding: '6px 16px',
-          minHeight: '44px',
+          minHeight: '38px',
           boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px',
+          gap: '14px',
           overflow: 'hidden',
           position: 'relative',
           zIndex: 1
         }}
       >
-        {/* Left Label: Compact single-row */}
+        {/* Left Label */}
         <div
           style={{
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            paddingRight: '16px',
+            paddingRight: '14px',
             borderRight: '1px solid var(--border-subtle)',
             zIndex: 2,
             backgroundColor: 'var(--surface-white)'
@@ -172,35 +159,35 @@ export const OverviewPage: React.FC = () => {
         </div>
 
         {/* Right Tools Auto-Scrolling Marquee Strip */}
-        <div className="marquee-container">
-          <div className="marquee-track marquee-left-to-right">
-            {/* Set 1 (2x dailyDrivers = 28 icons to fill any viewport width without gaps) */}
+        <div className="marquee-container" style={{ padding: '0' }}>
+          <div className="marquee-track marquee-left-to-right" style={{ gap: '18px' }}>
+            {/* Set 1 */}
             {[...dailyDrivers, ...dailyDrivers].map((tool, i) => (
-              <div key={`d1-${tool.name}-${i}`} className="marquee-item" title={tool.name}>
-                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="22" height="22" loading="lazy" />
+              <div key={`d1-${tool.name}-${i}`} className="marquee-item" title={tool.name} style={{ height: '30px' }}>
+                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`} style={{ width: '20px', height: '20px' }}>
+                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" style={{ width: '20px', height: '20px' }} />
                 </span>
-                <span className="marquee-item-label">{tool.name}</span>
+                <span className="marquee-item-label" style={{ fontSize: '0.75rem' }}>{tool.name}</span>
               </div>
             ))}
-            {/* Set 2 (Duplicate for Seamless Infinite Loop) */}
+            {/* Set 2 */}
             {[...dailyDrivers, ...dailyDrivers].map((tool, i) => (
-              <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true" title={tool.name}>
-                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`}>
-                  <img src={tool.logo} alt={tool.name} width="22" height="22" loading="lazy" />
+              <div key={`d2-${tool.name}-${i}`} className="marquee-item" aria-hidden="true" title={tool.name} style={{ height: '30px' }}>
+                <span className={`marquee-item-logo ${tool.isMonochrome ? 'is-monochrome' : ''}`} style={{ width: '20px', height: '20px' }}>
+                  <img src={tool.logo} alt={tool.name} width="20" height="20" loading="lazy" style={{ width: '20px', height: '20px' }} />
                 </span>
-                <span className="marquee-item-label">{tool.name}</span>
+                <span className="marquee-item-label" style={{ fontSize: '0.75rem' }}>{tool.name}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Kenneth Villar Style Master Bento Grid Container */}
+      {/* 3. Master Bento Grid Container (1 Featured Example Per Category) */}
       <section className="bento-wrapper" style={{ zIndex: 1 }}>
-        {/* ROW 1: Projects (38%) | About (28%) | AI Builds (34%) */}
+        {/* ROW 1: Projects (1.25fr) | Experience (1fr) */}
         <div className="bento-row-1">
-          {/* Card 1: Projects */}
+          {/* Card 1: Projects (1 example: Sensa Chrome Extension) */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -219,11 +206,11 @@ export const OverviewPage: React.FC = () => {
                   <ArrowUpRight size={18} />
                 </Link>
               </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 14px 0', lineHeight: 1.45 }}>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 10px 0', lineHeight: 1.45 }}>
                 Assistive browser extensions, full-stack workflows, and AI apps built to solve real friction.
               </p>
 
-              {/* Stacked Preview 1: Sensa Mockup Browser Window */}
+              {/* 1 Project Example: Sensa Mockup Browser Window */}
               {sensaProject && (
                 <div
                   onClick={() => setSelectedProject(sensaProject)}
@@ -233,19 +220,20 @@ export const OverviewPage: React.FC = () => {
                     border: '1px solid var(--border-subtle)',
                     overflow: 'hidden',
                     cursor: 'pointer',
-                    transition: 'all var(--transition-fast)',
-                    marginBottom: '10px'
+                    transition: 'all var(--transition-fast)'
                   }}
                 >
                   {/* Browser Window Header Bar */}
                   <div
                     style={{
-                      padding: '7px 12px',
+                      padding: '5px 12px',
                       borderBottom: '1px solid var(--border-subtle)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      backgroundColor: 'var(--surface-white)'
+                      backgroundColor: 'var(--surface-white)',
+                      height: '24px',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <div style={{ display: 'flex', gap: '5px' }}>
@@ -271,113 +259,120 @@ export const OverviewPage: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Project Image Preview inside simulated browser frame */}
-                  <div
-                    style={{
-                      width: '100%',
-                      aspectRatio: '16 / 9',
-                      overflow: 'hidden',
-                      borderBottom: '1px solid var(--border-subtle)',
-                      backgroundColor: 'var(--bg-canvas)'
-                    }}
-                  >
-                    <img
-                      src={sensaProject.image}
-                      alt={sensaProject.title}
+                  {/* Dual Pane Layout: Image Preview on Left + Dark Panel on Right */}
+                  <div className="sensa-split-preview" style={{ display: 'grid', gridTemplateColumns: '46% 54%', minHeight: '146px' }}>
+                    {/* Left: Product Screenshot */}
+                    <div
                       style={{
                         width: '100%',
                         height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
+                        overflow: 'hidden',
+                        backgroundColor: 'var(--bg-canvas)',
+                        borderRight: '1px solid var(--border-subtle)',
+                        position: 'relative'
                       }}
-                    />
-                  </div>
+                    >
+                      <img
+                        src={sensaProject.image}
+                        alt={sensaProject.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          display: 'block'
+                        }}
+                      />
+                    </div>
 
-                  {/* Dark Accent Interior Preview Window (Kenneth Villar contrast style) */}
-                  <div className="sensa-preview-panel">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--color-secondary)', fontWeight: 700, letterSpacing: '0.05em' }}>
-                        ASSISTIVE WEB ENGINE
-                      </span>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5625rem', color: 'rgba(242, 239, 231, 0.6)' }}>
-                        MV3 Plasmo
-                      </span>
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.9375rem', color: '#F2EFE7' }}>
-                      {sensaProject.title}
-                    </div>
-                    <p style={{ fontSize: '0.75rem', color: 'rgba(242, 239, 231, 0.85)', lineHeight: 1.4, margin: 0 }}>
-                      {sensaProject.tagline}
-                    </p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginTop: '4px' }}>
-                      {sensaProject.technologies.slice(0, 5).map((tech) => {
-                        const techInfo = getTechLogo(tech);
-                        return (
-                          <span
-                            key={tech}
-                            style={{
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '0.625rem',
-                              padding: '2px 8px',
-                              borderRadius: 'var(--radius-pill)',
-                              backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                              color: '#F2EFE7',
-                              fontWeight: 500,
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px'
-                            }}
-                          >
-                            {techInfo && (
-                              <img
-                                src={techInfo.logo}
-                                alt={`${tech} logo`}
-                                style={{
-                                  width: '11px',
-                                  height: '11px',
-                                  objectFit: 'contain',
-                                  filter: techInfo.isMonochrome ? 'invert(1) brightness(2)' : 'none'
-                                }}
-                              />
-                            )}
-                            {tech}
+                    {/* Right: Dark Accent Interior Details */}
+                    <div
+                      className="sensa-preview-panel"
+                      style={{
+                        padding: '12px 14px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        borderTop: 'none'
+                      }}
+                    >
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--color-secondary)', fontWeight: 700, letterSpacing: '0.04em' }}>
+                            ASSISTIVE WEB ENGINE
                           </span>
-                        );
-                      })}
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5625rem', color: 'rgba(242, 239, 231, 0.6)' }}>
+                            MV3 Plasmo
+                          </span>
+                        </div>
+                        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.9375rem', color: '#F2EFE7', marginTop: '2px' }}>
+                          {sensaProject.title}
+                        </div>
+                        <p style={{ fontSize: '0.75rem', color: 'rgba(242, 239, 231, 0.85)', lineHeight: 1.4, margin: '3px 0 0 0' }}>
+                          {sensaProject.tagline}
+                        </p>
+                      </div>
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
+                        {sensaProject.technologies.slice(0, 5).map((tech) => {
+                          const techInfo = getTechLogo(tech);
+                          return (
+                            <span
+                              key={tech}
+                              style={{
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.625rem',
+                                padding: '2px 7px',
+                                borderRadius: 'var(--radius-pill)',
+                                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                                color: '#F2EFE7',
+                                fontWeight: 500,
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '3px'
+                              }}
+                            >
+                              {techInfo && (
+                                <img
+                                  src={techInfo.logo}
+                                  alt={`${tech} logo`}
+                                  style={{
+                                    width: '10px',
+                                    height: '10px',
+                                    objectFit: 'contain',
+                                    filter: techInfo.isMonochrome ? 'invert(1) brightness(2)' : 'none'
+                                  }}
+                                />
+                              )}
+                              {tech}
+                            </span>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Stacked Preview 2: Offset Honest Secondary Slot */}
-            <Link to="/projects" style={{ textDecoration: 'none' }}>
-              <div
-                style={{
-                  padding: '10px 12px',
-                  borderRadius: 'var(--radius-sm)',
-                  border: '1px dashed var(--border-subtle)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  transition: 'border-color var(--transition-fast)'
-                }}
-              >
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8125rem', color: 'var(--ink-primary)' }}>
-                    Full-Stack & AI Systems
-                  </div>
-                  <div style={{ fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
-                    More projects coming soon — active planning
-                  </div>
-                </div>
-                <ArrowUpRight size={14} style={{ color: 'var(--color-primary)' }} />
-              </div>
+            <Link
+              to="/projects"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-primary)',
+                textDecoration: 'none'
+              }}
+            >
+              <span>Explore all projects &amp; case studies</span>
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
-          {/* Card 2: Experience */}
+          {/* Card 2: Experience (1 example: Lead Developer & Architect) */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -396,57 +391,57 @@ export const OverviewPage: React.FC = () => {
                   <ArrowUpRight size={18} />
                 </Link>
               </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 10px 0', lineHeight: 1.45 }}>
                 Active software engineering builds, systems analysis, and academic foundations.
               </p>
 
-              {/* 3 Structured Experience Cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
-                {experienceItems.map((item, idx) => (
-                  <div key={idx} className="milestone-item-card">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8125rem', color: 'var(--ink-primary)' }}>
-                          {item.title}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.5625rem',
-                          color: 'var(--color-primary)',
-                          fontWeight: 700,
-                          backgroundColor: 'rgba(51, 104, 160, 0.08)',
-                          padding: '1px 6px',
-                          borderRadius: 'var(--radius-pill)'
-                        }}
-                      >
-                        {item.badge}
-                      </span>
-                    </div>
-
-                    <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '5px' }}>
-                      {item.meta}
-                    </div>
-
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                      {item.tags.map((tag, tIdx) => (
-                        <span
-                          key={tag}
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.625rem',
-                            color: 'var(--color-primary)',
-                            fontWeight: 600
-                          }}
-                        >
-                          {tag}{tIdx < item.tags.length - 1 ? ' •' : ''}
-                        </span>
-                      ))}
-                    </div>
+              {/* 1 Experience Example: Lead Developer & Architect */}
+              <div className="milestone-item-card" style={{ padding: '12px 14px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
+                      {featuredExperience.title}
+                    </span>
                   </div>
-                ))}
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.625rem',
+                      color: 'var(--color-primary)',
+                      fontWeight: 700,
+                      backgroundColor: 'rgba(51, 104, 160, 0.08)',
+                      padding: '2px 8px',
+                      borderRadius: 'var(--radius-pill)'
+                    }}
+                  >
+                    {featuredExperience.badge}
+                  </span>
+                </div>
+
+                <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '8px' }}>
+                  {featuredExperience.meta}
+                </div>
+
+                <p style={{ fontSize: '0.75rem', color: 'var(--ink-primary)', lineHeight: 1.5, margin: '0 0 10px 0' }}>
+                  {featuredExperience.summary}
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                  {featuredExperience.tags.map((tag, tIdx) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.625rem',
+                        color: 'var(--color-primary)',
+                        fontWeight: 600
+                      }}
+                    >
+                      {tag}{tIdx < featuredExperience.tags.length - 1 ? ' •' : ''}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -463,15 +458,15 @@ export const OverviewPage: React.FC = () => {
                 textDecoration: 'none'
               }}
             >
-              <span>Explore full experience timeline</span>
-              <ArrowUpRight size={13} />
+              <span>Explore full experience timeline (3 milestones)</span>
+              <ArrowUpRight size={14} />
             </Link>
           </div>
         </div>
 
         {/* ROW 2: Stack (spans 1.05fr) | Certifications (spans 0.95fr) | About (spans 1fr) */}
         <div className="bento-row-2">
-          {/* Card 3: Stack */}
+          {/* Card 3: Stack (1 example: Core Full-Stack & AI Stack) */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -490,73 +485,59 @@ export const OverviewPage: React.FC = () => {
                   <ArrowUpRight size={18} />
                 </Link>
               </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 10px 0', lineHeight: 1.45 }}>
                 5-layer architectural matrix across frontend, backend, database, and practical AI.
               </p>
 
-              {/* Floating Pill Chips with Status Dots */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px', marginBottom: '8px' }}>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                  React &amp; TypeScript
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                  Node.js / Express
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#D97706' }} />
-                  Python &amp; OpenAI API
-                </span>
-              </div>
+              {/* 1 Example: Core Daily Drivers */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <span className="ai-pill-chip">
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
+                    React &amp; TypeScript
+                  </span>
+                  <span className="ai-pill-chip">
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                    Node.js &amp; Express
+                  </span>
+                  <span className="ai-pill-chip">
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#D97706' }} />
+                    Python &amp; OpenAI API
+                  </span>
+                  <span className="ai-pill-chip">
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-secondary)' }} />
+                    Supabase &amp; PostgreSQL
+                  </span>
+                </div>
 
-              {/* Search-Bar Style Command Pill */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '7px 12px',
-                  borderRadius: 'var(--radius-pill)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  border: '1px solid var(--border-subtle)',
-                  margin: '6px 0 10px 0'
-                }}
-              >
-                <Search size={13} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
-                  Sensa speech engine &amp; LLM parser...
-                </span>
-                <span
+                {/* Inspectable Command Pill */}
+                <div
                   style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--color-primary)',
-                    marginLeft: 'auto',
-                    flexShrink: 0
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '6px 12px',
+                    borderRadius: 'var(--radius-pill)',
+                    backgroundColor: 'var(--bg-canvas)',
+                    border: '1px solid var(--border-subtle)',
+                    marginTop: '2px'
                   }}
-                />
-              </div>
-
-              {/* Additional Floating Chips */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                  PostgreSQL Schemas
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-secondary)' }} />
-                  Manifest V3 Workers
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                  Supabase Backend
-                </span>
-                <span className="ai-pill-chip">
-                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#8B5CF6' }} />
-                  Prompt Guardrails
-                </span>
+                >
+                  <Search size={13} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
+                    Sensa speech engine &amp; LLM parser...
+                  </span>
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--color-primary)',
+                      marginLeft: 'auto',
+                      flexShrink: 0
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -574,11 +555,11 @@ export const OverviewPage: React.FC = () => {
               }}
             >
               <span>Explore 5-layer stack matrix</span>
-              <ArrowUpRight size={13} />
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
-          {/* Card 4: Certifications */}
+          {/* Card 4: Certifications (1 example: freeCodeCamp Full-Stack) */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -597,18 +578,18 @@ export const OverviewPage: React.FC = () => {
                   <ArrowUpRight size={18} />
                 </Link>
               </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 12px 0', lineHeight: 1.45 }}>
+              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', margin: '0 0 10px 0', lineHeight: 1.45 }}>
                 freeCodeCamp Full-Stack curriculum and continuous technical development.
               </p>
 
-              {/* Centered Circular Seal Badge Graphic */}
+              {/* 1 Example: freeCodeCamp Medal Seal */}
               <div
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '14px 10px',
+                  padding: '8px 10px',
                   borderRadius: 'var(--radius-md)',
                   backgroundColor: 'var(--bg-canvas)',
                   border: '1px solid var(--border-subtle)',
@@ -617,11 +598,11 @@ export const OverviewPage: React.FC = () => {
               >
                 <div
                   style={{
-                    width: '82px',
-                    height: '82px',
+                    width: '58px',
+                    height: '58px',
                     borderRadius: '50%',
                     overflow: 'hidden',
-                    marginBottom: '10px',
+                    marginBottom: '6px',
                     boxShadow: 'var(--shadow-sm)',
                     backgroundColor: 'var(--surface-white)',
                     display: 'flex',
@@ -637,13 +618,12 @@ export const OverviewPage: React.FC = () => {
                   />
                 </div>
 
-                {/* Dark Pill Badge under Medal */}
                 <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    padding: '5px 14px',
+                    gap: '5px',
+                    padding: '4px 12px',
                     borderRadius: 'var(--radius-pill)',
                     backgroundColor: 'var(--ink-primary)',
                     color: 'var(--bg-canvas)',
@@ -673,11 +653,11 @@ export const OverviewPage: React.FC = () => {
               }}
             >
               <span>View curriculum details</span>
-              <ArrowUpRight size={13} />
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
-          {/* Card 5: About */}
+          {/* Card 5: About (1 example: Engineering Bio) */}
           <div className="bento-card">
             <div>
               {/* Header */}
@@ -700,31 +680,31 @@ export const OverviewPage: React.FC = () => {
                 The personal journey, engineering values, and curiosity behind my craft.
               </p>
 
-              {/* Kenneth Villar Style 3 Fanned-Out Cards */}
-              <div className="fan-deck-container">
-                <div className="fan-card fan-card-left">
+              {/* Fanned Cards */}
+              <div className="fan-deck-container" style={{ height: '70px', margin: '4px 0' }}>
+                <div className="fan-card fan-card-left" style={{ width: '52px', height: '62px' }}>
                   <img src="/about-var1.jpg" alt="Minimal Silhouette Vector" />
                 </div>
-                <div className="fan-card fan-card-center">
+                <div className="fan-card fan-card-center" style={{ width: '52px', height: '62px' }}>
                   <img
                     src={theme === 'dark' ? '/avatar-profile-dark.jpg' : '/avatar-profile.jpg'}
                     alt="Kian Davey Antolin"
                   />
                 </div>
-                <div className="fan-card fan-card-right">
+                <div className="fan-card fan-card-right" style={{ width: '52px', height: '62px' }}>
                   <img src="/about-var2.jpg" alt="Geometric Avatar Vector" />
                 </div>
               </div>
 
               {/* Bio Summary */}
-              <div style={{ textAlign: 'center', marginTop: '6px' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.9375rem', color: 'var(--ink-primary)' }}>
+              <div style={{ textAlign: 'center', marginTop: '4px' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
                   Kian Davey Antolin
                 </div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--color-primary)', fontWeight: 600 }}>
                   Aspiring AI Engineer · BS IT Candidate
                 </div>
-                <div style={{ fontSize: '0.6875rem', color: 'var(--ink-muted)', marginTop: '2px' }}>
+                <div style={{ fontSize: '0.65625rem', color: 'var(--ink-muted)', marginTop: '1px' }}>
                   Bulacan State University · Class of 2026
                 </div>
               </div>
@@ -744,7 +724,7 @@ export const OverviewPage: React.FC = () => {
               }}
             >
               <span>Read my story</span>
-              <ArrowUpRight size={13} />
+              <ArrowUpRight size={14} />
             </Link>
           </div>
         </div>

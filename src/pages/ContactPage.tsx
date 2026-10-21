@@ -1,366 +1,290 @@
-import React, { useState } from 'react';
-import { Button } from '../components/common/Button';
-import { CustomSelect, SelectOption } from '../components/common/CustomSelect';
-import { GithubIcon, LinkedinIcon } from '../components/common/Icons';
-import { Mail, Copy, Check, Send, MapPin, Clock, MessageSquare, Briefcase, GraduationCap, Cpu } from 'lucide-react';
-
-const inquiryOptions: SelectOption[] = [
-  {
-    value: 'Full-Time Role',
-    label: 'Full-Time Engineering Role',
-    description: 'Software Engineer, Frontend / Full-Stack, or AI Solutions',
-    icon: <Briefcase size={16} />
-  },
-  {
-    value: 'Internship',
-    label: 'Internship Opportunity',
-    description: 'University practicum, apprenticeships, or contract roles',
-    icon: <GraduationCap size={16} />
-  },
-  {
-    value: 'AI Application Project',
-    label: 'AI Application / RAG Project',
-    description: 'Prompt engineering, vector search, or LLM agent builds',
-    icon: <Cpu size={16} />
-  },
-  {
-    value: 'General Collaboration',
-    label: 'General Technical Inquiry',
-    description: 'Open source discussion, tech stack questions, or networking',
-    icon: <MessageSquare size={16} />
-  }
-];
+import React, { useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
+import {
+  Mail,
+  Copy,
+  Check,
+  Send,
+  MapPin,
+  ExternalLink,
+  Globe2
+} from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
-  const [copied, setCopied] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: 'Full-Time Role',
-    message: ''
-  });
+  const { theme } = useTheme();
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedDiscord, setCopiedDiscord] = useState(false);
+  const [currentTimePHT, setCurrentTimePHT] = useState('');
+  const [isWorkingHours, setIsWorkingHours] = useState(false);
 
   const email = 'antolin.kiandavey@gmail.com';
+  const discordHandle = 'kiandavey';
 
-  const handleCopy = () => {
+  // Live Philippine Standard Time (PHT, UTC+8)
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const now = new Date();
+        const timeFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          hour: 'numeric',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        const hourFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Manila',
+          hour: 'numeric',
+          hour12: false
+        });
+
+        setCurrentTimePHT(timeFormatter.format(now));
+        const manilaHour = parseInt(hourFormatter.format(now), 10);
+        // Working hours: 8:00 AM to 6:00 PM PHT
+        setIsWorkingHours(manilaHour >= 8 && manilaHour < 18);
+      } catch {
+        const d = new Date();
+        const utc = d.getTime() + d.getTimezoneOffset() * 60000;
+        const pht = new Date(utc + 3600000 * 8);
+        setCurrentTimePHT(pht.toLocaleTimeString());
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2200);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setFormSubmitted(true);
+  const handleCopyDiscord = () => {
+    navigator.clipboard.writeText(discordHandle);
+    setCopiedDiscord(true);
+    setTimeout(() => setCopiedDiscord(false), 2200);
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      {/* Header */}
-      <div
-        style={{
-          borderBottom: '1px solid var(--border-subtle)',
-          paddingBottom: '20px'
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-            fontWeight: 800,
-            color: 'var(--ink-primary)',
-            letterSpacing: '-0.02em',
-            marginBottom: '8px'
-          }}
-        >
+    <div className="contact-page-container">
+      {/* Header Section */}
+      <header className="contact-header">
+        <h1 className="contact-title">
           Contact & Collaboration
-        </h2>
-        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '780px', lineHeight: 1.6 }}>
-          I am actively exploring full-time software engineering roles, AI application development positions, and technical collaborations. Feel free to reach out directly via email or the form below.
+        </h1>
+
+        <p className="contact-subtitle">
+          I am actively exploring full-time software engineering roles, AI system positions, and technical collaborations. 
+          Feel free to reach out directly via email or connect through any of my verified channels below.
         </p>
-      </div>
+      </header>
 
-      {/* Two Column Layout */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '24px',
-          alignItems: 'start'
-        }}
-      >
-        {/* Left Column: Direct Channels & Telemetry */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Email Direct Card */}
-          <div
-            style={{
-              backgroundColor: 'var(--surface-white)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-card)',
-              padding: '24px',
-              boxShadow: 'var(--shadow-sm)'
-            }}
+      {/* Featured Primary Channel: Direct Email Hero */}
+      <section className="contact-hero-card" aria-label="Direct Email Contact">
+        <div className="contact-hero-left">
+          <div className="contact-hero-tag-row">
+            <span className="contact-card-icon-badge" style={{ width: '28px', height: '28px' }}>
+              <Mail size={15} />
+            </span>
+            <span className="contact-card-tag">Primary Communication Channel</span>
+            <span style={{ fontSize: '0.75rem', color: '#10B981', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+              Monitored Daily
+            </span>
+          </div>
+
+          <div className="contact-hero-email-text">
+            {email}
+          </div>
+
+          <p className="contact-hero-desc">
+            The fastest channel for job offers, contract opportunities, and in-depth engineering discussions.
+          </p>
+        </div>
+
+        <div className="contact-hero-actions">
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="contact-action-btn"
+            aria-label="Copy email address to clipboard"
+            style={{ padding: '9px 18px', fontSize: '0.8125rem' }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-              <Mail size={18} style={{ color: 'var(--color-primary)' }} />
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)' }}>
-                Direct Email
-              </h3>
+            {copiedEmail ? <Check size={15} style={{ color: '#10B981' }} /> : <Copy size={15} />}
+            <span>{copiedEmail ? 'Copied to Clipboard!' : 'Copy Email Address'}</span>
+          </button>
+
+          <a
+            href={`mailto:${email}?subject=Opportunity%20Inquiry%20-%20Kian%20Antolin`}
+            className="contact-action-btn contact-action-btn--primary"
+            aria-label="Open default mail client"
+            style={{ padding: '9px 18px', fontSize: '0.8125rem' }}
+          >
+            <Send size={14} />
+            <span>Launch Mail App</span>
+          </a>
+        </div>
+      </section>
+
+      {/* 2-Column Balanced Supporting Grid */}
+      <div className="contact-sub-grid">
+        {/* Card 1: Verified Profiles & Socials */}
+        <div className="contact-card">
+          <div className="contact-card-header">
+            <div className="contact-card-title-group">
+              <h2 className="contact-card-title">Verified Profiles</h2>
             </div>
-            <p style={{ fontSize: '0.875rem', color: 'var(--ink-muted)', marginBottom: '14px' }}>
-              Best channel for inquiries regarding employment, projects, or questions.
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '10px 14px',
-                borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'var(--bg-canvas)',
-                border: '1px solid var(--border-subtle)'
-              }}
+            <span className="contact-card-tag">Direct Links</span>
+          </div>
+
+          <p className="contact-card-desc">
+            Connect or view code repositories across verified developer profiles.
+          </p>
+
+          <div className="contact-social-list">
+            {/* GitHub */}
+            <a
+              href="https://github.com/KianDavey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-social-item"
+              title="View GitHub Profile"
             >
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--ink-primary)', fontWeight: 600 }}>
-                {email}
+              <div className="contact-social-item-left">
+                <div className="contact-social-logo">
+                  <img
+                    src="/logos/github.svg"
+                    alt="GitHub"
+                    style={{ filter: theme === 'dark' ? 'invert(1)' : 'none' }}
+                  />
+                </div>
+                <div className="contact-social-meta">
+                  <span className="contact-social-name">GitHub</span>
+                  <span className="contact-social-desc">Open-source & code repositories</span>
+                </div>
+              </div>
+              <span className="contact-social-handle">
+                @KianDavey <ExternalLink size={12} />
               </span>
-              <button
-                onClick={handleCopy}
-                aria-label="Copy email address to clipboard"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '5px 12px',
-                  borderRadius: 'var(--radius-pill)',
-                  backgroundColor: copied ? 'rgba(51, 104, 160, 0.1)' : 'var(--surface-white)',
-                  border: `1px solid ${copied ? 'var(--color-primary)' : 'var(--border-subtle)'}`,
-                  fontSize: '0.75rem',
-                  fontFamily: 'var(--font-mono)',
-                  color: 'var(--color-primary)',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  minWidth: '76px',
-                  justifyContent: 'center',
-                  transition: 'all var(--transition-fast)'
-                }}
-              >
-                {copied ? <Check size={13} /> : <Copy size={13} />}
-                <span>{copied ? 'Copied' : 'Copy'}</span>
-              </button>
-            </div>
-          </div>
+            </a>
 
-          {/* Social Profiles */}
-          <div
-            style={{
-              backgroundColor: 'var(--surface-white)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-card)',
-              padding: '24px',
-              boxShadow: 'var(--shadow-sm)'
-            }}
-          >
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '14px' }}>
-              Verified Profiles
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a
-                href="https://github.com/KianDavey"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '12px 14px',
-                  borderRadius: 'var(--radius-sm)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  border: '1px solid var(--border-subtle)',
-                  textDecoration: 'none',
-                  color: 'var(--ink-primary)',
-                  transition: 'all var(--transition-fast)'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <GithubIcon size={16} />
-                  <span style={{ fontWeight: 600, fontSize: '0.875rem' }}>GitHub</span>
+            {/* LinkedIn */}
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-social-item"
+              title="Connect on LinkedIn"
+            >
+              <div className="contact-social-item-left">
+                <div className="contact-social-logo">
+                  <img src="/logos/linkedin.svg" alt="LinkedIn" />
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                  @KianDavey ↗
-                </span>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/kiandavey/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '12px 14px',
-                  borderRadius: 'var(--radius-sm)',
-                  backgroundColor: 'var(--bg-canvas)',
-                  border: '1px solid var(--border-subtle)',
-                  textDecoration: 'none',
-                  color: 'var(--ink-primary)',
-                  transition: 'all var(--transition-fast)'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <LinkedinIcon size={16} />
-                  <span style={{ fontWeight: 600, fontSize: '0.875rem' }}>LinkedIn</span>
+                <div className="contact-social-meta">
+                  <span className="contact-social-name">LinkedIn</span>
+                  <span className="contact-social-desc">Professional background & network</span>
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                  /in/kiandavey ↗
-                </span>
-              </a>
-            </div>
-          </div>
+              </div>
+              <span className="contact-social-handle">
+                /in/kiandavey <ExternalLink size={12} />
+              </span>
+            </a>
 
-          {/* Timezone & Location */}
-          <div
-            style={{
-              backgroundColor: 'rgba(200, 223, 219, 0.45)',
-              border: '1px solid var(--border-teal)',
-              borderRadius: 'var(--radius-card)',
-              padding: '20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8125rem', color: 'var(--ink-primary)', fontWeight: 600 }}>
-              <MapPin size={15} style={{ color: 'var(--color-primary)' }} />
-              <span>Location: Philippines (Open to Remote Worldwide)</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8125rem', color: 'var(--ink-muted)' }}>
-              <Clock size={15} style={{ color: 'var(--color-primary)' }} />
-              <span>Timezone: GMT+8 (Flexible overlap with US / Europe hours)</span>
+            {/* Discord */}
+            <div
+              className="contact-social-item"
+              style={{ cursor: 'pointer' }}
+              onClick={handleCopyDiscord}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') handleCopyDiscord();
+              }}
+              title="Click to copy Discord handle"
+            >
+              <div className="contact-social-item-left">
+                <div className="contact-social-logo">
+                  <img src="/logos/discord.svg" alt="Discord" />
+                </div>
+                <div className="contact-social-meta">
+                  <span className="contact-social-name">Discord</span>
+                  <span className="contact-social-desc">Real-time chat & technical sync</span>
+                </div>
+              </div>
+              <span className="contact-social-handle">
+                {copiedDiscord ? (
+                  <>
+                    <Check size={12} style={{ color: '#10B981' }} /> Copied!
+                  </>
+                ) : (
+                  <>
+                    @{discordHandle} <Copy size={12} />
+                  </>
+                )}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Inquiry Message Form */}
-        <section
-          style={{
-            backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-card)',
-            padding: 'clamp(20px, 3vw, 28px)',
-            boxShadow: 'var(--shadow-card)'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-            <MessageSquare size={18} style={{ color: 'var(--color-primary)' }} />
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--ink-primary)' }}>
-              Send a Direct Message
-            </h3>
+        {/* Card 2: Live Philippines Telemetry & Availability */}
+        <div className="contact-telemetry-card">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <MapPin size={17} style={{ color: 'var(--color-primary)' }} />
+              <h2 style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink-primary)', margin: 0 }}>
+                Location & Availability
+              </h2>
+            </div>
+            <span className="telemetry-time-zone">GMT+8 (PHT)</span>
           </div>
 
-          {formSubmitted && (
-            <div
-              role="status"
-              aria-live="polite"
-              style={{
-                padding: '16px 18px',
-                borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'rgba(200, 223, 219, 0.55)',
-                border: '1px solid var(--color-primary)',
-                marginBottom: '20px'
-              }}
-            >
-              <div style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink-primary)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Check size={16} style={{ color: 'var(--color-primary)' }} />
-                <span>Message Received</span>
+          {/* Dynamic Clock */}
+          <div className="telemetry-clock-display">
+            <div>
+              <div style={{ fontSize: '0.6875rem', fontFamily: 'var(--font-mono)', color: 'var(--ink-muted)', textTransform: 'uppercase', marginBottom: '2px' }}>
+                Philippine Local Time
               </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
-                Thank you for reaching out, {formData.name}. Your note has been recorded. You can also reach me directly at{' '}
-                <a href={`mailto:${email}`} style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
-                  {email}
-                </a>.
-              </p>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div>
-              <label
-                htmlFor="contact-name"
-                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-              >
-                Your Name *
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                required
-                className="form-control"
-                placeholder="e.g. Alex Rivera"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              />
+              <div className="telemetry-time-val">{currentTimePHT || '12:00:00 PM'}</div>
             </div>
 
             <div>
-              <label
-                htmlFor="contact-email"
-                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
+              <span
+                className={`telemetry-status-pill ${
+                  isWorkingHours ? 'telemetry-status-pill--active' : 'telemetry-status-pill--afterhours'
+                }`}
               >
-                Email Address *
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                required
-                className="form-control"
-                placeholder="name@company.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              />
+                <span
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: isWorkingHours ? '#10B981' : 'var(--color-primary)'
+                  }}
+                />
+                {isWorkingHours ? 'Active Work Hours' : 'After Hours · Queued'}
+              </span>
             </div>
+          </div>
 
-            <div>
-              <label
-                htmlFor="contact-subject"
-                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-              >
-                Inquiry Topic
-              </label>
-              <CustomSelect
-                id="contact-subject"
-                options={inquiryOptions}
-                value={formData.subject}
-                onChange={(value) => setFormData((prev) => ({ ...prev, subject: value }))}
-              />
+          {/* Overlap Matrix */}
+          <div className="telemetry-zone-chips">
+            <div className="telemetry-zone-chip">
+              <span className="telemetry-zone-name">North America (US)</span>
+              <span className="telemetry-zone-diff">Evening PHT / Early Morning EST/PST</span>
             </div>
-
-            <div>
-              <label
-                htmlFor="contact-message"
-                style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--ink-muted)', marginBottom: '6px', textTransform: 'uppercase' }}
-              >
-                Message *
-              </label>
-              <textarea
-                id="contact-message"
-                rows={5}
-                required
-                className="form-control"
-                placeholder="Share details about the role, team, or project..."
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                style={{ resize: 'vertical' }}
-              />
+            <div className="telemetry-zone-chip">
+              <span className="telemetry-zone-name">Europe / UK</span>
+              <span className="telemetry-zone-diff">Afternoon PHT / Morning GMT</span>
             </div>
+          </div>
 
-            <Button type="submit" variant="primary" size="md" icon={<Send size={14} />}>
-              {formSubmitted ? 'Resend Message' : 'Send Message'}
-            </Button>
-          </form>
-        </section>
+          <div className="telemetry-status-row">
+            <Globe2 size={14} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+            <span>Equipped with high-speed fiber internet and dedicated workstation for remote teams worldwide.</span>
+          </div>
+        </div>
       </div>
     </div>
   );

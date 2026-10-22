@@ -12,8 +12,16 @@ import {
   Award,
   Layers,
   Clock,
-  Search,
-  Briefcase
+  Briefcase,
+  Mail,
+  Wrench,
+  Sparkles,
+  Calendar,
+  Zap,
+  Volume2,
+  Terminal,
+  CheckCircle2,
+  GraduationCap
 } from 'lucide-react';
 
 export const OverviewPage: React.FC = () => {
@@ -99,6 +107,7 @@ export const OverviewPage: React.FC = () => {
               boxShadow: 'var(--shadow-sm)'
             }}
           >
+            <Mail size={15} />
             <span>Get in touch</span>
             <ArrowUpRight size={15} />
           </button>
@@ -135,15 +144,7 @@ export const OverviewPage: React.FC = () => {
             backgroundColor: 'var(--surface-white)'
           }}
         >
-          <span
-            style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--color-primary)',
-              flexShrink: 0
-            }}
-          />
+          <Wrench size={14} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
           <span
             style={{
               fontFamily: 'var(--font-display)',
@@ -241,9 +242,12 @@ export const OverviewPage: React.FC = () => {
                       <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#F59E0B' }} />
                       <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981' }} />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)' }}>
-                      chrome-extension://sensa/
-                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <img src="/logos/chrome.svg" alt="" style={{ width: '11px', height: '11px', flexShrink: 0 }} />
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--ink-muted)' }}>
+                        chrome-extension://sensa/
+                      </span>
+                    </div>
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
@@ -252,10 +256,14 @@ export const OverviewPage: React.FC = () => {
                         borderRadius: 'var(--radius-pill)',
                         backgroundColor: 'rgba(51, 104, 160, 0.1)',
                         color: 'var(--color-primary)',
-                        fontWeight: 700
+                        fontWeight: 700,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '3px'
                       }}
                     >
-                      In Development
+                      <Clock size={9} />
+                      <span>In Development</span>
                     </span>
                   </div>
 
@@ -297,10 +305,12 @@ export const OverviewPage: React.FC = () => {
                     >
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--color-secondary)', fontWeight: 700, letterSpacing: '0.04em' }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--color-secondary)', fontWeight: 700, letterSpacing: '0.04em', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            <Volume2 size={10} />
                             ASSISTIVE WEB ENGINE
                           </span>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5625rem', color: 'rgba(242, 239, 231, 0.6)' }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5625rem', color: 'rgba(242, 239, 231, 0.7)', display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                            <img src="/logos/plasmo.svg" alt="" style={{ width: '9px', height: '9px', objectFit: 'contain' }} />
                             MV3 Plasmo
                           </span>
                         </div>
@@ -399,7 +409,7 @@ export const OverviewPage: React.FC = () => {
               <div className="milestone-item-card" style={{ padding: '12px 14px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+                    <Sparkles size={13} style={{ color: '#10B981', flexShrink: 0 }} />
                     <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
                       {featuredExperience.title}
                     </span>
@@ -412,15 +422,20 @@ export const OverviewPage: React.FC = () => {
                       fontWeight: 700,
                       backgroundColor: 'rgba(51, 104, 160, 0.08)',
                       padding: '2px 8px',
-                      borderRadius: 'var(--radius-pill)'
+                      borderRadius: 'var(--radius-pill)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '3px'
                     }}
                   >
-                    {featuredExperience.badge}
+                    <Zap size={10} />
+                    <span>{featuredExperience.badge}</span>
                   </span>
                 </div>
 
-                <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '8px' }}>
-                  {featuredExperience.meta}
+                <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <Calendar size={12} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                  <span>{featuredExperience.meta}</span>
                 </div>
 
                 <p style={{ fontSize: '0.75rem', color: 'var(--ink-primary)', lineHeight: 1.5, margin: '0 0 10px 0' }}>
@@ -493,20 +508,32 @@ export const OverviewPage: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                   <span className="ai-pill-chip">
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-primary)' }} />
-                    React &amp; TypeScript
+                    <img src="/logos/react.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <img src="/logos/typescript.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <span>React &amp; TypeScript</span>
                   </span>
                   <span className="ai-pill-chip">
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-                    Node.js &amp; Express
+                    <img src="/logos/nodejs.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <img
+                      src="/logos/express.svg"
+                      alt=""
+                      style={{ width: '12px', height: '12px', objectFit: 'contain', filter: theme === 'dark' ? 'invert(1)' : 'none' }}
+                    />
+                    <span>Node.js &amp; Express</span>
                   </span>
                   <span className="ai-pill-chip">
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#D97706' }} />
-                    Python &amp; OpenAI API
+                    <img src="/logos/python.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <img
+                      src="/logos/openai.svg"
+                      alt=""
+                      style={{ width: '12px', height: '12px', objectFit: 'contain', filter: theme === 'dark' ? 'invert(1)' : 'none' }}
+                    />
+                    <span>Python &amp; OpenAI API</span>
                   </span>
                   <span className="ai-pill-chip">
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--color-secondary)' }} />
-                    Supabase &amp; PostgreSQL
+                    <img src="/logos/supabase.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <img src="/logos/postgresql.svg" alt="" style={{ width: '12px', height: '12px', objectFit: 'contain' }} />
+                    <span>Supabase &amp; PostgreSQL</span>
                   </span>
                 </div>
 
@@ -523,20 +550,11 @@ export const OverviewPage: React.FC = () => {
                     marginTop: '2px'
                   }}
                 >
-                  <Search size={13} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
+                  <Terminal size={12} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--ink-muted)' }}>
                     Sensa speech engine &amp; LLM parser...
                   </span>
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--color-primary)',
-                      marginLeft: 'auto',
-                      flexShrink: 0
-                    }}
-                  />
+                  <Sparkles size={11} style={{ color: 'var(--color-primary)', marginLeft: 'auto', flexShrink: 0 }} />
                 </div>
               </div>
             </div>
@@ -623,18 +641,41 @@ export const OverviewPage: React.FC = () => {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '5px',
-                    padding: '4px 12px',
+                    padding: '3px 10px',
                     borderRadius: 'var(--radius-pill)',
                     backgroundColor: 'var(--ink-primary)',
                     color: 'var(--bg-canvas)',
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.6875rem',
+                    fontSize: '0.65625rem',
                     fontWeight: 700,
                     boxShadow: 'var(--shadow-sm)'
                   }}
                 >
                   <Clock size={11} style={{ color: 'var(--color-primary)' }} />
                   <span>In Progress · Full-Stack Track</span>
+                </div>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    marginTop: '6px',
+                    fontSize: '0.625rem',
+                    fontFamily: 'var(--font-mono)',
+                    color: 'var(--ink-muted)'
+                  }}
+                >
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                    <CheckCircle2 size={10} style={{ color: '#10B981' }} />
+                    2 Verified
+                  </span>
+                  <span>•</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                    <GraduationCap size={11} style={{ color: 'var(--color-primary)' }} />
+                    BulSU BS IT
+                  </span>
                 </div>
               </div>
             </div>
@@ -701,11 +742,13 @@ export const OverviewPage: React.FC = () => {
                 <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.875rem', color: 'var(--ink-primary)' }}>
                   Kian Davey Antolin
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                  Aspiring AI Engineer · BS IT Candidate
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--color-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '4px', marginTop: '1px' }}>
+                  <Sparkles size={11} />
+                  <span>Aspiring AI Engineer · BS IT Candidate</span>
                 </div>
-                <div style={{ fontSize: '0.65625rem', color: 'var(--ink-muted)', marginTop: '1px' }}>
-                  Bulacan State University · Class of 2026
+                <div style={{ fontSize: '0.65625rem', color: 'var(--ink-muted)', marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+                  <GraduationCap size={11} style={{ color: 'var(--color-primary)' }} />
+                  <span>Bulacan State University · Class of 2026</span>
                 </div>
               </div>
             </div>

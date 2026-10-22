@@ -1458,6 +1458,9 @@ select:focus-visible {
 }
 
 .cert-skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   padding: 3px 8px;
@@ -1465,6 +1468,31 @@ select:focus-visible {
   background-color: var(--bg-canvas);
   border: 1px solid var(--border-subtle);
   color: var(--ink-primary);
+  transition: all var(--transition-fast);
+}
+
+.cert-skill-pill:hover {
+  border-color: var(--color-primary);
+  background-color: var(--surface-hover);
+}
+
+.cert-credential-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(51, 104, 160, 0.08);
+  color: var(--color-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+[data-theme='dark'] .cert-credential-badge {
+  background-color: rgba(74, 140, 210, 0.12);
+  color: var(--ink-secondary-accent);
 }
 
 /* ==========================================================================

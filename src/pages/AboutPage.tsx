@@ -1,21 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { Badge } from '../components/common/Badge';
 import {
   GraduationCap,
-  Compass,
-  CheckCircle2,
   Sparkles,
-  BrainCircuit,
-  Layers,
-  Coffee,
-  Quote,
   MapPin,
-  Calendar,
   Code2,
-  Heart,
-  ShieldCheck,
-  Zap
+  Coffee,
+  CheckCircle2,
+  ArrowRight,
+  ArrowUpRight,
+  Layers,
+  HeartHandshake,
+  Compass
 } from 'lucide-react';
 
 export const AboutPage: React.FC = () => {
@@ -23,7 +20,7 @@ export const AboutPage: React.FC = () => {
 
   return (
     <div className="about-page-container">
-      {/* 1. Header Banner */}
+      {/* 1. Page Header */}
       <div
         style={{
           borderBottom: '1px solid var(--border-subtle)',
@@ -33,22 +30,21 @@ export const AboutPage: React.FC = () => {
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.75rem, 3.2vw, 2.5rem)',
+            fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
             fontWeight: 800,
             color: 'var(--ink-primary)',
-            letterSpacing: '-0.025em',
-            lineHeight: 1.2,
-            marginBottom: '10px'
+            letterSpacing: '-0.02em',
+            margin: '0 0 8px 0'
           }}
         >
-          Curiosity, Code &amp; Craft
+          About Me
         </h1>
-        <p style={{ fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)', color: 'var(--ink-muted)', maxWidth: '820px', lineHeight: 1.65, margin: 0 }}>
-          A personal look at my journey, what fuels my engineering curiosity, and how an obsession with computers evolved into building resilient, AI-powered software products.
+        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '720px', lineHeight: 1.6, margin: 0 }}>
+          A quick snapshot of who I am, what I build, and what drives my software engineering.
         </p>
       </div>
 
-      {/* 2. Welcoming Hero Story Card */}
+      {/* 2. Executive Bio Card */}
       <section className="about-hero-card">
         {/* Left: Portrait Frame */}
         <div className="about-portrait-wrapper">
@@ -61,37 +57,38 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Conversational Opening Letter */}
+        {/* Right: Punchy Bio */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span style={{ fontSize: '1.25rem' }}>👋</span>
+            <span style={{ fontSize: '1.15rem' }}>👋</span>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase' }}>
-              HEY THERE, WELCOME!
+              Aspiring AI &amp; Full-Stack Engineer
             </span>
           </div>
+
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)',
+              fontSize: 'clamp(1.35rem, 2vw, 1.65rem)',
               fontWeight: 800,
               color: 'var(--ink-primary)',
               letterSpacing: '-0.02em',
-              marginBottom: '14px'
+              margin: '0 0 12px 0'
             }}
           >
-            I'm Kian Davey—an engineer who loves turning ideas into living, breathing software.
+            Hi, I'm Kian Davey Antolin.
           </h2>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.7 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.65 }}>
             <p style={{ margin: 0 }}>
-              I am a <strong>Bachelor of Science in Information Technology (BS IT)</strong> student approaching graduation at <strong>Bulacan State University</strong>. Ever since I first opened a terminal and saw lines of code render an interactive canvas in the browser, I was hooked on the creative power of software engineering.
+              I am a <strong>BS in Information Technology</strong> student approaching graduation at <strong>Bulacan State University</strong> ('26). I build responsive web apps, assistive browser extensions, and applied AI systems designed to solve real user friction.
             </p>
             <p style={{ margin: 0 }}>
-              Over the last few years, I’ve dedicated myself to mastering the modern web stack—building type-safe <strong>React &amp; TypeScript</strong> interfaces, architecting <strong>Node.js &amp; SQL</strong> backends, and bridging non-deterministic <strong>AI models</strong> into reliable, production-ready experiences.
+              My technical focus centers on bridging type-safe <strong>React &amp; TypeScript</strong> frontends with structured <strong>Node.js / Python</strong> services and deterministic, schema-validated AI pipelines.
             </p>
           </div>
 
-          {/* Quick Vibe Chips */}
+          {/* Quick Info Chips */}
           <div className="about-chips-row">
             <span className="about-chip">
               <MapPin size={13} style={{ color: 'var(--color-primary)' }} />
@@ -99,370 +96,260 @@ export const AboutPage: React.FC = () => {
             </span>
             <span className="about-chip">
               <GraduationCap size={13} style={{ color: 'var(--color-primary)' }} />
-              Bulacan State University ('26)
+              BulSU · Class of 2026
             </span>
             <span className="about-chip">
               <Code2 size={13} style={{ color: 'var(--color-primary)' }} />
               Full-Stack &amp; AI Systems
             </span>
             <span className="about-chip">
-              <Coffee size={13} style={{ color: 'var(--color-primary)' }} />
-              Curiosity &amp; Coffee
+              <Sparkles size={13} style={{ color: '#10B981' }} />
+              Open to Opportunities
             </span>
           </div>
         </div>
       </section>
 
-      {/* 3. The Story Chapters */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Compass size={18} style={{ color: 'var(--color-primary)' }} />
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
-            The Journey &amp; Milestones
-          </h2>
-        </div>
-
-        {/* Chapter 01: The Spark */}
-        <article className="about-story-chapter-card">
-          <div className="about-chapter-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(51, 104, 160, 0.1)',
-                  color: 'var(--color-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <Sparkles size={18} />
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase' }}>
-                  CHAPTER 01
-                </span>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 800, color: 'var(--ink-primary)', margin: '2px 0 0 0' }}>
-                  The Spark &amp; The Joy of Building
-                </h3>
-              </div>
-            </div>
-            <Badge variant="neutral" size="sm">
-              <Calendar size={11} style={{ marginRight: '4px' }} />
-              2022 — Early University Days
-            </Badge>
-          </div>
-
-          <div style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.75, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <p style={{ margin: 0 }}>
-              Like many programmers, my journey started with an itch to understand how the digital world works behind the glass screen. Entering the Information Technology program at Bulacan State University gave me a structured playground: studying data structures, relational database normalization, and computer networking.
-            </p>
-            <p style={{ margin: 0 }}>
-              While theory gave me grounding, writing code gave me wings. The moment I built my first web app that solved a real problem—taking raw inputs, manipulating state, and rendering dynamic responses in milliseconds—I realized that software development is the modern alchemy. It transforms abstract thoughts into interactive utility.
-            </p>
-          </div>
-        </article>
-
-        {/* Chapter 02: The Turning Point */}
-        <article className="about-story-chapter-card">
-          <div className="about-chapter-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
-                  color: '#10B981',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <BrainCircuit size={18} />
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: '#10B981', textTransform: 'uppercase' }}>
-                  CHAPTER 02
-                </span>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 800, color: 'var(--ink-primary)', margin: '2px 0 0 0' }}>
-                  The Turning Point — Taming the Stochastic
-                </h3>
-              </div>
-            </div>
-            <Badge variant="teal" size="sm">
-              <Zap size={11} style={{ marginRight: '4px', color: 'var(--color-primary)' }} />
-              2023–2024 — Applied AI Shift
-            </Badge>
-          </div>
-
-          <div style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.75, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <p style={{ margin: 0 }}>
-              When Large Language Models emerged, much of the conversation revolved around clever prompting. But as I started embedding AI into actual applications, I ran into the real challenge: <strong>models are probabilistic and unpredictable, but software users require determinism and absolute reliability.</strong>
-            </p>
-            <p style={{ margin: 0 }}>
-              This insight led directly to architecting <strong>Sensa</strong>, my assistive browser extension. Building under Chrome’s strict Manifest V3 service-worker lifecycle required orchestrating offscreen documents for Web Speech audio capture, handling real-time stream disconnects, and enforcing Zod runtime schema boundaries on LLM outputs. It cemented my career direction: I wanted to be an <strong>AI Application Engineer</strong>—someone who writes resilient, production-grade software around intelligent systems.
-            </p>
-          </div>
-        </article>
-
-        {/* Typographic Pull-Quote Banner */}
-        <aside className="about-quote-card">
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-            <Quote size={28} style={{ color: 'var(--color-primary)', flexShrink: 0, opacity: 0.8 }} />
-            <div>
-              <blockquote
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.0625rem, 1.6vw, 1.25rem)',
-                  fontWeight: 700,
-                  color: 'var(--ink-primary)',
-                  lineHeight: 1.5,
-                  margin: '0 0 10px 0',
-                  fontStyle: 'italic'
-                }}
-              >
-                "Great engineering doesn’t shout for attention. It simply works—gracefully absorbing chaos, edge cases, and unpredictable model outputs behind a calm, intuitive interface."
-              </blockquote>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                // Core Engineering Manifesto
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        {/* Chapter 03: Engineering Principles */}
-        <article className="about-story-chapter-card">
-          <div className="about-chapter-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(217, 119, 6, 0.12)',
-                  color: '#D97706',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <Layers size={18} />
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: '#D97706', textTransform: 'uppercase' }}>
-                  CHAPTER 03
-                </span>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 800, color: 'var(--ink-primary)', margin: '2px 0 0 0' }}>
-                  The Philosophy — Values I Build By
-                </h3>
-              </div>
-            </div>
-            <Badge variant="neutral" size="sm">
-              Craft &amp; Execution
-            </Badge>
-          </div>
-
-          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.65, margin: '0 0 16px 0' }}>
-            No matter the project or technology, these four core principles guide every architectural decision I make:
-          </p>
-
-          <div className="about-values-grid">
-            <div className="about-value-card">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <ShieldCheck size={18} style={{ color: 'var(--color-primary)' }} />
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink-primary)', margin: 0 }}>
-                  Resilience Over Hype
-                </h4>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55, margin: 0 }}>
-                AI can hallucinate and networks can drop. Production code must wrap unpredictability with Zod validation, retry policies, and sensible fallbacks.
-              </p>
-            </div>
-
-            <div className="about-value-card">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Code2 size={18} style={{ color: 'var(--color-primary)' }} />
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink-primary)', margin: 0 }}>
-                  Type Safety as Leverage
-                </h4>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55, margin: 0 }}>
-                TypeScript isn’t extra ceremony—it's self-documenting code and the armor that lets you refactor fearlessly as applications grow in scale.
-              </p>
-            </div>
-
-            <div className="about-value-card">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Heart size={18} style={{ color: 'var(--color-primary)' }} />
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink-primary)', margin: 0 }}>
-                  User Empathy First
-                </h4>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55, margin: 0 }}>
-                Complex systems mean nothing if the user interface feels clunky or confusing. Speed, accessibility, and delight are non-negotiable.
-              </p>
-            </div>
-
-            <div className="about-value-card">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Compass size={18} style={{ color: 'var(--color-primary)' }} />
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink-primary)', margin: 0 }}>
-                  Relentless Student
-                </h4>
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55, margin: 0 }}>
-                Frameworks come and go, but fundamentals—relational schemas, distributed protocols, state lifecycles—remain timeless. Always stay curious.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        {/* Chapter 04: Beyond the Terminal */}
-        <article className="about-story-chapter-card">
-          <div className="about-chapter-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(139, 92, 246, 0.12)',
-                  color: '#8B5CF6',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <Coffee size={18} />
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: '#8B5CF6', textTransform: 'uppercase' }}>
-                  CHAPTER 04
-                </span>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1875rem', fontWeight: 800, color: 'var(--ink-primary)', margin: '2px 0 0 0' }}>
-                  Beyond the Terminal — The Human Dimension
-                </h3>
-              </div>
-            </div>
-            <Badge variant="neutral" size="sm">
-              Vibe &amp; Inspiration
-            </Badge>
-          </div>
-
-          <div style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', lineHeight: 1.75, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <p style={{ margin: 0 }}>
-              When I'm not in front of VS Code or Cursor, you'll probably find me exploring new tech essays, tuning my mechanical keyboard switches, or brewing a fresh cup of pour-over coffee.
-            </p>
-            <p style={{ margin: 0 }}>
-              I love working to the groove of <strong>lo-fi beats, synthwave, and deep instrumental house</strong>—music is my companion when entering a deep engineering flow state. I'm also deeply passionate about tech communities and pair-programming: some of my most rewarding moments come from helping fellow students debug tricky SQL joins or walk through React state re-renders.
-            </p>
-          </div>
-        </article>
-      </div>
-
-      {/* 4. Academic Foundation & Current Exploration Split */}
+      {/* 3. At a Glance — 3 Compact Cards */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '18px'
         }}
       >
-        {/* Academic Card */}
+        {/* Card 1: What I Build */}
         <div
           style={{
             backgroundColor: 'var(--surface-white)',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-card)',
-            padding: '24px',
-            boxShadow: 'var(--shadow-sm)'
+            padding: '22px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <GraduationCap size={18} style={{ color: 'var(--color-primary)' }} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase' }}>
-              ACADEMIC GROUNDING
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(51, 104, 160, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--color-primary)'
+              }}
+            >
+              <Layers size={16} />
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+              What I Build
+            </h3>
           </div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '4px' }}>
-            BS in Information Technology
-          </h3>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--ink-secondary-accent)', fontWeight: 600, marginBottom: '10px' }}>
-            Bulacan State University · Expected 2026
+
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: 0, margin: 0, listStyle: 'none' }}>
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <CheckCircle2 size={14} style={{ color: 'var(--color-primary)', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>Full-Stack Apps:</strong> Responsive SPAs with React, TypeScript, Next.js, Node.js, and SQL.</span>
+            </li>
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <CheckCircle2 size={14} style={{ color: 'var(--color-primary)', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>AI &amp; Assistive Tools:</strong> Chrome Manifest V3 extensions, Web Speech API, and Zod-validated LLM workflows.</span>
+            </li>
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <CheckCircle2 size={14} style={{ color: 'var(--color-primary)', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>Reliable Architectures:</strong> Resilient error handling, relational databases (PostgreSQL/Supabase), and clean APIs.</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Card 2: Academic Grounding */}
+        <div
+          style={{
+            backgroundColor: 'var(--surface-white)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: 'var(--radius-card)',
+            padding: '22px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#10B981'
+              }}
+            >
+              <GraduationCap size={16} />
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+              Education
+            </h3>
           </div>
-          <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.6, margin: '0 0 14px 0' }}>
-            A rigorous computer science and systems curriculum emphasizing software engineering lifecycles, database normalization, distributed network protocols, and computing security.
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink-primary)' }}>
+              BS in Information Technology
+            </div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--ink-secondary-accent)', fontWeight: 600 }}>
+              Bulacan State University · Expected 2026
+            </div>
+          </div>
+
+          <p style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.55, margin: 0 }}>
+            Four-year degree providing rigorous depth across software engineering lifecycles, database normalization, algorithms, and computing systems.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-            {['Relational SQL', 'Systems Analysis', 'Web APIs', 'Network Architecture', 'OOP Patterns'].map((tag) => (
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: 'auto' }}>
+            {['Relational SQL', 'Systems Analysis', 'OOP Patterns', 'Web APIs'].map((topic) => (
               <span
-                key={tag}
+                key={topic}
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.6875rem',
-                  padding: '3px 8px',
+                  padding: '2px 8px',
                   borderRadius: '4px',
                   backgroundColor: 'var(--bg-canvas)',
                   border: '1px solid var(--border-subtle)',
                   color: 'var(--ink-muted)'
                 }}
               >
-                {tag}
+                {topic}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Current Active Exploration Lab */}
+        {/* Card 3: Values & Beyond Code */}
         <div
           style={{
             backgroundColor: 'var(--surface-white)',
-            border: '1px solid var(--border-teal)',
+            border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-card)',
-            padding: '24px',
-            boxShadow: 'var(--shadow-sm)'
+            padding: '22px',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <Compass size={18} style={{ color: 'var(--color-primary)' }} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-primary)', textTransform: 'uppercase' }}>
-              CURRENT EXPLORATION LAB
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(217, 119, 6, 0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#D97706'
+              }}
+            >
+              <Compass size={16} />
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, color: 'var(--ink-primary)', margin: 0 }}>
+              Values &amp; Interests
+            </h3>
           </div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--ink-primary)', marginBottom: '8px' }}>
-            Active Areas of Deep Dive
-          </h3>
+
           <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: 0, margin: 0, listStyle: 'none' }}>
-            {[
-              {
-                title: 'Semantic Search & RAG Architecture',
-                detail: 'Optimizing token chunking windows, cosine similarity ranking, and vector storage.'
-              },
-              {
-                title: 'Real-Time Audio & Speech Streaming',
-                detail: 'Low-latency browser speech synthesis, Web Audio API streaming, and Offscreen Documents.'
-              },
-              {
-                title: 'Type Safety & Runtime Boundaries',
-                detail: 'Strict TypeScript union discriminating, Zod schemas, and deterministic API contracts.'
-              },
-              {
-                title: 'Modern Full-Stack Patterns',
-                detail: 'Next.js App Router server components, Supabase row-level security, and edge deployments.'
-              }
-            ].map((item, i) => (
-              <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <CheckCircle2 size={15} style={{ color: 'var(--color-primary)', marginTop: '2px', flexShrink: 0 }} />
-                <div>
-                  <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--ink-primary)' }}>{item.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--ink-muted)', lineHeight: 1.45 }}>{item.detail}</div>
-                </div>
-              </li>
-            ))}
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <Sparkles size={14} style={{ color: '#D97706', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>Resilience over Hype:</strong> Taming non-deterministic LLMs with strict schemas, error boundaries, and fallbacks.</span>
+            </li>
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <HeartHandshake size={14} style={{ color: '#D97706', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>User Empathy:</strong> Clean, accessible UX matters just as much as backend efficiency.</span>
+            </li>
+            <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', fontSize: '0.8125rem', color: 'var(--ink-muted)', lineHeight: 1.5 }}>
+              <Coffee size={14} style={{ color: '#D97706', marginTop: '2px', flexShrink: 0 }} />
+              <span><strong>Beyond Code:</strong> Pour-over coffee, mechanical keyboards, and helping fellow students debug tricky problems.</span>
+            </li>
           </ul>
+        </div>
+      </div>
+
+      {/* 4. Quick Action Footer Strip */}
+      <div
+        style={{
+          backgroundColor: 'var(--surface-white)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 'var(--radius-card)',
+          padding: '18px 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '16px',
+          boxShadow: 'var(--shadow-sm)'
+        }}
+      >
+        <div>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink-primary)' }}>
+            Want to see what I've built or explore collaborating?
+          </div>
+          <div style={{ fontSize: '0.8125rem', color: 'var(--ink-muted)', marginTop: '2px' }}>
+            Check out my featured projects or drop a direct message.
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <Link
+            to="/projects"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 16px',
+              borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border-subtle)',
+              backgroundColor: 'var(--bg-canvas)',
+              color: 'var(--ink-primary)',
+              fontFamily: 'var(--font-display)',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              textDecoration: 'none',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            <span>View Projects</span>
+            <ArrowRight size={13} />
+          </Link>
+
+          <Link
+            to="/contact"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 18px',
+              borderRadius: 'var(--radius-pill)',
+              backgroundColor: 'var(--ink-primary)',
+              color: 'var(--bg-canvas)',
+              fontFamily: 'var(--font-display)',
+              fontWeight: 700,
+              fontSize: '0.8125rem',
+              textDecoration: 'none',
+              transition: 'all var(--transition-fast)'
+            }}
+          >
+            <span>Get in touch</span>
+            <ArrowUpRight size={13} />
+          </Link>
         </div>
       </div>
     </div>

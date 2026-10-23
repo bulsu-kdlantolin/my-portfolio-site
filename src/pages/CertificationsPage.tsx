@@ -71,56 +71,22 @@ export const CertificationsPage: React.FC = () => {
         }}
       >
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-            <div
-              style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'rgba(51, 104, 160, 0.1)',
-                border: '1px solid var(--border-teal)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-primary)',
-                flexShrink: 0
-              }}
-            >
-              <Award size={20} />
-            </div>
-            <h1
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                fontWeight: 800,
-                color: 'var(--ink-primary)',
-                letterSpacing: '-0.02em',
-                margin: 0
-              }}
-            >
-              Credentials & Certifications
-            </h1>
-          </div>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+              fontWeight: 800,
+              color: 'var(--ink-primary)',
+              letterSpacing: '-0.02em',
+              margin: '0 0 8px 0'
+            }}
+          >
+            Credentials & Certifications
+          </h1>
 
-          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '720px', lineHeight: 1.6, margin: '0 0 12px 0' }}>
+          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '720px', lineHeight: 1.6, margin: 0 }}>
             Curated technical credentials, active development curricula, and academic milestones. Click any certificate to open its live verification or curriculum link.
           </p>
-
-          {/* Quick Telemetry Chips */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            <span className="contact-meta-pill">
-              <CheckCircle2 size={13} style={{ color: '#10B981' }} />
-              <span>2 Verified Credentials</span>
-            </span>
-            <span className="contact-meta-pill">
-              <Clock size={13} style={{ color: 'var(--color-primary)' }} />
-              <span>3 Active Curricula</span>
-            </span>
-            <span className="contact-meta-pill">
-              <GraduationCap size={13} style={{ color: 'var(--color-primary)' }} />
-              <span>BulSU · BS Information Technology</span>
-            </span>
-          </div>
         </div>
       </div>
 

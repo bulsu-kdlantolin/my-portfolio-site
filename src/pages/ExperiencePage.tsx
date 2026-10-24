@@ -1,34 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Badge } from '../components/common/Badge';
-import { Button } from '../components/common/Button';
 import {
   GraduationCap,
   Calendar,
   MapPin,
-  ExternalLink,
   CheckCircle2,
   Sparkles,
   ArrowUpRight,
   Layers,
   Target,
-  Terminal,
-  ChevronDown
+  Terminal
 } from 'lucide-react';
 
 interface RoadmapMilestone {
   id: string;
   phase: string;
-  phaseName: string;
   role: string;
   organization: string;
   period: string;
   location: string;
-  type: 'Active Build' | 'Academic' | 'Applied Research' | 'Curriculum' | 'Target Horizon';
-  badgeVariant: 'primary' | 'secondary' | 'neutral' | 'teal' | 'status';
-  category: 'active' | 'academic' | 'curriculum' | 'horizon';
-  isLive: boolean;
-  order: number;
+  typeBadge: string;
+  category: 'academic' | 'curriculum' | 'active' | 'research' | 'horizon';
+  isLive?: boolean;
   nodeIcon: 'grad' | 'terminal' | 'layers' | 'sparkles' | 'target';
   summary: string;
   highlights: string[];
@@ -36,210 +29,129 @@ interface RoadmapMilestone {
   link?: {
     text: string;
     url: string;
-    isInternal?: boolean;
+    isExternal?: boolean;
   };
 }
 
 const roadmapMilestones: RoadmapMilestone[] = [
   {
     id: 'bulsu',
-    phase: 'PHASE 01',
-    phaseName: 'Academic Foundations & Systems Theory',
-    role: 'BS in Information Technology (Candidate)',
+    phase: 'PHASE 01 · 2022 — 2026',
+    role: 'BS in Information Technology',
     organization: 'Bulacan State University',
     period: '2022 — Expected 2026',
-    location: 'City of Malolos, Bulacan, Philippines',
-    type: 'Academic',
-    badgeVariant: 'secondary',
+    location: 'Bulacan, Philippines',
+    typeBadge: 'Academic Foundation',
     category: 'academic',
-    isLive: false,
-    order: 1,
     nodeIcon: 'grad',
     summary:
-      'Undergraduate student approaching graduation, building rigorous foundations in software engineering principles, system analysis, relational database design, network architecture, and computing theory.',
+      'Four-year computing degree building rigorous foundations in software engineering lifecycles, database normalization, algorithms, and distributed systems.',
     highlights: [
-      'Systems Analysis & Design: Produced comprehensive technical specification documents, data flow diagrams (DFD), entity-relationship models, and system requirement matrices.',
-      'Database Management Systems: Mastered relational schema normalization (1NF to 3NF), PostgreSQL/MySQL query tuning, transaction management, and indexing strategies.',
-      'Data Structures & Algorithms: Applied core computing structures (trees, graphs, hash tables) and evaluated time/space computational complexities (Big-O analysis).',
-      'Team Leadership & Technical Defense: Led student development groups in collaborative web projects, maintaining Git workflow discipline and presenting architectural defenses to faculty.'
+      'Database Systems: Normalized schemas (1NF to 3NF) and optimized relational queries in PostgreSQL and MySQL.',
+      'Core Algorithms: Applied trees, graphs, and Big-O complexity analysis to solve computational problems.',
+      'System Architecture: Led team development lifecycles, data flow diagrams, and architectural defenses.'
     ],
-    technologies: [
-      'Systems Analysis',
-      'PostgreSQL',
-      'MySQL',
-      'Data Structures & Algorithms',
-      'Software Engineering Lifecycles',
-      'Git / GitHub'
-    ],
+    technologies: ['PostgreSQL', 'MySQL', 'Systems Analysis', 'Data Structures', 'Git & GitHub'],
     link: {
-      text: 'Read Academic Background',
-      url: '/about',
-      isInternal: true
+      text: 'View Academic Background',
+      url: '/about'
     }
   },
   {
-    id: 'freecodecamp',
-    phase: 'PHASE 02',
-    phaseName: 'Full-Stack Standards & Computational Discipline',
-    role: 'Full-Stack Developer Track Scholar',
-    organization: 'freeCodeCamp & Open Web Standards',
+    id: 'web-standards',
+    phase: 'PHASE 02 · 2023 — Present',
+    role: 'Full-Stack Developer Track',
+    organization: 'freeCodeCamp & Open Standards',
     period: '2023 — Present',
-    location: 'Online Curriculum & Certification',
-    type: 'Curriculum',
-    badgeVariant: 'neutral',
+    location: 'Curriculum & Independent Practice',
+    typeBadge: 'Web Standards Track',
     category: 'curriculum',
-    isLive: false,
-    order: 2,
     nodeIcon: 'terminal',
     summary:
-      'Rigorous self-paced technical curriculum covering accessible web development, algorithmic computational problem-solving, and standards-compliant frontend engineering.',
+      'Self-directed mastery of semantic web standards, WCAG accessibility compliance, algorithmic problem solving, and modern reactive frontend architectures.',
     highlights: [
-      'Responsive Web Design: Completed semantic HTML5 and modern CSS layout architectures with strict adherence to responsive viewport principles and WCAG accessibility.',
-      'JavaScript Algorithms & Data Structures: Solved hundreds of coding exercises focusing on functional programming, array manipulations, recursion, and object-oriented patterns.',
-      'Front-End Development Libraries: Built responsive client apps focusing on React component lifecycles, state management, and declarative rendering.'
+      'Responsive Web Standards: Engineered accessible, mobile-first interfaces using CSS Grid, Flexbox, and semantic HTML5.',
+      'Reactive Component Design: Built SPAs with modern React, hooks, declarative rendering, and state workflows.',
+      'Algorithmic Logic: Solved hundreds of algorithmic coding exercises in ES6+ JavaScript and TypeScript.'
     ],
-    technologies: [
-      'JavaScript (ES6+)',
-      'TypeScript',
-      'CSS Flexbox/Grid',
-      'Semantic HTML5',
-      'WCAG Accessibility',
-      'Algorithm Design'
-    ],
+    technologies: ['TypeScript', 'JavaScript (ES6+)', 'React', 'CSS Flexbox/Grid', 'Semantic HTML5', 'REST APIs'],
     link: {
       text: 'View Certifications & Credentials',
-      url: '/certifications',
-      isInternal: true
+      url: '/certifications'
     }
   },
   {
     id: 'sensa',
-    phase: 'PHASE 03',
-    phaseName: 'Production Browser Extension Architecture',
+    phase: 'PHASE 03 · 2024 — Present',
     role: 'Lead Developer & Architect',
-    organization: 'Sensa Chrome Extension (Active Build)',
+    organization: 'Sensa Chrome Extension',
     period: '2024 — Present',
-    location: 'Bulacan, Philippines · Independent Production Build',
-    type: 'Active Build',
-    badgeVariant: 'primary',
+    location: 'Bulacan, Philippines · Active Production Build',
+    typeBadge: 'Active Build',
     category: 'active',
     isLive: true,
-    order: 3,
     nodeIcon: 'layers',
     summary:
-      'Designing and developing an accessible, real-time live captions and speech-to-text overlay browser extension. Built for low latency, zero external API costs, and full cross-website tab compatibility.',
+      'Architecting an accessible assistive browser extension delivering real-time, low-latency live captions and voice navigation with zero external API costs.',
     highlights: [
-      'Architected Chrome Manifest V3 extension leveraging Chrome Offscreen Documents (chrome.offscreen) to execute Web Speech API audio processing outside service worker lifecycle boundaries.',
-      'Constructed a floating, draggable glassmorphic caption HUD injected into active DOMs with configurable font sizes, background opacities, and instant drag-repositioning.',
-      'Engineered resilient reconnection loops and error-handling routines for microphone permissions, tab focus changes, and speech recognition dropouts.',
-      'Designed clean architectural separation between content scripts, background service workers, offscreen documents, and popup telemetry views.'
+      'Manifest V3 Architecture: Orchestrated Chrome Offscreen Documents to run Web Speech audio capture outside service worker lifecycles.',
+      'Floating HUD Interface: Built a draggable, glassmorphic caption display injected seamlessly into active browser DOMs.',
+      'Resilient Engineering: Implemented automatic reconnection loops for audio dropouts, microphone permissions, and tab focus changes.'
     ],
-    technologies: [
-      'Manifest V3',
-      'TypeScript',
-      'React',
-      'Web Speech API',
-      'Offscreen Documents',
-      'Chrome Extension APIs',
-      'Vanilla CSS'
-    ],
+    technologies: ['Manifest V3', 'TypeScript', 'React', 'Web Speech API', 'Offscreen Documents', 'Chrome APIs'],
     link: {
       text: 'View Sensa Case Study',
-      url: '/projects',
-      isInternal: true
+      url: '/projects'
     }
   },
   {
     id: 'applied-ai',
-    phase: 'PHASE 04',
-    phaseName: 'Applied AI & RAG Pipeline Prototyping',
-    role: 'Applied AI & RAG Pipeline Explorer',
-    organization: 'Self-Directed Engineering & Systems Prototyping',
+    phase: 'PHASE 04 · 2024 — Present',
+    role: 'Applied AI & Systems Explorer',
+    organization: 'Self-Directed Systems Lab',
     period: '2024 — Present',
-    location: 'Remote · Systems Research Lab',
-    type: 'Applied Research',
-    badgeVariant: 'primary',
-    category: 'active',
-    isLive: true,
-    order: 4,
+    location: 'Remote · Systems Prototyping',
+    typeBadge: 'Applied Systems',
+    category: 'research',
     nodeIcon: 'sparkles',
     summary:
-      'Focused investigation into production-grade AI system design: bridging probabilistic large language models with deterministic full-stack application logic, structured JSON outputs, and vector retrieval.',
+      'Designing production-grade AI applications that bridge probabilistic language models with deterministic full-stack logic, structured schemas, and semantic search.',
     highlights: [
-      'Built retrieval-augmented generation (RAG) experiments exploring text chunking strategies, cosine similarity retrieval, and vector database integrations (pgvector).',
-      'Implemented schema enforcement using Zod and TypeScript to guarantee model outputs conform strictly to application data contracts, preventing client-side UI rendering breaks.',
-      'Evaluated latency, token costs, and prompt compression techniques to design cost-efficient LLM integrations for real-world web tools.',
-      'Experimented with local inference workflows using Ollama for privacy-focused offline processing.'
+      'Strict Schema Enforcement: Enforced Zod schemas and TypeScript boundaries to guarantee deterministic JSON outputs from LLMs.',
+      'Semantic Search & RAG: Prototyped vector retrieval workflows evaluating cosine similarity, token chunking, and pgvector embeddings.',
+      'Inference Optimization: Tested prompt compression, streaming response pipelines, and local inference models using Ollama.'
     ],
-    technologies: [
-      'Python',
-      'TypeScript',
-      'Node.js',
-      'OpenAI API',
-      'Vector Embeddings',
-      'pgvector',
-      'Zod Schema Enforcement',
-      'Prompt Architecture'
-    ],
+    technologies: ['Python', 'Node.js', 'OpenAI API', 'pgvector', 'Zod', 'Vector Embeddings'],
     link: {
       text: 'Explore Applied AI Stack',
-      url: '/stack',
-      isInternal: true
+      url: '/stack'
     }
   },
   {
     id: 'horizon',
-    phase: 'PHASE 05',
-    phaseName: 'Degree Conferment & Production AI Engineering',
+    phase: 'PHASE 05 · Target 2026',
     role: 'BS IT Graduate & Full-Stack AI Engineer',
     organization: 'Industry & Engineering Horizon',
     period: 'Target 2026',
     location: 'Bulacan / Manila / Remote · Full-Time Trajectory',
-    type: 'Target Horizon',
-    badgeVariant: 'status',
+    typeBadge: 'Upcoming Horizon',
     category: 'horizon',
-    isLive: false,
-    order: 5,
     nodeIcon: 'target',
     summary:
-      'Target trajectory milestone: Completion of undergraduate degree at Bulacan State University and transition into building high-reliability full-stack software and production AI infrastructure.',
+      'Upcoming milestone: Graduating from Bulacan State University and joining a forward-thinking engineering team to build scalable full-stack software and AI systems.',
     highlights: [
-      'Undergraduate Capstone Defense: Complete thesis engineering defense and attain BS in Information Technology credential from BulSU.',
-      'Production AI Deployments: Architect and deploy production-grade multi-tenant web applications integrating streaming LLM responses and vector-search caching.',
-      'Open-Source Web Infrastructure: Release modular browser utilities, accessibility tools, and open-source developer toolkits to the global developer community.'
+      'Undergraduate Capstone Defense: Complete thesis defense and receive BS in Information Technology diploma from BulSU.',
+      'Production Engineering: Open to full-time junior/associate software engineering and full-stack AI roles.'
     ],
-    technologies: [
-      'Next.js / React',
-      'TypeScript',
-      'Cloud Infrastructure',
-      'Vector Databases',
-      'System Architecture',
-      'Production Reliability'
-    ],
+    technologies: ['React & Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Applied AI', 'Cloud Deployments'],
     link: {
-      text: 'Connect & Inquire',
-      url: '/contact',
-      isInternal: true
+      text: 'Get in touch for Opportunities',
+      url: '/contact'
     }
   }
 ];
 
 export const ExperiencePage: React.FC = () => {
-  // Start with all cards minimized
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
-
-  const toggleExpand = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
-
   const renderNodeIcon = (type: RoadmapMilestone['nodeIcon']) => {
     switch (type) {
       case 'grad':
@@ -257,33 +169,32 @@ export const ExperiencePage: React.FC = () => {
 
   return (
     <div className="roadmap-wrapper">
-      {/* Page Header */}
+      {/* 1. Page Header */}
       <div
         style={{
           borderBottom: '1px solid var(--border-subtle)',
-          paddingBottom: '20px'
+          paddingBottom: '20px',
+          marginBottom: '28px'
         }}
       >
-        <div>
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-              fontWeight: 800,
-              color: 'var(--ink-primary)',
-              letterSpacing: '-0.02em',
-              marginBottom: '8px'
-            }}
-          >
-            Engineering Experience &amp; Roadmap
-          </h2>
-          <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '780px', lineHeight: 1.6, margin: 0 }}>
-            A chronological milestone roadmap mapping academic foundations at Bulacan State University, web standards discipline, production browser extension architectures, applied AI research, and forward career horizons.
-          </p>
-        </div>
+        <h1
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+            fontWeight: 800,
+            color: 'var(--ink-primary)',
+            letterSpacing: '-0.02em',
+            margin: '0 0 8px 0'
+          }}
+        >
+          Engineering Journey &amp; Roadmap
+        </h1>
+        <p style={{ fontSize: '0.9375rem', color: 'var(--ink-muted)', maxWidth: '780px', lineHeight: 1.6, margin: 0 }}>
+          A chronological milestone roadmap mapping academic foundations at Bulacan State University, web standards mastery, production browser architectures, and applied AI systems.
+        </p>
       </div>
 
-      {/* Roadmap Continuous Timeline */}
+      {/* 2. Continuous Roadmap Timeline */}
       <div className="roadmap-timeline-container">
         {/* Continuous Spine Rail */}
         <div className="roadmap-spine" aria-hidden="true" />
@@ -293,58 +204,43 @@ export const ExperiencePage: React.FC = () => {
           const isActive = milestone.category === 'active';
           const isAcademic = milestone.category === 'academic';
           const isCurriculum = milestone.category === 'curriculum';
-          const isExpanded = expandedIds.has(milestone.id);
+          const isResearch = milestone.category === 'research';
 
           let nodeClass = 'roadmap-node';
           if (isActive) nodeClass += ' roadmap-node--active';
           else if (isTarget) nodeClass += ' roadmap-node--target';
           else if (isAcademic) nodeClass += ' roadmap-node--academic';
           else if (isCurriculum) nodeClass += ' roadmap-node--curriculum';
+          else if (isResearch) nodeClass += ' roadmap-node--research';
 
           let cardModifier = '';
           if (isActive) cardModifier = 'roadmap-card--active';
           else if (isTarget) cardModifier = 'roadmap-card--target';
           else if (isAcademic) cardModifier = 'roadmap-card--academic';
           else if (isCurriculum) cardModifier = 'roadmap-card--curriculum';
+          else if (isResearch) cardModifier = 'roadmap-card--research';
 
           return (
             <div key={milestone.id} className="roadmap-item">
-              {/* Milestone Node on Rail */}
+              {/* Milestone Node on Spine */}
               <div className="roadmap-node-col">
-                <button
-                  type="button"
-                  onClick={() => toggleExpand(milestone.id)}
+                <div
                   className={nodeClass}
-                  title={`${milestone.phase}: ${milestone.phaseName} (Click to toggle)`}
-                  style={{ cursor: 'pointer' }}
+                  title={`${milestone.phase}: ${milestone.role}`}
                 >
                   {renderNodeIcon(milestone.nodeIcon)}
-                </button>
+                </div>
               </div>
 
-              {/* Horizontal Arm */}
+              {/* Horizontal Connecting Arm */}
               <div className="roadmap-arm" aria-hidden="true" />
 
-              {/* Roadmap Milestone Card */}
-              <article
-                className={`roadmap-card ${cardModifier} ${isExpanded ? 'roadmap-card--expanded' : ''}`}
-              >
-                {/* Minimized Header Row (Clickable Accordion Trigger) */}
-                <div
-                  className="roadmap-card-header"
-                  onClick={() => toggleExpand(milestone.id)}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={isExpanded}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      toggleExpand(milestone.id);
-                    }
-                  }}
-                >
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    {/* Phase Ribbon & Live Status Tag */}
+              {/* Milestone Card */}
+              <article className={`roadmap-card ${cardModifier}`}>
+                {/* Header Row */}
+                <div className="roadmap-card-header">
+                  <div style={{ flex: '1 1 320px' }}>
+                    {/* Phase Tag & Status Badge */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
                       <span
                         style={{
@@ -355,32 +251,41 @@ export const ExperiencePage: React.FC = () => {
                           backgroundColor: isTarget ? 'rgba(217, 119, 6, 0.12)' : 'rgba(51, 104, 160, 0.1)',
                           padding: '2px 8px',
                           borderRadius: 'var(--radius-xs)',
-                          letterSpacing: '0.06em'
+                          letterSpacing: '0.04em'
                         }}
                       >
-                        {milestone.phase} // {milestone.phaseName.toUpperCase()}
+                        {milestone.phase}
                       </span>
 
-                      {milestone.isLive && (
+                      {milestone.isLive ? (
                         <span className="roadmap-live-badge">
                           <span className="roadmap-live-dot" />
                           LIVE ACTIVE BUILD
                         </span>
-                      )}
-
-                      {!milestone.isLive && (
-                        <Badge variant={milestone.badgeVariant} size="sm">
-                          {milestone.type}
-                        </Badge>
+                      ) : (
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.6875rem',
+                            fontWeight: 600,
+                            padding: '2px 8px',
+                            borderRadius: 'var(--radius-xs)',
+                            backgroundColor: 'var(--bg-canvas)',
+                            border: '1px solid var(--border-subtle)',
+                            color: 'var(--ink-muted)'
+                          }}
+                        >
+                          {milestone.typeBadge}
+                        </span>
                       )}
                     </div>
 
                     {/* Role Title and Organization */}
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
-                      <h3
+                      <h2
                         style={{
                           fontFamily: 'var(--font-display)',
-                          fontSize: '1.1875rem',
+                          fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
                           fontWeight: 800,
                           color: 'var(--ink-primary)',
                           letterSpacing: '-0.015em',
@@ -388,7 +293,7 @@ export const ExperiencePage: React.FC = () => {
                         }}
                       >
                         {milestone.role}
-                      </h3>
+                      </h2>
                       <span
                         style={{
                           fontFamily: 'var(--font-display)',
@@ -402,182 +307,156 @@ export const ExperiencePage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Date, Location & Expand Indicator */}
+                  {/* Period & Location Metadata */}
                   <div
                     style={{
                       display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start',
+                      gap: '4px',
                       flexShrink: 0
                     }}
                   >
                     <div
                       style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-end',
-                        gap: '3px'
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.75rem',
+                        color: 'var(--ink-primary)',
+                        fontWeight: 600,
+                        backgroundColor: 'var(--bg-canvas)',
+                        padding: '3px 10px',
+                        borderRadius: 'var(--radius-pill)',
+                        border: '1px solid var(--border-subtle)'
                       }}
                     >
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.75rem',
-                          color: 'var(--ink-primary)',
-                          fontWeight: 600,
-                          backgroundColor: 'var(--bg-canvas)',
-                          padding: '3px 9px',
-                          borderRadius: 'var(--radius-pill)',
-                          border: '1px solid var(--border-subtle)'
-                        }}
-                      >
-                        <Calendar size={12} style={{ color: isTarget ? '#D97706' : 'var(--color-primary)' }} />
-                        <span>{milestone.period}</span>
-                      </div>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          fontSize: '0.6875rem',
-                          color: 'var(--ink-muted)'
-                        }}
-                      >
-                        <MapPin size={11} />
-                        <span>{milestone.location}</span>
-                      </div>
+                      <Calendar size={12} style={{ color: isTarget ? '#D97706' : 'var(--color-primary)' }} />
+                      <span>{milestone.period}</span>
                     </div>
-
-                    {/* Expand/Collapse Trigger */}
-                    <div className="roadmap-card-trigger">
-                      <span>{isExpanded ? 'Minimize' : 'Details'}</span>
-                      <ChevronDown
-                        size={15}
-                        className={`roadmap-chevron ${isExpanded ? 'roadmap-chevron--expanded' : ''}`}
-                      />
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontSize: '0.6875rem',
+                        color: 'var(--ink-muted)',
+                        paddingLeft: '4px'
+                      }}
+                    >
+                      <MapPin size={11} />
+                      <span>{milestone.location}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Maximized Detail Body (Expanded on click) */}
-                {isExpanded && (
-                  <div className="roadmap-card-body">
-                    {/* Summary */}
-                    <p
-                      style={{
-                        fontSize: '0.875rem',
-                        color: 'var(--ink-muted)',
-                        lineHeight: 1.6,
-                        marginBottom: '18px'
-                      }}
-                    >
-                      {milestone.summary}
-                    </p>
+                {/* Card Content Body */}
+                <div className="roadmap-card-body">
+                  {/* Summary */}
+                  <p
+                    style={{
+                      fontSize: '0.875rem',
+                      color: 'var(--ink-muted)',
+                      lineHeight: 1.6,
+                      margin: 0
+                    }}
+                  >
+                    {milestone.summary}
+                  </p>
 
-                    {/* Milestone Deliverables */}
-                    <div style={{ marginBottom: '20px' }}>
-                      <div
+                  {/* Deliverables / Highlights */}
+                  <ul
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px',
+                      padding: 0,
+                      margin: '4px 0 0 0',
+                      listStyle: 'none'
+                    }}
+                  >
+                    {milestone.highlights.map((highlight, idx) => (
+                      <li
+                        key={idx}
                         style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.6875rem',
-                          fontWeight: 700,
-                          color: 'var(--ink-subtle)',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.06em',
-                          marginBottom: '10px'
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '8px',
+                          fontSize: '0.8125rem',
+                          color: 'var(--ink-primary)',
+                          lineHeight: 1.5
                         }}
                       >
-                        Architectural Milestones &amp; Key Deliverables
-                      </div>
-                      <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: 0, margin: 0, listStyle: 'none' }}>
-                        {milestone.highlights.map((highlight, idx) => (
-                          <li
-                            key={idx}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'flex-start',
-                              gap: '10px',
-                              fontSize: '0.84375rem',
-                              color: 'var(--ink-primary)',
-                              lineHeight: 1.55
-                            }}
-                          >
-                            <CheckCircle2
-                              size={15}
-                              style={{
-                                color: isTarget ? '#D97706' : 'var(--color-primary)',
-                                flexShrink: 0,
-                                marginTop: '2px'
-                              }}
-                            />
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        <CheckCircle2
+                          size={14}
+                          style={{
+                            color: isTarget ? '#D97706' : 'var(--color-primary)',
+                            flexShrink: 0,
+                            marginTop: '2px'
+                          }}
+                        />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Footer Strip: Tech Tags + Action Link */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '12px',
+                      borderTop: '1px solid var(--border-subtle)',
+                      paddingTop: '12px',
+                      marginTop: '4px'
+                    }}
+                  >
+                    {/* Technologies */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {milestone.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.6875rem',
+                            fontWeight: 600,
+                            color: 'var(--ink-muted)',
+                            backgroundColor: 'var(--bg-canvas)',
+                            border: '1px solid var(--border-subtle)',
+                            padding: '2px 8px',
+                            borderRadius: 'var(--radius-xs)'
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
 
-                    {/* Tech Tags and Action Link */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        flexWrap: 'wrap',
-                        gap: '14px',
-                        borderTop: '1px solid var(--border-subtle)',
-                        paddingTop: '16px'
-                      }}
-                    >
-                      {/* Tech Badges */}
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                        {milestone.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            style={{
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '0.6875rem',
-                              fontWeight: 600,
-                              color: 'var(--ink-muted)',
-                              backgroundColor: 'var(--bg-canvas)',
-                              border: '1px solid var(--border-subtle)',
-                              padding: '3px 8px',
-                              borderRadius: 'var(--radius-xs)'
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Action Link */}
-                      {milestone.link && (
-                        <div>
-                          {milestone.link.isInternal ? (
-                            <Link to={milestone.link.url} style={{ textDecoration: 'none' }}>
-                              <Button variant="ghost" size="sm" icon={<ArrowUpRight size={14} />} iconPosition="right">
-                                {milestone.link.text}
-                              </Button>
-                            </Link>
-                          ) : (
-                            <a
-                              href={milestone.link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ textDecoration: 'none' }}
-                            >
-                              <Button variant="ghost" size="sm" icon={<ExternalLink size={14} />} iconPosition="right">
-                                {milestone.link.text}
-                              </Button>
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
+                    {/* Action Link */}
+                    {milestone.link && (
+                      <Link
+                        to={milestone.link.url}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          fontFamily: 'var(--font-display)',
+                          fontSize: '0.8125rem',
+                          fontWeight: 700,
+                          color: isTarget ? '#D97706' : 'var(--color-primary)',
+                          textDecoration: 'none',
+                          transition: 'opacity var(--transition-fast)'
+                        }}
+                      >
+                        <span>{milestone.link.text}</span>
+                        <ArrowUpRight size={14} />
+                      </Link>
+                    )}
                   </div>
-                )}
+                </div>
               </article>
             </div>
           );
@@ -586,4 +465,3 @@ export const ExperiencePage: React.FC = () => {
     </div>
   );
 };
-
